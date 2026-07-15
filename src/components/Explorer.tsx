@@ -5,12 +5,13 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Pagoda } from "@/lib/types";
 import { normalize } from "@/lib/data";
+import { getDict, type Locale } from "@/lib/i18n";
 
 const PagodaMap = dynamic(() => import("./PagodaMap"), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center bg-stone-100 text-stone-400">
-      Đang tải bản đồ…
+      …
     </div>
   ),
 });
@@ -18,10 +19,13 @@ const PagodaMap = dynamic(() => import("./PagodaMap"), {
 export default function Explorer({
   pagodas,
   provinces,
+  locale,
 }: {
   pagodas: Pagoda[];
   provinces: { name: string; count: number }[];
+  locale: Locale;
 }) {
+  const t = getDict(locale);
   const [query, setQuery] = useState("");
   const [province, setProvince] = useState("");
 
@@ -42,7 +46,7 @@ export default function Explorer({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Tìm kiếm chùa, đền… (ví dụ: Thiên Mụ)"
+            placeholder={t.searchPlaceholder}
             className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none focus:ring-1 focus:ring-amber-600"
           />
           <select
@@ -50,20 +54,20 @@ export default function Explorer({
             onChange={(e) => setProvince(e.target.value)}
             className="w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
           >
-            <option value="">Tất cả tỉnh thành ({pagodas.length})</option>
+            <option value="">{t.allProvinces} ({pagodas.length})</option>
             {provinces.map((pr) => (
               <option key={pr.name} value={pr.name}>
                 {pr.name} ({pr.count})
               </option>
             ))}
           </select>
-          <p className="text-xs text-stone-500">{filtered.length} kết quả</p>
+          <p className="text-xs text-stone-500">{filtered.length} {t.results}</p>
         </div>
         <ul className="flex-1 divide-y divide-stone-100 overflow-y-auto">
           {filtered.map((p) => (
             <li key={p.id}>
               <Link
-                href={`/chua/${p.slug}`}
+                href={`/${locale}/chua/${p.slug}`}
                 className="flex gap-3 px-4 py-3 transition hover:bg-amber-50"
               >
                 {p.thumbnail ? (
@@ -91,13 +95,13 @@ export default function Explorer({
           ))}
           {filtered.length === 0 && (
             <li className="p-6 text-center text-sm text-stone-500">
-              Không tìm thấy kết quả phù hợp.
+              {t.noResults}
             </li>
           )}
         </ul>
       </aside>
       <div className="h-[50vh] flex-1 lg:h-auto">
-        <PagodaMap pagodas={filtered} />
+        <PagodaMap pagodas={filtered} locale={locale} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Link from "next/link";
 import type { Pagoda } from "@/lib/types";
+import { getDict, type Locale } from "@/lib/i18n";
 
 const pagodaIcon = L.divIcon({
   className: "",
@@ -19,12 +20,15 @@ export default function PagodaMap({
   center = [16.2, 107.5],
   zoom = 6,
   height = "100%",
+  locale = "vi",
 }: {
   pagodas: Pagoda[];
   center?: [number, number];
   zoom?: number;
   height?: string;
+  locale?: Locale;
 }) {
+  const t = getDict(locale);
   return (
     <div style={{ height }} className="h-full w-full">
       <MapContainer center={center} zoom={zoom} scrollWheelZoom className="h-full w-full">
@@ -49,10 +53,10 @@ export default function PagodaMap({
                   <div className="font-semibold">{p.name}</div>
                   <div className="text-xs text-stone-500">{p.province}</div>
                   <Link
-                    href={`/chua/${p.slug}`}
+                    href={`/${locale}/chua/${p.slug}`}
                     className="mt-1 inline-block text-sm font-medium text-amber-700 hover:underline"
                   >
-                    Xem chi tiết →
+                    {t.viewDetail}
                   </Link>
                 </div>
               </Popup>

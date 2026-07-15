@@ -1,0 +1,20 @@
+import detailsJson from "@/data/details.json";
+
+export interface Section {
+  heading: string | null;
+  text: string;
+}
+
+export interface PagodaDetails {
+  nameEn: string | null;
+  wikipediaUrlEn: string | null;
+  sectionsVi: Section[];
+  sectionsEn: Section[];
+  references: string[];
+}
+
+const details = detailsJson as Record<string, PagodaDetails>;
+
+export function getDetailsBySlug(slug: string): PagodaDetails | undefined {
+  return details[slug];
+}
