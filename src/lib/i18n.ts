@@ -35,6 +35,11 @@ export interface Dict {
   directorySubtitle: (n: number, p: number) => string;
   all: string;
   footer: string;
+  licenseWiki: string;
+  licenseOsm: string;
+  notFoundTitle: string;
+  notFoundText: string;
+  backHome: string;
   metaTitle: string;
   metaDescription: string;
 }
@@ -72,6 +77,11 @@ const dict: Record<Locale, Dict> = {
     directorySubtitle: (n: number, p: number) => `${n} chùa, đền, tự viện tại ${p} tỉnh thành.`,
     all: "Tất cả",
     footer: "Chùa Việt Nam — dữ liệu tổng hợp từ Wikipedia (tiếng Việt & tiếng Anh), Wikidata, Wikimedia Commons, OpenStreetMap và các nguồn công khai.",
+    licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
+    licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
+    notFoundTitle: "Không tìm thấy trang",
+    notFoundText: "Trang bạn tìm kiếm không tồn tại hoặc đã được di chuyển.",
+    backHome: "Về trang chủ",
     metaTitle: "Chùa Việt Nam — Từ điển chùa, đền, tự viện Việt Nam",
     metaDescription:
       "Từ điển trực tuyến về các ngôi chùa, đền và tự viện trên khắp Việt Nam: bản đồ tương tác, lịch sử, hình ảnh và thông tin chi tiết theo từng tỉnh thành.",
@@ -110,6 +120,11 @@ const dict: Record<Locale, Dict> = {
     all: "All",
     footer:
       "Vietnam Pagodas — data aggregated from Wikipedia (Vietnamese & English), Wikidata, Wikimedia Commons, OpenStreetMap and other public sources.",
+    licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
+    licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",
+    notFoundTitle: "Page not found",
+    notFoundText: "The page you are looking for does not exist or has been moved.",
+    backHome: "Back to home",
     metaTitle: "Vietnam Pagodas — Dictionary of Vietnamese pagodas & temples",
     metaDescription:
       "An online dictionary of pagodas, temples and monasteries across Vietnam: interactive map, history, photos and detailed information by province.",

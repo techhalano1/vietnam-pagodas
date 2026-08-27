@@ -21,9 +21,26 @@ export function generateMetadata({
   if (!p || !isLocale(params.locale)) return {};
   const d = getDetailsBySlug(params.slug);
   const name = params.locale === "en" && d?.nameEn ? d.nameEn : p.name;
+  const description = p.description.slice(0, 160);
+  const path = `/${params.locale}/chua/${p.slug}`;
   return {
     title: `${name} — ${p.province}`,
-    description: p.description.slice(0, 160),
+    description,
+    alternates: {
+      canonical: path,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/chua/${p.slug}`])),
+    },
+    openGraph: {
+      title: `${name} — ${p.province}`,
+      description,
+      url: path,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${name} — ${p.province}`,
+      description,
+    },
   };
 }
 
@@ -137,16 +154,18 @@ export default function PagodaPage({
       <section className="mt-8">
         <h2 className="mb-2 text-xl font-semibold">{t.referencesHeading}</h2>
         <ul className="list-disc space-y-1 pl-5 text-sm text-stone-600">
-          <li>
-            <a
-              href={p.wikipediaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-700 hover:underline"
-            >
-              {t.wikipediaVi}
-            </a>
-          </li>
+          {p.wikipediaUrl && (
+            <li>
+              <a
+                href={p.wikipediaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-700 hover:underline"
+              >
+                {t.wikipediaVi}
+              </a>
+            </li>
+          )}
           {d?.wikipediaUrlEn && (
             <li>
               <a
