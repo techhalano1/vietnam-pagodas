@@ -21,9 +21,26 @@ export function generateMetadata({
   if (!p || !isLocale(params.locale)) return {};
   const d = getDetailsBySlug(params.slug);
   const name = params.locale === "en" && d?.nameEn ? d.nameEn : p.name;
+  const description = p.description.slice(0, 160);
+  const path = `/${params.locale}/chua/${p.slug}`;
   return {
     title: `${name} — ${p.province}`,
-    description: p.description.slice(0, 160),
+    description,
+    alternates: {
+      canonical: path,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/chua/${p.slug}`])),
+    },
+    openGraph: {
+      title: `${name} — ${p.province}`,
+      description,
+      url: path,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${name} — ${p.province}`,
+      description,
+    },
   };
 }
 
