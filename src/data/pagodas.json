@@ -2052,6 +2052,78 @@
     "slug": "chua-tra-phuong"
   },
   {
+    "id": 90000001,
+    "slug": "chua-cao-linh",
+    "name": "Chùa Cao Linh",
+    "province": "Hải Phòng",
+    "lat": null,
+    "lng": null,
+    "description": "Chùa Cao Linh tọa lạc tại thôn Bắc Hà, xã Bắc Sơn, huyện An Dương, cửa ngõ phía Tây thành phố Hải Phòng, cách trung tâm thành phố khoảng 12 km. Với lịch sử hơn 300 năm và khuôn viên rộng khoảng 49.000 m², đây là một trong những ngôi chùa lớn nhất Hải Phòng, nổi bật với kiến trúc pha trộn giữa nét cổ kính phương Đông và phong cách hiện đại.",
+    "image": null,
+    "thumbnail": null,
+    "wikipediaUrl": null
+  },
+  {
+    "id": 90000002,
+    "slug": "thap-tuong-long",
+    "name": "Tháp Tường Long (Chùa Tháp)",
+    "province": "Hải Phòng",
+    "lat": 20.7142698,
+    "lng": 106.7703957,
+    "description": "Tháp Tường Long, còn gọi là chùa Tháp hay tháp Đồ Sơn, tọa lạc trên đỉnh núi Long Sơn cao 95,2 m thuộc phường Vạn Hương, quận Đồ Sơn, Hải Phòng. Tháp được xây dựng năm 1058 dưới thời vua Lý Thánh Tông và được phỏng dựng lại từ năm 2007 với 9 tầng, cao 37,14 m — công trình kỷ niệm một nghìn năm Thăng Long – Hà Nội.",
+    "image": null,
+    "thumbnail": null,
+    "wikipediaUrl": null
+  },
+  {
+    "id": 90000003,
+    "slug": "chua-do-hai-phong",
+    "name": "Chùa Đỏ (Linh Độ tự)",
+    "province": "Hải Phòng",
+    "lat": 20.8710055,
+    "lng": 106.7026447,
+    "description": "Chùa Đỏ, tên chữ Linh Độ tự, nằm trên phố Lê Lai, quận Ngô Quyền, Hải Phòng. Chùa gắn với sự kiện Hưng Đạo Vương Trần Quốc Tuấn trú quân năm 1288 trước trận Bạch Đằng; kiến trúc hiện nay cao 26 m theo kiểu cổ diêm chồng đấu ba tầng 20 mái độc đáo, được xếp hạng Di tích cấp quốc gia.",
+    "image": null,
+    "thumbnail": null,
+    "wikipediaUrl": null
+  },
+  {
+    "id": 90000004,
+    "slug": "chua-ve-hai-phong",
+    "name": "Chùa Vẽ (Hoa Linh tự)",
+    "province": "Hải Phòng",
+    "lat": 20.8617726,
+    "lng": 106.7205928,
+    "description": "Chùa Vẽ, tên chữ Hoa Linh tự, tọa lạc tại phường Đông Hải, quận Hải An, Hải Phòng, bên dòng sông Bạch Đằng lịch sử. Tương truyền Ngô Quyền từng lập đồn binh tại đây năm 938 và Trần Hưng Đạo lập đài quan sát, vẽ địa đồ chuẩn bị trận Bạch Đằng năm 1288 — nguồn gốc tên gọi chùa Vẽ. Chùa được xếp hạng Di tích kiến trúc – nghệ thuật cấp quốc gia năm 1994.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Ch%C3%B9a_V%E1%BA%BD%2C_H%E1%BA%A3i_Ph%C3%B2ng_-_panoramio_%282%29.jpg",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Ch%C3%B9a_V%E1%BA%BD%2C_H%E1%BA%A3i_Ph%C3%B2ng_-_panoramio_%282%29.jpg/500px-Ch%C3%B9a_V%E1%BA%BD%2C_H%E1%BA%A3i_Ph%C3%B2ng_-_panoramio_%282%29.jpg",
+    "wikipediaUrl": null
+  },
+  {
+    "id": 90000005,
+    "slug": "chua-mo",
+    "name": "Chùa Mõ",
+    "province": "Hải Phòng",
+    "lat": null,
+    "lng": null,
+    "description": "Chùa Mõ nằm trong cụm di tích đền – chùa Mõ tại xã Ngũ Phúc, huyện Kiến Thụy, Hải Phòng, gắn với công chúa Quỳnh Trân đời Trần — người lập điền trang, dạy dân khai khẩn ruộng nương từ năm 1283 và dùng tiếng mõ làm hiệu lệnh điều hành công việc. Cụm di tích được công nhận Di tích lịch sử văn hóa cấp quốc gia và nổi tiếng với cây gạo hơn 700 năm tuổi.",
+    "image": null,
+    "thumbnail": null,
+    "wikipediaUrl": null
+  },
+  {
+    "id": 90000006,
+    "slug": "chua-pho-chieu",
+    "name": "Chùa Phổ Chiếu",
+    "province": "Hải Phòng",
+    "lat": 20.8424753,
+    "lng": 106.6773064,
+    "description": "Chùa Phổ Chiếu tọa lạc tại phường Dư Hàng Kênh, quận Lê Chân, Hải Phòng, được dựng năm 1953, ban đầu là Tam Giáo đường thờ cả Phật, Nho, Lão. Chùa là cơ sở cách mạng trong hai cuộc kháng chiến — nơi nuôi giấu chiến sĩ và đặt hầm chỉ huy của Thành ủy — và được công nhận Di tích lịch sử kháng chiến cấp thành phố năm 2005.",
+    "image": null,
+    "thumbnail": null,
+    "wikipediaUrl": null
+  },
+  {
     "id": 484056,
     "name": "Chùa Tiên",
     "province": "Hòa Bình",

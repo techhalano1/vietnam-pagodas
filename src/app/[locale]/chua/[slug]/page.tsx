@@ -137,16 +137,18 @@ export default function PagodaPage({
       <section className="mt-8">
         <h2 className="mb-2 text-xl font-semibold">{t.referencesHeading}</h2>
         <ul className="list-disc space-y-1 pl-5 text-sm text-stone-600">
-          <li>
-            <a
-              href={p.wikipediaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-700 hover:underline"
-            >
-              {t.wikipediaVi}
-            </a>
-          </li>
+          {p.wikipediaUrl && (
+            <li>
+              <a
+                href={p.wikipediaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-700 hover:underline"
+              >
+                {t.wikipediaVi}
+              </a>
+            </li>
+          )}
           {d?.wikipediaUrlEn && (
             <li>
               <a

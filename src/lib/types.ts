@@ -8,5 +8,5 @@ export interface Pagoda {
   description: string;
   image: string | null;
   thumbnail: string | null;
-  wikipediaUrl: string;
+  wikipediaUrl: string | null;
 }
