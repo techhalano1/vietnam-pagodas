@@ -342,5 +342,5 @@ for (const { pagoda, details: d } of CURATED) {
 }
 
 fs.writeFileSync(pagodasPath, JSON.stringify(pagodas, null, 2));
-fs.writeFileSync(detailsPath, JSON.stringify(details, null, 2));
+fs.writeFileSync(detailsPath, JSON.stringify(details));
 console.log(`Added ${added} curated Hải Phòng entries. Total: ${pagodas.length}`);
