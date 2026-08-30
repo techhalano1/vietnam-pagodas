@@ -214,6 +214,53 @@ export default function PagodaPage({
       </section>
       </Reveal>
 
+      <Reveal>
+      <section className="mt-8">
+        <h2 className="mb-2 text-xl font-semibold">{t.readMoreHeading}</h2>
+        <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">{t.readMoreIntro}</p>
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {[
+            {
+              label: `${t.linkExperiences} ${p.name}`,
+              icon: "🧳",
+              href:
+                locale === "en"
+                  ? `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.province} travel guide tips`)}`
+                  : `https://www.google.com/search?q=${encodeURIComponent(`kinh nghiệm đi ${p.name} ${p.province}`)}`,
+            },
+            {
+              label: t.linkReviews,
+              icon: "⭐",
+              href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name} ${p.province}`)}`,
+            },
+            {
+              label: t.linkVideos,
+              icon: "🎬",
+              href: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${p.name} ${p.province}`)}`,
+            },
+            {
+              label: t.linkArticles,
+              icon: "📰",
+              href: `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.province}`)}&tbm=nws`,
+            },
+          ].map((l) => (
+            <li key={l.label}>
+              <a
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-700 shadow-sm transition-colors hover:border-amber-600 hover:text-amber-700 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200 dark:hover:text-amber-400"
+              >
+                <span aria-hidden>{l.icon}</span>
+                {l.label}
+                <span className="ml-auto text-stone-400">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      </Reveal>
+
       {p.lat !== null && p.lng !== null && (
         <Reveal>
         <section className="mt-8">

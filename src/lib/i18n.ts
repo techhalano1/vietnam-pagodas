@@ -32,6 +32,12 @@ export interface Dict {
   shareBtn: string;
   shareCopied: string;
   contributePhotos: string;
+  readMoreHeading: string;
+  readMoreIntro: string;
+  linkExperiences: string;
+  linkReviews: string;
+  linkVideos: string;
+  linkArticles: string;
   readOnWikipedia: string;
   location: string;
   coordinates: string;
@@ -90,6 +96,12 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Chia sẻ",
     shareCopied: "Đã sao chép liên kết!",
     contributePhotos: "Đóng góp ảnh",
+    readMoreHeading: "Đọc thêm & tham khảo",
+    readMoreIntro: "Các liên kết hữu ích để tìm hiểu thêm trước khi ghé thăm:",
+    linkExperiences: "Kinh nghiệm đi",
+    linkReviews: "Đánh giá trên Google Maps",
+    linkVideos: "Video trên YouTube",
+    linkArticles: "Bài viết & tin tức",
     readOnWikipedia: "Đọc thêm trên Wikipedia →",
     location: "Vị trí",
     coordinates: "Toạ độ",
@@ -148,6 +160,12 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Share",
     shareCopied: "Link copied!",
     contributePhotos: "Contribute photos",
+    readMoreHeading: "Read more & references",
+    readMoreIntro: "Useful links to learn more before your visit:",
+    linkExperiences: "Visiting tips for",
+    linkReviews: "Reviews on Google Maps",
+    linkVideos: "Videos on YouTube",
+    linkArticles: "Articles & news",
     readOnWikipedia: "Read more on Wikipedia →",
     location: "Location",
     coordinates: "Coordinates",
