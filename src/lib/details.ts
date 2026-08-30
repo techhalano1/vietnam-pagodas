@@ -5,12 +5,18 @@ export interface Section {
   text: string;
 }
 
+export interface GalleryImage {
+  src: string;
+  creditUrl: string;
+}
+
 export interface PagodaDetails {
   nameEn: string | null;
   wikipediaUrlEn: string | null;
   sectionsVi: Section[];
   sectionsEn: Section[];
   references: string[];
+  gallery?: GalleryImage[];
 }
 
 const details = detailsJson as Record<string, PagodaDetails>;

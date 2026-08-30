@@ -134,6 +134,37 @@ export default function PagodaPage({
       </section>
       </Reveal>
 
+      {d?.gallery && d.gallery.length > 0 && (
+        <Reveal>
+        <section className="mt-8">
+          <h2 className="mb-3 text-xl font-semibold">{t.galleryHeading}</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {d.gallery.map((g) => (
+              <figure key={g.src} className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-700 dark:bg-stone-800">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={g.src}
+                  alt={name}
+                  loading="lazy"
+                  className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <figcaption className="px-3 py-1.5 text-right text-xs text-stone-400">
+                  <a
+                    href={g.creditUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-amber-700 hover:underline"
+                  >
+                    © Wikimedia Commons (CC BY-SA)
+                  </a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+        </Reveal>
+      )}
+
       {p.lat !== null && p.lng !== null && (
         <Reveal>
         <section className="mt-8">
