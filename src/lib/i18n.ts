@@ -23,6 +23,21 @@ export interface Dict {
   historyHeading: string;
   galleryHeading: string;
   noDescription: string;
+  worshipHeading: string;
+  worshipLabel: string;
+  prayForLabel: string;
+  visitTipsHeading: string;
+  visitTips: string[];
+  directionsBtn: string;
+  shareBtn: string;
+  shareCopied: string;
+  contributePhotos: string;
+  readMoreHeading: string;
+  readMoreIntro: string;
+  linkExperiences: string;
+  linkReviews: string;
+  linkVideos: string;
+  linkArticles: string;
   readOnWikipedia: string;
   location: string;
   coordinates: string;
@@ -66,6 +81,27 @@ const dict: Record<Locale, Dict> = {
     historyHeading: "Giới thiệu & lịch sử",
     galleryHeading: "Hình ảnh",
     noDescription: "Chưa có mô tả chi tiết.",
+    worshipHeading: "Thờ phụng & linh ứng",
+    worshipLabel: "Thờ phụng",
+    prayForLabel: "Thường cầu",
+    visitTipsHeading: "Kinh nghiệm đi chùa",
+    visitTips: [
+      "Trang phục lịch sự, kín đáo; bỏ mũ nón và giữ yên lặng khi vào chánh điện.",
+      "Hương, hoa và lễ vật thường được bán ngay trước cổng chùa; chỉ nên thắp số lẻ (1 hoặc 3 nén).",
+      "Hầu hết các chùa mở cửa từ sáng sớm đến chiều tối và không thu vé (một số danh thắng lớn có vé thắng cảnh).",
+      "Dịp rằm, mùng 1 và lễ Tết rất đông; nếu muốn vãn cảnh yên tĩnh nên đi ngày thường buổi sáng.",
+      "Xin phép trước khi chụp ảnh trong điện thờ; không tự ý chạm vào tượng và đồ thờ.",
+    ],
+    directionsBtn: "Chỉ đường trên Google Maps",
+    shareBtn: "Chia sẻ",
+    shareCopied: "Đã sao chép liên kết!",
+    contributePhotos: "Đóng góp ảnh",
+    readMoreHeading: "Đọc thêm & tham khảo",
+    readMoreIntro: "Các liên kết hữu ích để tìm hiểu thêm trước khi ghé thăm:",
+    linkExperiences: "Kinh nghiệm đi",
+    linkReviews: "Đánh giá trên Google Maps",
+    linkVideos: "Video trên YouTube",
+    linkArticles: "Bài viết & tin tức",
     readOnWikipedia: "Đọc thêm trên Wikipedia →",
     location: "Vị trí",
     coordinates: "Toạ độ",
@@ -109,6 +145,27 @@ const dict: Record<Locale, Dict> = {
     historyHeading: "Overview & history",
     galleryHeading: "Photos",
     noDescription: "No detailed description yet.",
+    worshipHeading: "Worship & blessings",
+    worshipLabel: "Dedicated to",
+    prayForLabel: "Commonly prayed for",
+    visitTipsHeading: "Visiting tips",
+    visitTips: [
+      "Dress modestly; remove hats and keep quiet inside the main hall.",
+      "Incense, flowers and offerings are usually sold right outside the gate; light an odd number of sticks (1 or 3).",
+      "Most pagodas open from early morning to evening and are free to enter (some major sites charge a small scenic fee).",
+      "Full-moon days, the 1st of the lunar month and Tet are very crowded; visit on weekday mornings for a quiet experience.",
+      "Ask permission before photographing inside shrines; do not touch statues or altar objects.",
+    ],
+    directionsBtn: "Directions on Google Maps",
+    shareBtn: "Share",
+    shareCopied: "Link copied!",
+    contributePhotos: "Contribute photos",
+    readMoreHeading: "Read more & references",
+    readMoreIntro: "Useful links to learn more before your visit:",
+    linkExperiences: "Visiting tips for",
+    linkReviews: "Reviews on Google Maps",
+    linkVideos: "Videos on YouTube",
+    linkArticles: "Articles & news",
     readOnWikipedia: "Read more on Wikipedia →",
     location: "Location",
     coordinates: "Coordinates",
