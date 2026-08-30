@@ -2124,6 +2124,18 @@
     "wikipediaUrl": null
   },
   {
+    "id": 90000031,
+    "slug": "dinh-tram-bac",
+    "name": "Đình Làng Trạm Bạc",
+    "province": "Hải Phòng",
+    "lat": 20.8540335,
+    "lng": 106.5738043,
+    "description": "Đình Trạm Bạc thuộc thôn Trạm Bạc, xã Lê Lợi, huyện An Dương, thành phố Hải Phòng, cách trung tâm huyện khoảng 4 km. Đình do quan tuần phủ Nguyễn Khoa Dục dựng năm Tự Đức 2 (1849), thờ bốn vị Thành hoàng; trong khuôn viên còn có lăng mộ ngài tị Tổ dòng họ Nguyễn Đình, Nguyễn Khoa. Di tích được công nhận Di tích lịch sử cấp thành phố năm 2014.",
+    "image": "/images/dinh-tram-bac.jpg",
+    "thumbnail": "/images/dinh-tram-bac-thumb.jpg",
+    "wikipediaUrl": null
+  },
+  {
     "id": 484056,
     "name": "Chùa Tiên",
     "province": "Hòa Bình",
