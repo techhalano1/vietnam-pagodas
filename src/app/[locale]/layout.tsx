@@ -68,6 +68,17 @@ export default function LocaleLayout({
         <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
         <footer className="border-t border-stone-200 bg-white py-6 text-center text-sm text-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
           <p>{t.footer}</p>
+          <p className="mt-2">
+            {t.sponsor}{" "}
+            <a
+              href="https://cognition.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-amber-700 hover:underline dark:text-amber-400"
+            >
+              Cognition
+            </a>
+          </p>
           <p className="mt-2 text-xs text-stone-400">
             <a
               href="https://creativecommons.org/licenses/by-sa/4.0/"

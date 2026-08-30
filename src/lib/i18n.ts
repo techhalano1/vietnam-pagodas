@@ -35,6 +35,7 @@ export interface Dict {
   directorySubtitle: (n: number, p: number) => string;
   all: string;
   footer: string;
+  sponsor: string;
   licenseWiki: string;
   licenseOsm: string;
   notFoundTitle: string;
@@ -77,6 +78,7 @@ const dict: Record<Locale, Dict> = {
     directorySubtitle: (n: number, p: number) => `${n} chùa, đền, tự viện tại ${p} tỉnh thành.`,
     all: "Tất cả",
     footer: "Chùa Việt Nam — dữ liệu tổng hợp từ Wikipedia (tiếng Việt & tiếng Anh), Wikidata, Wikimedia Commons, OpenStreetMap và các nguồn công khai.",
+    sponsor: "Tài trợ bởi",
     licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
     licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
     notFoundTitle: "Không tìm thấy trang",
@@ -120,6 +122,7 @@ const dict: Record<Locale, Dict> = {
     all: "All",
     footer:
       "Vietnam Pagodas — data aggregated from Wikipedia (Vietnamese & English), Wikidata, Wikimedia Commons, OpenStreetMap and other public sources.",
+    sponsor: "Sponsored by",
     licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
     licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",
     notFoundTitle: "Page not found",
