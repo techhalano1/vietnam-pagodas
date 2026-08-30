@@ -10,7 +10,7 @@ export default function NotFound() {
         🏯
       </span>
       <h1 className="mt-6 text-2xl font-semibold">{vi.notFoundTitle}</h1>
-      <p className="mt-2 text-stone-600">{vi.notFoundText}</p>
+      <p className="mt-2 text-stone-600 dark:text-stone-300">{vi.notFoundText}</p>
       <p className="mt-4 text-sm text-stone-500">
         {en.notFoundTitle} — {en.notFoundText}
       </p>

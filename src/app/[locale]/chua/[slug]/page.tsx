@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { getPagodaBySlug, pagodas } from "@/lib/data";
 import { getDetailsBySlug, type Section } from "@/lib/details";
 import { getDict, isLocale, locales } from "@/lib/i18n";
+import Reveal from "@/components/Reveal";
 
 const PagodaMap = dynamic(() => import("@/components/PagodaMap"), { ssr: false });
 
@@ -50,7 +51,7 @@ function Sections({ sections }: { sections: Section[] }) {
       {sections.map((s, i) => (
         <div key={i}>
           {s.heading && <h3 className="mb-2 text-lg font-semibold">{s.heading}</h3>}
-          <div className="space-y-3 leading-relaxed text-stone-700">
+          <div className="space-y-3 leading-relaxed text-stone-700 dark:text-stone-300">
             {s.text.split("\n").filter(Boolean).map((para, j) => (
               <p key={j}>{para}</p>
             ))}
@@ -97,11 +98,11 @@ export default function PagodaPage({
           {p.province}
         </Link>
         {" / "}
-        <span className="text-stone-700">{name}</span>
+        <span className="text-stone-700 dark:text-stone-300">{name}</span>
       </nav>
 
-      <h1 className="text-3xl font-semibold tracking-tight">{name}</h1>
-      <p className="mt-1 text-stone-500">
+      <h1 className="animate-fade-in-up text-3xl font-semibold tracking-tight">{name}</h1>
+      <p className="mt-1 text-stone-500 dark:text-stone-400">
         {p.province}
         {locale === "en" && d?.nameEn && d.nameEn !== p.name && (
           <span className="ml-2 text-stone-400">({p.name})</span>
@@ -113,28 +114,31 @@ export default function PagodaPage({
         <img
           src={p.image}
           alt={name}
-          className="mt-6 max-h-[480px] w-full rounded-2xl object-cover shadow"
+          className="animate-fade-in-up mt-6 max-h-[480px] w-full rounded-2xl object-cover shadow"
         />
       )}
 
+      <Reveal>
       <section className="mt-6">
         <h2 className="mb-2 text-xl font-semibold">{t.historyHeading}</h2>
         {locale === "en" && !useEnglish && sections.length > 0 && (
-          <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950 dark:text-amber-200">
             {t.viOnlyNote}
           </p>
         )}
         {sections.length > 0 ? (
           <Sections sections={sections} />
         ) : (
-          <p className="text-stone-500">{t.noDescription}</p>
+          <p className="text-stone-500 dark:text-stone-400">{t.noDescription}</p>
         )}
       </section>
+      </Reveal>
 
       {p.lat !== null && p.lng !== null && (
+        <Reveal>
         <section className="mt-8">
           <h2 className="mb-2 text-xl font-semibold">{t.location}</h2>
-          <p className="mb-2 text-sm text-stone-500">
+          <p className="mb-2 text-sm text-stone-500 dark:text-stone-400">
             {t.coordinates}: {p.lat.toFixed(5)}, {p.lng.toFixed(5)} ·{" "}
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`}
@@ -145,15 +149,17 @@ export default function PagodaPage({
               {t.googleMaps}
             </a>
           </p>
-          <div className="h-80 overflow-hidden rounded-2xl border border-stone-200 shadow-sm">
+          <div className="h-80 overflow-hidden rounded-2xl border border-stone-200 shadow-sm dark:border-stone-700">
             <PagodaMap pagodas={[p]} center={[p.lat, p.lng]} zoom={14} locale={locale} />
           </div>
         </section>
+        </Reveal>
       )}
 
+      <Reveal>
       <section className="mt-8">
         <h2 className="mb-2 text-xl font-semibold">{t.referencesHeading}</h2>
-        <ul className="list-disc space-y-1 pl-5 text-sm text-stone-600">
+        <ul className="list-disc space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-400">
           {p.wikipediaUrl && (
             <li>
               <a
@@ -192,8 +198,10 @@ export default function PagodaPage({
           ))}
         </ul>
       </section>
+      </Reveal>
 
       {related.length > 0 && (
+        <Reveal>
         <section className="mt-10">
           <h2 className="mb-3 text-xl font-semibold">{t.relatedIn(p.province)}</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -201,22 +209,25 @@ export default function PagodaPage({
               <Link
                 key={r.id}
                 href={`/${locale}/chua/${r.slug}`}
-                className="group overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition hover:shadow-md"
+                className="group overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-700 dark:bg-stone-800"
               >
-                {r.thumbnail ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={r.thumbnail} alt={r.name} className="h-32 w-full object-cover" loading="lazy" />
-                ) : (
-                  <div className="flex h-32 items-center justify-center bg-stone-100 text-3xl">🏯</div>
-                )}
+                <div className="h-32 overflow-hidden">
+                  {r.thumbnail ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={r.thumbnail} alt={r.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-stone-100 text-3xl dark:bg-stone-700">🏯</div>
+                  )}
+                </div>
                 <div className="p-3">
-                  <div className="font-medium group-hover:text-amber-700">{r.name}</div>
-                  <div className="mt-0.5 line-clamp-2 text-xs text-stone-500">{r.description}</div>
+                  <div className="font-medium transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">{r.name}</div>
+                  <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{r.description}</div>
                 </div>
               </Link>
             ))}
           </div>
         </section>
+        </Reveal>
       )}
     </div>
   );

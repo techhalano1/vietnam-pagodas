@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { pagodas, provinces } from "@/lib/data";
 import { getDict, isLocale } from "@/lib/i18n";
+import Reveal from "@/components/Reveal";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -29,14 +30,14 @@ export default function DirectoryPage({
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <h1 className="text-3xl font-semibold tracking-tight">{t.directoryTitle}</h1>
-      <p className="mt-1 text-stone-500">
+      <p className="mt-1 text-stone-500 dark:text-stone-400">
         {t.directorySubtitle(pagodas.length, provinces.length)}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
         <Link
           href={`/${locale}/danh-muc`}
-          className={`rounded-full border px-3 py-1 text-sm ${!selected ? "border-amber-700 bg-amber-700 text-white" : "border-stone-300 bg-white hover:border-amber-600"}`}
+          className={`rounded-full border px-3 py-1 text-sm transition-colors ${!selected ? "border-amber-700 bg-amber-700 text-white" : "border-stone-300 bg-white hover:border-amber-600 dark:border-stone-600 dark:bg-stone-800"}`}
         >
           {t.all}
         </Link>
@@ -44,7 +45,7 @@ export default function DirectoryPage({
           <Link
             key={pr.name}
             href={`/${locale}/danh-muc?tinh=${encodeURIComponent(pr.name)}`}
-            className={`rounded-full border px-3 py-1 text-sm ${selected === pr.name ? "border-amber-700 bg-amber-700 text-white" : "border-stone-300 bg-white hover:border-amber-600"}`}
+            className={`rounded-full border px-3 py-1 text-sm transition-colors ${selected === pr.name ? "border-amber-700 bg-amber-700 text-white" : "border-stone-300 bg-white hover:border-amber-600 dark:border-stone-600 dark:bg-stone-800"}`}
           >
             {pr.name} ({pr.count})
           </Link>
@@ -52,8 +53,9 @@ export default function DirectoryPage({
       </div>
 
       {shown.map((pr) => (
-        <section key={pr.name} className="mt-8">
-          <h2 className="mb-3 border-b border-stone-200 pb-1 text-xl font-semibold">
+        <Reveal key={pr.name} className="mt-8">
+          <section>
+          <h2 className="mb-3 border-b border-stone-200 pb-1 text-xl font-semibold dark:border-stone-700">
             {pr.name} <span className="text-sm font-normal text-stone-400">({pr.count})</span>
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -63,22 +65,25 @@ export default function DirectoryPage({
                 <Link
                   key={p.id}
                   href={`/${locale}/chua/${p.slug}`}
-                  className="group overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition hover:shadow-md"
+                  className="group overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-stone-700 dark:bg-stone-800"
                 >
-                  {p.thumbnail ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={p.thumbnail} alt={p.name} className="h-32 w-full object-cover" loading="lazy" />
-                  ) : (
-                    <div className="flex h-32 items-center justify-center bg-stone-100 text-3xl">🏯</div>
-                  )}
+                  <div className="h-32 overflow-hidden">
+                    {p.thumbnail ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.thumbnail} alt={p.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-stone-100 text-3xl dark:bg-stone-700">🏯</div>
+                    )}
+                  </div>
                   <div className="p-3">
-                    <div className="font-medium group-hover:text-amber-700">{p.name}</div>
-                    <div className="mt-0.5 line-clamp-2 text-xs text-stone-500">{p.description}</div>
+                    <div className="font-medium transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">{p.name}</div>
+                    <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{p.description}</div>
                   </div>
                 </Link>
               ))}
           </div>
-        </section>
+          </section>
+        </Reveal>
       ))}
     </div>
   );
