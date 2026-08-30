@@ -21,6 +21,7 @@ export interface Dict {
   viewDetail: string;
   home: string;
   historyHeading: string;
+  galleryHeading: string;
   noDescription: string;
   readOnWikipedia: string;
   location: string;
@@ -63,6 +64,7 @@ const dict: Record<Locale, Dict> = {
     viewDetail: "Xem chi tiết →",
     home: "Trang chủ",
     historyHeading: "Giới thiệu & lịch sử",
+    galleryHeading: "Hình ảnh",
     noDescription: "Chưa có mô tả chi tiết.",
     readOnWikipedia: "Đọc thêm trên Wikipedia →",
     location: "Vị trí",
@@ -105,6 +107,7 @@ const dict: Record<Locale, Dict> = {
     viewDetail: "View details →",
     home: "Home",
     historyHeading: "Overview & history",
+    galleryHeading: "Photos",
     noDescription: "No detailed description yet.",
     readOnWikipedia: "Read more on Wikipedia →",
     location: "Location",
