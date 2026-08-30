@@ -29,6 +29,20 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
           the external sources cited by the Wikipedia articles. Images belong to Wikimedia Commons
           and their respective authors.
         </p>
+        <h2 className="mt-8 text-xl font-semibold text-stone-900">Sponsor</h2>
+        <p className="mt-2">
+          This site is proudly sponsored by{" "}
+          <a
+            href="https://cognition.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-amber-700 hover:underline"
+          >
+            Cognition
+          </a>
+          , which supports the compute and AI tokens that power the research, data aggregation and
+          maintenance of this project.
+        </p>
         <h2 className="mt-8 text-xl font-semibold text-stone-900">Contributing</h2>
         <p className="mt-2">
           If you find inaccurate information or want to add a pagoda, please open an issue on the
@@ -53,6 +67,20 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
         BY-SA), Wikidata và OpenStreetMap. Mỗi trang chùa liệt kê nguồn tham khảo, bao gồm các
         nguồn ngoài được trích dẫn trong bài viết Wikipedia. Hình ảnh thuộc về Wikimedia Commons
         và các tác giả tương ứng.
+      </p>
+      <h2 className="mt-8 text-xl font-semibold text-stone-900">Nhà tài trợ</h2>
+      <p className="mt-2">
+        Trang web được tài trợ bởi{" "}
+        <a
+          href="https://cognition.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-amber-700 hover:underline"
+        >
+          Cognition
+        </a>
+        , đơn vị hỗ trợ toàn bộ chi phí tính toán và token AI cho việc nghiên cứu, tổng hợp dữ
+        liệu và duy trì dự án này.
       </p>
       <h2 className="mt-8 text-xl font-semibold text-stone-900">Đóng góp</h2>
       <p className="mt-2">
