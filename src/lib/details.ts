@@ -17,6 +17,10 @@ export interface PagodaDetails {
   sectionsEn: Section[];
   references: string[];
   gallery?: GalleryImage[];
+  worshipVi?: string;
+  worshipEn?: string;
+  prayForVi?: string;
+  prayForEn?: string;
 }
 
 const details = detailsJson as Record<string, PagodaDetails>;

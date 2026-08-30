@@ -6,6 +6,7 @@ import { getPagodaBySlug, pagodas } from "@/lib/data";
 import { getDetailsBySlug, type Section } from "@/lib/details";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import Reveal from "@/components/Reveal";
+import ShareButtons from "@/components/ShareButtons";
 
 const PagodaMap = dynamic(() => import("@/components/PagodaMap"), { ssr: false });
 
@@ -101,13 +102,18 @@ export default function PagodaPage({
         <span className="text-stone-700 dark:text-stone-300">{name}</span>
       </nav>
 
-      <h1 className="animate-fade-in-up text-3xl font-semibold tracking-tight">{name}</h1>
-      <p className="mt-1 text-stone-500 dark:text-stone-400">
-        {p.province}
-        {locale === "en" && d?.nameEn && d.nameEn !== p.name && (
-          <span className="ml-2 text-stone-400">({p.name})</span>
-        )}
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="animate-fade-in-up text-3xl font-semibold tracking-tight">{name}</h1>
+          <p className="mt-1 text-stone-500 dark:text-stone-400">
+            {p.province}
+            {locale === "en" && d?.nameEn && d.nameEn !== p.name && (
+              <span className="ml-2 text-stone-400">({p.name})</span>
+            )}
+          </p>
+        </div>
+        <ShareButtons title={name} label={t.shareBtn} copiedLabel={t.shareCopied} />
+      </div>
 
       {p.image && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -134,10 +140,42 @@ export default function PagodaPage({
       </section>
       </Reveal>
 
-      {d?.gallery && d.gallery.length > 0 && (
+      {(d?.worshipVi || d?.prayForVi) && (
         <Reveal>
         <section className="mt-8">
-          <h2 className="mb-3 text-xl font-semibold">{t.galleryHeading}</h2>
+          <h2 className="mb-2 text-xl font-semibold">{t.worshipHeading}</h2>
+          <div className="space-y-2 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-stone-700 dark:border-amber-900 dark:bg-amber-950 dark:text-stone-300">
+            {(locale === "en" ? d.worshipEn ?? d.worshipVi : d.worshipVi) && (
+              <p>
+                <span className="font-semibold">{t.worshipLabel}:</span>{" "}
+                {locale === "en" ? d.worshipEn ?? d.worshipVi : d.worshipVi}
+              </p>
+            )}
+            {(locale === "en" ? d.prayForEn ?? d.prayForVi : d.prayForVi) && (
+              <p>
+                <span className="font-semibold">{t.prayForLabel}:</span>{" "}
+                {locale === "en" ? d.prayForEn ?? d.prayForVi : d.prayForVi}
+              </p>
+            )}
+          </div>
+        </section>
+        </Reveal>
+      )}
+
+      <Reveal>
+      <section className="mt-8">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-xl font-semibold">{t.galleryHeading}</h2>
+          <a
+            href={`https://github.com/techhalano1/vietnam-pagodas/issues/new?title=${encodeURIComponent(`[Ảnh] ${p.name}`)}&body=${encodeURIComponent(`Slug: ${p.slug}\n\n(Kéo thả ảnh vào đây / Drag and drop photos here. Vui lòng chỉ gửi ảnh do bạn chụp hoặc có quyền chia sẻ.)`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-3 py-1.5 text-sm font-medium text-stone-700 shadow-sm transition-colors hover:border-amber-600 hover:text-amber-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200 dark:hover:text-amber-400"
+          >
+            📷 {t.contributePhotos}
+          </a>
+        </div>
+        {d?.gallery && d.gallery.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2">
             {d.gallery.map((g) => (
               <figure key={g.src} className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-700 dark:bg-stone-800">
@@ -161,25 +199,36 @@ export default function PagodaPage({
               </figure>
             ))}
           </div>
-        </section>
-        </Reveal>
-      )}
+        )}
+      </section>
+      </Reveal>
+
+      <Reveal>
+      <section className="mt-8">
+        <h2 className="mb-2 text-xl font-semibold">{t.visitTipsHeading}</h2>
+        <ul className="list-disc space-y-1.5 pl-5 leading-relaxed text-stone-700 dark:text-stone-300">
+          {t.visitTips.map((tip, i) => (
+            <li key={i}>{tip}</li>
+          ))}
+        </ul>
+      </section>
+      </Reveal>
 
       {p.lat !== null && p.lng !== null && (
         <Reveal>
         <section className="mt-8">
           <h2 className="mb-2 text-xl font-semibold">{t.location}</h2>
           <p className="mb-2 text-sm text-stone-500 dark:text-stone-400">
-            {t.coordinates}: {p.lat.toFixed(5)}, {p.lng.toFixed(5)} ·{" "}
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-amber-700 hover:underline"
-            >
-              {t.googleMaps}
-            </a>
+            {t.coordinates}: {p.lat.toFixed(5)}, {p.lng.toFixed(5)}
           </p>
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-600 px-4 py-2 text-sm font-semibold text-white shadow transition-colors hover:bg-amber-700"
+          >
+            🧭 {t.directionsBtn}
+          </a>
           <div className="h-80 overflow-hidden rounded-2xl border border-stone-200 shadow-sm dark:border-stone-700">
             <PagodaMap pagodas={[p]} center={[p.lat, p.lng]} zoom={14} locale={locale} />
           </div>
