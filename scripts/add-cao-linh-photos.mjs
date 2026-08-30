@@ -11,7 +11,7 @@ const COMMONS = "https://upload.wikimedia.org/wikipedia/commons";
 const FILEPAGE = "https://commons.wikimedia.org/wiki";
 
 const HERO = `${COMMONS}/thumb/0/09/Ch%C3%B9a_cao_linh.jpeg/1280px-Ch%C3%B9a_cao_linh.jpeg`;
-const THUMB = `${COMMONS}/thumb/0/09/Ch%C3%B9a_cao_linh.jpeg/320px-Ch%C3%B9a_cao_linh.jpeg`;
+const THUMB = `${COMMONS}/thumb/0/09/Ch%C3%B9a_cao_linh.jpeg/330px-Ch%C3%B9a_cao_linh.jpeg`;
 
 const GALLERY = [
   {
