@@ -3,6 +3,8 @@ export interface Pagoda {
   slug: string;
   name: string;
   province: string;
+  /** Pre-2025-merger province, when different from `province`. */
+  oldProvince?: string;
   lat: number | null;
   lng: number | null;
   description: string;

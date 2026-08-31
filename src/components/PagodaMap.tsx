@@ -22,11 +22,20 @@ function pagodaIcon(animate: boolean, bounce: boolean) {
   });
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function popupHtml(p: LocatedPagoda, locale: Locale, viewDetail: string) {
   const img = p.thumbnail
-    ? `<img src="${p.thumbnail}" alt="" style="width:100%;height:112px;object-fit:cover;border-radius:6px;margin-bottom:8px" />`
+    ? `<img src="${escapeHtml(p.thumbnail)}" alt="" style="width:100%;height:112px;object-fit:cover;border-radius:6px;margin-bottom:8px" />`
     : "";
-  return `<div style="min-width:180px;max-width:240px">${img}<div style="font-weight:600">${p.name}</div><div style="font-size:12px;opacity:.7">${p.province}</div><a href="/${locale}/chua/${p.slug}" style="display:inline-block;margin-top:4px;font-size:14px;font-weight:500;color:#b45309">${viewDetail}</a></div>`;
+  return `<div style="min-width:180px;max-width:240px">${img}<div style="font-weight:600">${escapeHtml(p.name)}</div><div style="font-size:12px;opacity:.7">${escapeHtml(p.province)}</div><a href="/${locale}/chua/${encodeURIComponent(p.slug)}" style="display:inline-block;margin-top:4px;font-size:14px;font-weight:500;color:#b45309">${escapeHtml(viewDetail)}</a></div>`;
 }
 
 function ClusteredMarkers({

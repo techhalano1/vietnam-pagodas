@@ -107,6 +107,9 @@ export default function PagodaPage({
           <h1 className="animate-fade-in-up text-3xl font-semibold tracking-tight">{name}</h1>
           <p className="mt-1 text-stone-500 dark:text-stone-400">
             {p.province}
+            {p.oldProvince && (
+              <span className="ml-2 text-stone-400">({t.formerProvince(p.oldProvince)})</span>
+            )}
             {locale === "en" && d?.nameEn && d.nameEn !== p.name && (
               <span className="ml-2 text-stone-400">({p.name})</span>
             )}
@@ -225,23 +228,23 @@ export default function PagodaPage({
               icon: "🧳",
               href:
                 locale === "en"
-                  ? `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.province} travel guide tips`)}`
-                  : `https://www.google.com/search?q=${encodeURIComponent(`kinh nghiệm đi ${p.name} ${p.province}`)}`,
+                  ? `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.oldProvince ?? p.province} travel guide tips`)}`
+                  : `https://www.google.com/search?q=${encodeURIComponent(`kinh nghiệm đi ${p.name} ${p.oldProvince ?? p.province}`)}`,
             },
             {
               label: t.linkReviews,
               icon: "⭐",
-              href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name} ${p.province}`)}`,
+              href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name} ${p.oldProvince ?? p.province}`)}`,
             },
             {
               label: t.linkVideos,
               icon: "🎬",
-              href: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${p.name} ${p.province}`)}`,
+              href: `https://www.youtube.com/results?search_query=${encodeURIComponent(`${p.name} ${p.oldProvince ?? p.province}`)}`,
             },
             {
               label: t.linkArticles,
               icon: "📰",
-              href: `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.province}`)}&tbm=nws`,
+              href: `https://www.google.com/search?q=${encodeURIComponent(`${p.name} ${p.oldProvince ?? p.province}`)}&tbm=nws`,
             },
           ].map((l) => (
             <li key={l.label}>
@@ -295,7 +298,7 @@ export default function PagodaPage({
                 rel="noopener noreferrer"
                 className="text-amber-700 hover:underline"
               >
-                {t.wikipediaVi}
+                {p.wikipediaUrl.includes("//en.wikipedia.org") ? t.wikipediaEn : t.wikipediaVi}
               </a>
             </li>
           )}
