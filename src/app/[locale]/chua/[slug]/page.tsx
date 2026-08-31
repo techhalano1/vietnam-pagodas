@@ -298,7 +298,7 @@ export default function PagodaPage({
                 rel="noopener noreferrer"
                 className="text-amber-700 hover:underline"
               >
-                {t.wikipediaVi}
+                {p.wikipediaUrl.includes("//en.wikipedia.org") ? t.wikipediaEn : t.wikipediaVi}
               </a>
             </li>
           )}
