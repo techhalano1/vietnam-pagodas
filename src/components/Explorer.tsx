@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Pagoda } from "@/lib/types";
@@ -37,6 +37,11 @@ export default function Explorer({
   }, [pagodas, query, province]);
 
   const listKey = `${query}|${province}`;
+  const PAGE = 100;
+  const [shown, setShown] = useState(PAGE);
+  useEffect(() => {
+    setShown(PAGE);
+  }, [listKey]);
 
   return (
     <div className="flex h-[calc(100vh-8rem)] flex-col lg:flex-row">
@@ -64,7 +69,7 @@ export default function Explorer({
           <p className="text-xs text-stone-500 dark:text-stone-400">{filtered.length} {t.results}</p>
         </div>
         <ul key={listKey} className="flex-1 divide-y divide-stone-100 overflow-y-auto dark:divide-stone-800">
-          {filtered.map((p, i) => (
+          {filtered.slice(0, shown).map((p, i) => (
             <li
               key={p.id}
               className="animate-fade-in-up"
@@ -114,6 +119,17 @@ export default function Explorer({
               </div>
             </li>
           ))}
+          {filtered.length > shown && (
+            <li className="p-3 text-center">
+              <button
+                type="button"
+                onClick={() => setShown((n) => n + PAGE)}
+                className="rounded-full border border-stone-300 px-4 py-1.5 text-sm text-stone-600 transition-colors hover:border-amber-600 hover:text-amber-700 dark:border-stone-600 dark:text-stone-300"
+              >
+                {t.showMore} ({filtered.length - shown})
+              </button>
+            </li>
+          )}
           {filtered.length === 0 && (
             <li className="p-6 text-center text-sm text-stone-500 dark:text-stone-400">
               {t.noResults}

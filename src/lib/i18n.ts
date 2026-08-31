@@ -17,6 +17,7 @@ export interface Dict {
   allProvinces: string;
   results: string;
   noResults: string;
+  showMore: string;
   loadingMap: string;
   viewDetail: string;
   home: string;
@@ -75,6 +76,7 @@ const dict: Record<Locale, Dict> = {
     allProvinces: "Tất cả tỉnh thành",
     results: "kết quả",
     noResults: "Không tìm thấy kết quả phù hợp.",
+    showMore: "Xem thêm",
     loadingMap: "Đang tải bản đồ…",
     viewDetail: "Xem chi tiết →",
     home: "Trang chủ",
@@ -139,6 +141,7 @@ const dict: Record<Locale, Dict> = {
     allProvinces: "All provinces",
     results: "results",
     noResults: "No matching results found.",
+    showMore: "Show more",
     loadingMap: "Loading map…",
     viewDetail: "View details →",
     home: "Home",
