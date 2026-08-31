@@ -44,6 +44,7 @@ export interface Dict {
   coordinates: string;
   googleMaps: string;
   relatedIn: (province: string) => string;
+  formerProvince: (old: string) => string;
   referencesHeading: string;
   wikipediaVi: string;
   wikipediaEn: string;
@@ -109,6 +110,7 @@ const dict: Record<Locale, Dict> = {
     coordinates: "Toạ độ",
     googleMaps: "Chỉ đường trên Google Maps",
     relatedIn: (province: string) => `Chùa khác tại ${province}`,
+    formerProvince: (old: string) => `khu vực ${old} cũ`,
     referencesHeading: "Nguồn tham khảo",
     wikipediaVi: "Wikipedia tiếng Việt",
     wikipediaEn: "Wikipedia tiếng Anh",
@@ -174,6 +176,7 @@ const dict: Record<Locale, Dict> = {
     coordinates: "Coordinates",
     googleMaps: "Directions on Google Maps",
     relatedIn: (province: string) => `Other pagodas in ${province}`,
+    formerProvince: (old: string) => `formerly ${old}`,
     referencesHeading: "References",
     wikipediaVi: "Vietnamese Wikipedia",
     wikipediaEn: "English Wikipedia",
