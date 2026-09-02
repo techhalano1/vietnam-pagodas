@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Pagoda } from "@/lib/types";
-import { normalize } from "@/lib/data";
+import { distanceKm, normalize, siteType, type SiteType } from "@/lib/data";
 import { getDict, type Locale } from "@/lib/i18n";
 
 const PagodaMap = dynamic(() => import("./PagodaMap"), {
@@ -24,19 +24,49 @@ export default function Explorer({
   const t = getDict(locale);
   const [query, setQuery] = useState("");
   const [province, setProvince] = useState("");
+  const [type, setType] = useState<"" | SiteType>("");
+  const [origin, setOrigin] = useState<{ lat: number; lng: number } | null>(null);
+  const [geoState, setGeoState] = useState<"idle" | "loading" | "error">("idle");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const q = normalize(query.trim());
-    return pagodas.filter(
+    const base = pagodas.filter(
       (p) =>
         (!province || p.province === province) &&
+        (!type || siteType(p.name) === type) &&
         (!q || normalize(p.name).includes(q) || normalize(p.description).includes(q))
     );
-  }, [pagodas, query, province]);
+    if (!origin) return base;
+    const dist = (p: Pagoda) =>
+      p.lat !== null && p.lng !== null
+        ? distanceKm(origin.lat, origin.lng, p.lat, p.lng)
+        : Infinity;
+    return [...base].sort((a, b) => dist(a) - dist(b));
+  }, [pagodas, query, province, type, origin]);
 
-  const listKey = `${query}|${province}`;
+  const requestLocation = () => {
+    if (origin) {
+      setOrigin(null);
+      setGeoState("idle");
+      return;
+    }
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      setGeoState("error");
+      return;
+    }
+    setGeoState("loading");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setOrigin({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setGeoState("idle");
+      },
+      () => setGeoState("error")
+    );
+  };
+
+  const listKey = `${query}|${province}|${type}|${origin ? "near" : ""}`;
   const PAGE = 100;
   const [shown, setShown] = useState(PAGE);
   useEffect(() => {
@@ -66,6 +96,38 @@ export default function Explorer({
               </option>
             ))}
           </select>
+          <div className="flex items-center gap-2">
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value as "" | SiteType)}
+              className="min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm focus:border-amber-600 focus:outline-none dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100"
+            >
+              <option value="">{t.allTypes}</option>
+              {(Object.keys(t.typeLabels) as SiteType[]).map((ty) => (
+                <option key={ty} value={ty}>
+                  {t.typeLabels[ty]}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={requestLocation}
+              title={origin ? t.nearMeOff : t.nearMe}
+              className={`flex-none rounded-lg border px-3 py-2 text-sm transition-colors ${
+                origin
+                  ? "border-amber-700 bg-amber-700 text-white"
+                  : "border-stone-300 bg-white text-stone-600 hover:border-amber-600 hover:text-amber-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300"
+              }`}
+            >
+              {geoState === "loading" ? "…" : t.nearMe}
+            </button>
+          </div>
+          {geoState === "error" && (
+            <p className="text-xs text-rose-600 dark:text-rose-400">{t.geoError}</p>
+          )}
+          {origin && (
+            <p className="text-xs text-amber-700 dark:text-amber-400">{t.nearMeOn}</p>
+          )}
           <p className="text-xs text-stone-500 dark:text-stone-400">{filtered.length} {t.results}</p>
         </div>
         <ul key={listKey} className="flex-1 divide-y divide-stone-100 overflow-y-auto dark:divide-stone-800">
