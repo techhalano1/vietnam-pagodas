@@ -11,10 +11,20 @@ export interface Dict {
   navMap: string;
   navDirectory: string;
   navAbout: string;
+  navFestivals: string;
+  navRoutes: string;
+  navFavorites: string;
   heroTitle: string;
   heroSubtitle: (n: number, p: number) => string;
   searchPlaceholder: string;
   allProvinces: string;
+  allTypes: string;
+  typeLabels: Record<string, string>;
+  nearMe: string;
+  nearMeOn: string;
+  nearMeOff: string;
+  geoError: string;
+  kmAway: (d: number) => string;
   results: string;
   noResults: string;
   showMore: string;
@@ -45,6 +55,24 @@ export interface Dict {
   googleMaps: string;
   relatedIn: (province: string) => string;
   formerProvince: (old: string) => string;
+  provinceTitle: (name: string) => string;
+  provinceIntro: (n: number, name: string) => string;
+  festivalsTitle: string;
+  festivalsIntro: string;
+  lunarMonth: (m: number) => string;
+  thisLunarMonth: string;
+  festivalHeading: string;
+  routesTitle: string;
+  routesIntro: string;
+  routeStops: (n: number) => string;
+  favoritesTitle: string;
+  favoritesHeading: string;
+  visitedHeading: string;
+  favoritesEmpty: string;
+  favBtn: string;
+  favBtnActive: string;
+  visitedBtn: string;
+  visitedBtnActive: string;
   referencesHeading: string;
   wikipediaVi: string;
   wikipediaEn: string;
@@ -70,11 +98,28 @@ const dict: Record<Locale, Dict> = {
     navMap: "Bản đồ",
     navDirectory: "Danh mục",
     navAbout: "Giới thiệu",
+    navFestivals: "Lễ hội",
+    navRoutes: "Hành trình",
+    navFavorites: "Yêu thích",
     heroTitle: "Từ điển chùa & đền Việt Nam",
     heroSubtitle: (n: number, p: number) =>
       `Khám phá ${n} ngôi chùa, đền, tự viện trên khắp ${p} tỉnh thành — bản đồ tương tác, lịch sử và hình ảnh chi tiết.`,
     searchPlaceholder: "Tìm kiếm chùa, đền… (ví dụ: Thiên Mụ)",
     allProvinces: "Tất cả tỉnh thành",
+    allTypes: "Tất cả loại hình",
+    typeLabels: {
+      chua: "Chùa & tịnh xá",
+      den: "Đền",
+      dinh: "Đình làng",
+      mieu: "Miếu",
+      "thien-vien": "Thiền viện",
+      khac: "Khác",
+    },
+    nearMe: "📍 Gần tôi",
+    nearMeOn: "Đang sắp xếp theo khoảng cách từ vị trí của bạn",
+    nearMeOff: "Bỏ sắp xếp",
+    geoError: "Không lấy được vị trí của bạn.",
+    kmAway: (d: number) => `${d < 10 ? d.toFixed(1) : Math.round(d)} km`,
     results: "kết quả",
     noResults: "Không tìm thấy kết quả phù hợp.",
     showMore: "Xem thêm",
@@ -111,6 +156,27 @@ const dict: Record<Locale, Dict> = {
     googleMaps: "Chỉ đường trên Google Maps",
     relatedIn: (province: string) => `Chùa khác tại ${province}`,
     formerProvince: (old: string) => `khu vực ${old} cũ`,
+    provinceTitle: (name: string) => `Chùa & đền tại ${name}`,
+    provinceIntro: (n: number, name: string) =>
+      `${n} ngôi chùa, đền, đình, miếu và tự viện tại ${name} — kèm bản đồ và trang chi tiết từng địa điểm.`,
+    festivalsTitle: "Lịch lễ hội chùa & đền",
+    festivalsIntro:
+      "Các lễ hội lớn tại chùa, đền trên cả nước, sắp xếp theo tháng âm lịch.",
+    lunarMonth: (m: number) => `Tháng ${m} âm lịch`,
+    thisLunarMonth: "Đang diễn ra / sắp tới",
+    festivalHeading: "Lễ hội",
+    routesTitle: "Gợi ý hành trình hành hương",
+    routesIntro:
+      "Các tuyến tham quan 1 ngày theo cụm di tích gần nhau — bấm vào từng điểm để xem chi tiết.",
+    routeStops: (n: number) => `${n} điểm dừng`,
+    favoritesTitle: "Yêu thích & đã đi",
+    favoritesHeading: "Danh sách yêu thích",
+    visitedHeading: "Đã đi",
+    favoritesEmpty: "Chưa có địa điểm nào — bấm ♡ hoặc ✓ trên trang chi tiết để lưu.",
+    favBtn: "♡ Yêu thích",
+    favBtnActive: "♥ Đã yêu thích",
+    visitedBtn: "✓ Đánh dấu đã đi",
+    visitedBtnActive: "✓ Đã đi",
     referencesHeading: "Nguồn tham khảo",
     wikipediaVi: "Wikipedia tiếng Việt",
     wikipediaEn: "Wikipedia tiếng Anh",
@@ -136,11 +202,28 @@ const dict: Record<Locale, Dict> = {
     navMap: "Map",
     navDirectory: "Directory",
     navAbout: "About",
+    navFestivals: "Festivals",
+    navRoutes: "Routes",
+    navFavorites: "Favorites",
     heroTitle: "Dictionary of Vietnamese pagodas & temples",
     heroSubtitle: (n: number, p: number) =>
       `Explore ${n} pagodas, temples and monasteries across ${p} provinces — interactive map, history and detailed photos.`,
     searchPlaceholder: "Search pagodas, temples… (e.g. Thien Mu)",
     allProvinces: "All provinces",
+    allTypes: "All types",
+    typeLabels: {
+      chua: "Pagodas & viharas",
+      den: "Temples",
+      dinh: "Communal houses",
+      mieu: "Shrines",
+      "thien-vien": "Zen monasteries",
+      khac: "Other",
+    },
+    nearMe: "📍 Near me",
+    nearMeOn: "Sorted by distance from your location",
+    nearMeOff: "Clear sorting",
+    geoError: "Could not get your location.",
+    kmAway: (d: number) => `${d < 10 ? d.toFixed(1) : Math.round(d)} km`,
     results: "results",
     noResults: "No matching results found.",
     showMore: "Show more",
@@ -177,6 +260,27 @@ const dict: Record<Locale, Dict> = {
     googleMaps: "Directions on Google Maps",
     relatedIn: (province: string) => `Other pagodas in ${province}`,
     formerProvince: (old: string) => `formerly ${old}`,
+    provinceTitle: (name: string) => `Pagodas & temples in ${name}`,
+    provinceIntro: (n: number, name: string) =>
+      `${n} pagodas, temples, communal houses, shrines and monasteries in ${name} — with a map and detail pages for each site.`,
+    festivalsTitle: "Pagoda & temple festival calendar",
+    festivalsIntro:
+      "Major festivals at pagodas and temples nationwide, organized by lunar month.",
+    lunarMonth: (m: number) => `Lunar month ${m}`,
+    thisLunarMonth: "Happening / upcoming",
+    festivalHeading: "Festival",
+    routesTitle: "Suggested pilgrimage routes",
+    routesIntro:
+      "One-day itineraries through clusters of nearby heritage sites — click each stop for details.",
+    routeStops: (n: number) => `${n} stops`,
+    favoritesTitle: "Favorites & visited",
+    favoritesHeading: "Favorites",
+    visitedHeading: "Visited",
+    favoritesEmpty: "Nothing saved yet — tap ♡ or ✓ on a detail page to save.",
+    favBtn: "♡ Favorite",
+    favBtnActive: "♥ Favorited",
+    visitedBtn: "✓ Mark as visited",
+    visitedBtnActive: "✓ Visited",
     referencesHeading: "References",
     wikipediaVi: "Vietnamese Wikipedia",
     wikipediaEn: "English Wikipedia",

@@ -50,6 +50,15 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
           <Link href={`/${locale}/danh-muc`} className="transition-colors hover:text-amber-300">
             {t.navDirectory}
           </Link>
+          <Link href={`/${locale}/le-hoi`} className="hidden transition-colors hover:text-amber-300 sm:inline">
+            {t.navFestivals}
+          </Link>
+          <Link href={`/${locale}/hanh-trinh`} className="hidden transition-colors hover:text-amber-300 sm:inline">
+            {t.navRoutes}
+          </Link>
+          <Link href={`/${locale}/yeu-thich`} className="hidden transition-colors hover:text-amber-300 sm:inline">
+            {t.navFavorites}
+          </Link>
           <Link href={`/${locale}/gioi-thieu`} className="transition-colors hover:text-amber-300">
             {t.navAbout}
           </Link>

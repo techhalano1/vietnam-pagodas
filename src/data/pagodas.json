@@ -4014,8 +4014,8 @@
     "lat": 22.170505,
     "lng": 104.352523,
     "description": "Đền Bảo Hà, còn gọi là đền Ông Hoàng Bảy, nằm dưới chân đồi Cấm bên sông Hồng thuộc xã Bảo Hà, huyện Bảo Yên, tỉnh Lào Cai. Đền thờ danh tướng Nguyễn Hoàng Bảy — vị thần vệ quốc trấn giữ biên cương, được công nhận di tích lịch sử cấp quốc gia năm 1997.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Bao_Ha_Temple_-_P1380679.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Bao_Ha_Temple_-_P1380679.JPG/500px-Bao_Ha_Temple_-_P1380679.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%E1%BA%A3o_H%C3%A0"
   },
   {
@@ -4051,8 +4051,8 @@
     "lat": 21.3682242,
     "lng": 105.3214424,
     "description": "Đền Hùng là quần thể đền chùa thờ phụng các Vua Hùng trên núi Nghĩa Lĩnh, thành phố Việt Trì, tỉnh Phú Thọ — Di tích quốc gia đặc biệt, trung tâm thực hành Tín ngưỡng thờ cúng Hùng Vương được UNESCO ghi danh là Di sản văn hóa phi vật thể đại diện của nhân loại.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Mausoleum_of_Hung_King.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Mausoleum_of_Hung_King.JPG/500px-Mausoleum_of_Hung_King.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_H%C3%B9ng"
   },
   {
@@ -4809,9 +4809,9 @@
     "lat": 10.71091,
     "lng": 105.1201159,
     "description": "Đình thần Châu Phú là một đình làng tại An Giang, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/C%E1%BB%95ng_%C4%91%C3%ACnh_th%E1%BA%A7n_Ch%C3%A2u_Ph%C3%BA.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/C%E1%BB%95ng_%C4%91%C3%ACnh_th%E1%BA%A7n_Ch%C3%A2u_Ph%C3%BA.jpg/500px-C%E1%BB%95ng_%C4%91%C3%ACnh_th%E1%BA%A7n_Ch%C3%A2u_Ph%C3%BA.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_th%E1%BA%A7n_Ch%C3%A2u_Ph%C3%BA"
   },
   {
     "id": 80000057,
@@ -5837,7 +5837,7 @@
     "description": "Chùa Khánh An là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bà Rịa – Vũng Tàu cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Tu_vi%E1%BB%87n_Kh%C3%A1nh_An",
     "oldProvince": "Bà Rịa – Vũng Tàu"
   },
   {
@@ -7176,7 +7176,7 @@
     "description": "Chùa Từ Ân là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bà Rịa – Vũng Tàu cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_T%E1%BB%AB_%C3%82n",
     "oldProvince": "Bà Rịa – Vũng Tàu"
   },
   {
@@ -7239,9 +7239,9 @@
     "lat": 10.5837337,
     "lng": 107.0554496,
     "description": "Chùa Vạn Đức là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bà Rịa – Vũng Tàu cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Ch%C3%B9a_V%E1%BA%A1n_%C4%90%E1%BB%A9c_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28Ch%C3%ADnh_%C4%91i%E1%BB%87n%29_%288%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Ch%C3%B9a_V%E1%BA%A1n_%C4%90%E1%BB%A9c_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28Ch%C3%ADnh_%C4%91i%E1%BB%87n%29_%288%29.jpg/500px-Ch%C3%B9a_V%E1%BA%A1n_%C4%90%E1%BB%A9c_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28Ch%C3%ADnh_%C4%91i%E1%BB%87n%29_%288%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%E1%BA%A1n_%C4%90%E1%BB%A9c",
     "oldProvince": "Bà Rịa – Vũng Tàu"
   },
   {
@@ -8123,9 +8123,9 @@
     "lat": 10.3403392,
     "lng": 107.0830818,
     "description": "Đình thần Thắng Tam là một đình làng tại TP. Hồ Chí Minh (khu vực Bà Rịa – Vũng Tàu cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Dinh_Thang_Tam%2C_Hoang_Hoa_Tham_%2C_Vung_tau_Vietnam_-_panoramio.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Dinh_Thang_Tam%2C_Hoang_Hoa_Tham_%2C_Vung_tau_Vietnam_-_panoramio.jpg/500px-Dinh_Thang_Tam%2C_Hoang_Hoa_Tham_%2C_Vung_tau_Vietnam_-_panoramio.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_th%E1%BA%A7n_Th%E1%BA%AFng_Tam",
     "oldProvince": "Bà Rịa – Vũng Tàu"
   },
   {
@@ -9126,7 +9126,7 @@
     "description": "Đình Tân Hưng là một đình làng tại Cà Mau (khu vực Bạc Liêu cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_H%C6%B0ng",
     "oldProvince": "Bạc Liêu"
   },
   {
@@ -10051,8 +10051,8 @@
     "lat": 21.107089,
     "lng": 105.9597632,
     "description": "Đền Đô là một ngôi đền tại Bắc Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/39/Ngulongmon2.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Ngulongmon2.JPG/500px-Ngulongmon2.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://en.wikipedia.org/wiki/L%C3%BD_B%C3%A1t_%C4%90%E1%BA%BF_Temple"
   },
   {
@@ -11181,7 +11181,7 @@
     "description": "Đình Tam Tảo là một đình làng tại Bắc Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Tam_T%E1%BA%A3o"
   },
   {
     "id": 80000561,
@@ -11389,9 +11389,9 @@
     "lat": 10.0370811,
     "lng": 106.5824235,
     "description": "Đền thờ Nguyễn Đình Chiểu là một ngôi đền tại Vĩnh Long (khu vực Bến Tre cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f5/L%C4%83ng_Nguy%E1%BB%85n_%C4%90%C3%ACnh_Chi%E1%BB%83u.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/L%C4%83ng_Nguy%E1%BB%85n_%C4%90%C3%ACnh_Chi%E1%BB%83u.jpg/500px-L%C4%83ng_Nguy%E1%BB%85n_%C4%90%C3%ACnh_Chi%E1%BB%83u.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/L%C4%83ng_Nguy%E1%BB%85n_%C4%90%C3%ACnh_Chi%E1%BB%83u",
     "oldProvince": "Bến Tre"
   },
   {
@@ -11493,9 +11493,9 @@
     "lat": 10.3307628,
     "lng": 106.371992,
     "description": "Đình Tân Thạch là một đình làng tại Vĩnh Long (khu vực Bến Tre cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3d/C%E1%BB%95ng_%C4%91%C3%ACnh_T%C3%A2n_Th%E1%BA%A1ch.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/C%E1%BB%95ng_%C4%91%C3%ACnh_T%C3%A2n_Th%E1%BA%A1ch.jpg/500px-C%E1%BB%95ng_%C4%91%C3%ACnh_T%C3%A2n_Th%E1%BA%A1ch.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_Th%E1%BA%A1ch",
     "oldProvince": "Bến Tre"
   },
   {
@@ -11612,7 +11612,7 @@
     "description": "Chùa Bà Thiên Hậu là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bình Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%C3%A0",
     "oldProvince": "Bình Dương"
   },
   {
@@ -11742,7 +11742,7 @@
     "description": "Chùa Linh Sơn là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bình Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Linh_S%C6%A1n_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)",
     "oldProvince": "Bình Dương"
   },
   {
@@ -11859,7 +11859,7 @@
     "description": "Chùa Phước Tường là một ngôi chùa tại TP. Hồ Chí Minh (khu vực Bình Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C6%B0%E1%BB%9Bc_T%C6%B0%E1%BB%9Dng",
     "oldProvince": "Bình Dương"
   },
   {
@@ -14004,7 +14004,7 @@
     "description": "Đền thờ Vua Hùng là một ngôi đền tại Đồng Nai (khu vực Bình Phước cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng",
     "oldProvince": "Bình Phước"
   },
   {
@@ -14017,7 +14017,7 @@
     "description": "Đình thần Hưng Long là một đình làng tại Đồng Nai (khu vực Bình Phước cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_th%E1%BA%A7n_H%C6%B0ng_Long",
     "oldProvince": "Bình Phước"
   },
   {
@@ -14381,7 +14381,7 @@
     "description": "Đình Tân Hưng là một đình làng tại Cà Mau, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_H%C6%B0ng"
   },
   {
     "id": 80000808,
@@ -14513,7 +14513,7 @@
     "description": "Chùa Ông là một ngôi chùa tại Cần Thơ, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%C3%94ng"
   },
   {
     "id": 80000819,
@@ -14609,7 +14609,7 @@
     "description": "Đền thờ Vua Hùng là một ngôi đền tại Cần Thơ, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng"
   },
   {
     "id": 80000827,
@@ -14619,9 +14619,9 @@
     "lat": 10.0724902,
     "lng": 105.7522379,
     "description": "Đình Bình Thủy là một đình làng tại Cần Thơ, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Long_Tuy%E1%BB%81n_C%E1%BB%95_Mi%E1%BA%BFu.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Long_Tuy%E1%BB%81n_C%E1%BB%95_Mi%E1%BA%BFu.jpg/500px-Long_Tuy%E1%BB%81n_C%E1%BB%95_Mi%E1%BA%BFu.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y"
   },
   {
     "id": 80000828,
@@ -14981,7 +14981,7 @@
     "description": "Chùa Tam Bảo là một ngôi chùa tại Đà Nẵng, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tam_B%E1%BA%A3o_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80000858,
@@ -15872,7 +15872,7 @@
     "description": "Chùa Phúc Lâm là một ngôi chùa tại Đồng Nai, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C3%BAc_L%C3%A2m_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80000932,
@@ -16016,7 +16016,7 @@
     "description": "Chùa Tam Bảo là một ngôi chùa tại Đồng Nai, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tam_B%E1%BA%A3o_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80000944,
@@ -16328,7 +16328,7 @@
     "description": "Đền thờ Nguyễn Hữu Cảnh là một ngôi đền tại Đồng Nai, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Nguy%E1%BB%85n_H%E1%BB%AFu_C%E1%BA%A3nh"
   },
   {
     "id": 80000970,
@@ -16770,9 +16770,9 @@
     "lat": 10.9473326,
     "lng": 106.8117424,
     "description": "Đình Tân Lân là một đình làng tại Đồng Nai, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/%C4%90%C3%ACnh_T%C3%A2n_L%C3%A2n.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/%C4%90%C3%ACnh_T%C3%A2n_L%C3%A2n.jpg/500px-%C4%90%C3%ACnh_T%C3%A2n_L%C3%A2n.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_L%C3%A2n"
   },
   {
     "id": 80001007,
@@ -18268,7 +18268,7 @@
     "description": "Chùa Long Đọi Sơn là một ngôi chùa tại Ninh Bình (khu vực Hà Nam cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Long_%C4%90%E1%BB%8Di_S%C6%A1n",
     "oldProvince": "Hà Nam"
   },
   {
@@ -18344,9 +18344,9 @@
     "lat": 20.5761085,
     "lng": 106.1061065,
     "description": "Đền Trần Thương là một ngôi đền tại Ninh Bình (khu vực Hà Nam cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/%C4%90%E1%BB%81n_Tr%E1%BA%A7n_Th%C6%B0%C6%A1ng.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/%C4%90%E1%BB%81n_Tr%E1%BA%A7n_Th%C6%B0%C6%A1ng.jpg/500px-%C4%90%E1%BB%81n_Tr%E1%BA%A7n_Th%C6%B0%C6%A1ng.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Tr%E1%BA%A7n_Th%C6%B0%C6%A1ng",
     "oldProvince": "Hà Nam"
   },
   {
@@ -18854,7 +18854,7 @@
     "description": "Chùa Đại Bi là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%C4%90%E1%BA%A1i_Bi_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80001179,
@@ -19608,9 +19608,9 @@
     "lat": 21.0295101,
     "lng": 105.8491717,
     "description": "Chùa Lý Triều Quốc Sư là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Ch%C3%B9a_L%C3%BD_Qu%E1%BB%91c_S%C6%B0.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Ch%C3%B9a_L%C3%BD_Qu%E1%BB%91c_S%C6%B0.JPG/500px-Ch%C3%B9a_L%C3%BD_Qu%E1%BB%91c_S%C6%B0.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_L%C3%BD_Qu%E1%BB%91c_S%C6%B0"
   },
   {
     "id": 80001242,
@@ -19898,7 +19898,7 @@
     "description": "Chùa Pháp Vân là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C3%A1p_V%C3%A2n_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80001266,
@@ -20424,8 +20424,8 @@
     "lat": 20.617877,
     "lng": 105.7463786,
     "description": "Chùa Thiên Trù là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Thi%C3%AAn_Tr%C3%B9_Pagoda.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Thi%C3%AAn_Tr%C3%B9_Pagoda.jpg/500px-Thi%C3%AAn_Tr%C3%B9_Pagoda.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://en.wikipedia.org/wiki/H%C6%B0%C6%A1ng_Temple"
   },
   {
@@ -20652,9 +20652,9 @@
     "lat": 21.0501664,
     "lng": 105.8130187,
     "description": "Chùa Tĩnh Lâu là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/Ch%C3%B9a_S%C3%A3i.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Ch%C3%B9a_S%C3%A3i.JPG/500px-Ch%C3%B9a_S%C3%A3i.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_S%E1%BA%A3i"
   },
   {
     "id": 80001329,
@@ -20702,7 +20702,7 @@
     "description": "Chùa Trăm Gian là một ngôi chùa tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tr%C4%83m_Gian_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80001333,
@@ -21048,8 +21048,8 @@
     "lat": 21.0311074,
     "lng": 105.8534574,
     "description": "Đền Bà Kiệu là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/vi/9/9c/%C4%90%E1%BB%81n_B%C3%A0_Ki%E1%BB%87u_1896.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/vi/thumb/9/9c/%C4%90%E1%BB%81n_B%C3%A0_Ki%E1%BB%87u_1896.jpg/500px-%C4%90%E1%BB%81n_B%C3%A0_Ki%E1%BB%87u_1896.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%C3%A0_Ki%E1%BB%87u"
   },
   {
@@ -21096,8 +21096,8 @@
     "lat": 21.0359129,
     "lng": 105.850991,
     "description": "Đền Bạch Mã là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/54/Den_Bach_Ma.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Den_Bach_Ma.jpg/500px-Den_Bach_Ma.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%E1%BA%A1ch_M%C3%A3"
   },
   {
@@ -21300,8 +21300,8 @@
     "lat": 21.012183,
     "lng": 105.8552674,
     "description": "Đền Hai Bà Trưng là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/Ch%C3%ADnh_%C4%91i%E1%BB%87n%2C_%C4%91%E1%BB%81n_Hai_B%C3%A0_Tr%C6%B0ng%2C_qu%E1%BA%ADn_Hai_B%C3%A0_Tr%C6%B0ng%2C_H%C3%A0_N%E1%BB%99i.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Ch%C3%ADnh_%C4%91i%E1%BB%87n%2C_%C4%91%E1%BB%81n_Hai_B%C3%A0_Tr%C6%B0ng%2C_qu%E1%BA%ADn_Hai_B%C3%A0_Tr%C6%B0ng%2C_H%C3%A0_N%E1%BB%99i.jpg/500px-Ch%C3%ADnh_%C4%91i%E1%BB%87n%2C_%C4%91%E1%BB%81n_Hai_B%C3%A0_Tr%C6%B0ng%2C_qu%E1%BA%ADn_Hai_B%C3%A0_Tr%C6%B0ng%2C_H%C3%A0_N%E1%BB%99i.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_%C4%90%E1%BB%93ng_Nh%C3%A2n"
   },
   {
@@ -21384,8 +21384,8 @@
     "lat": 21.0106784,
     "lng": 105.8381736,
     "description": "Đền Kim Liên là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/40/Kim_Lien_shrine.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Kim_Lien_shrine.jpg/500px-Kim_Lien_shrine.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Kim_Li%C3%AAn"
   },
   {
@@ -21576,8 +21576,8 @@
     "lat": 21.0307296,
     "lng": 105.8523763,
     "description": "Đền Ngọc Sơn là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/C%E1%BB%95ng_%C4%91%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/C%E1%BB%95ng_%C4%91%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n.jpg/500px-C%E1%BB%95ng_%C4%91%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n"
   },
   {
@@ -21648,8 +21648,8 @@
     "lat": 21.0430301,
     "lng": 105.836588,
     "description": "Đền Quán Thánh là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/67/Hanoi_-_Quan-Thanh-Tempel_0001.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Hanoi_-_Quan-Thanh-Tempel_0001.JPG/500px-Hanoi_-_Quan-Thanh-Tempel_0001.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Qu%C3%A1n_Th%C3%A1nh"
   },
   {
@@ -22008,8 +22008,8 @@
     "lat": 21.0300784,
     "lng": 105.8050665,
     "description": "Đền Voi Phục là một ngôi đền tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/10/%C4%90%E1%BB%81n_Voi_Ph%E1%BB%A5c.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/%C4%90%E1%BB%81n_Voi_Ph%E1%BB%A5c.JPG/500px-%C4%90%E1%BB%81n_Voi_Ph%E1%BB%A5c.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Voi_Ph%E1%BB%A5c"
   },
   {
@@ -22212,9 +22212,9 @@
     "lat": 21.0940511,
     "lng": 105.7741685,
     "description": "Đình Chèm là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/10/%C4%90%C3%ACnh_Ch%C3%A8m_-_NKS.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/%C4%90%C3%ACnh_Ch%C3%A8m_-_NKS.jpg/500px-%C4%90%C3%ACnh_Ch%C3%A8m_-_NKS.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Ch%C3%A8m"
   },
   {
     "id": 80001459,
@@ -22382,7 +22382,7 @@
     "description": "Đình Đại Phùng là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_%C4%90%E1%BA%A1i_Ph%C3%B9ng"
   },
   {
     "id": 80001473,
@@ -22622,7 +22622,7 @@
     "description": "Đình Hạ Hiệp là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_H%E1%BA%A1_Hi%E1%BB%87p"
   },
   {
     "id": 80001493,
@@ -22848,9 +22848,9 @@
     "lat": 21.0341399,
     "lng": 105.852965,
     "description": "Đình Kim Ngân là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/67/Kim_Ng%C3%A2n_Temple_1.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Kim_Ng%C3%A2n_Temple_1.jpg/500px-Kim_Ng%C3%A2n_Temple_1.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Kim_Ng%C3%A2n"
   },
   {
     "id": 80001512,
@@ -23520,8 +23520,8 @@
     "lat": 21.1584673,
     "lng": 105.4704452,
     "description": "Đình Mông Phụ là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Dinh_mong_phu.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Dinh_mong_phu.jpg/500px-Dinh_mong_phu.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_M%C3%B4ng_Ph%E1%BB%A5"
   },
   {
@@ -23870,7 +23870,7 @@
     "description": "Đình So là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_So"
   },
   {
     "id": 80001597,
@@ -23928,9 +23928,9 @@
     "lat": 21.1964648,
     "lng": 105.4211148,
     "description": "Đình Tây Đằng là một đình làng tại Hà Nội, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/%C4%90%C3%ACnh_T%C3%A2y_%C4%90%E1%BA%B1ng_1.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/%C4%90%C3%ACnh_T%C3%A2y_%C4%90%E1%BA%B1ng_1.jpg/500px-%C4%90%C3%ACnh_T%C3%A2y_%C4%90%E1%BA%B1ng_1.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2y_%C4%90%E1%BA%B1ng"
   },
   {
     "id": 80001602,
@@ -25428,7 +25428,7 @@
     "description": "Đền Bia là một ngôi đền tại Hải Phòng (khu vực Hải Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Bia",
     "oldProvince": "Hải Dương"
   },
   {
@@ -25452,9 +25452,9 @@
     "lat": 21.1511554,
     "lng": 106.3277771,
     "description": "Đền Kiếp Bạc là một ngôi đền tại Hải Phòng (khu vực Hải Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Ki%E1%BA%BFp_B%E1%BA%A1c_temple_in_1904.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Ki%E1%BA%BFp_B%E1%BA%A1c_temple_in_1904.jpg/500px-Ki%E1%BA%BFp_B%E1%BA%A1c_temple_in_1904.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Ki%E1%BA%BFp_B%E1%BA%A1c",
     "oldProvince": "Hải Dương"
   },
   {
@@ -25467,7 +25467,7 @@
     "description": "Đền Mẫu là một ngôi đền tại Hải Phòng (khu vực Hải Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_M%E1%BA%ABu",
     "oldProvince": "Hải Dương"
   },
   {
@@ -25519,7 +25519,7 @@
     "description": "Đền Xưa là một ngôi đền tại Hải Phòng (khu vực Hải Dương cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_X%C6%B0a",
     "oldProvince": "Hải Dương"
   },
   {
@@ -26071,7 +26071,7 @@
     "description": "Đền Phú Xá là một ngôi đền tại Hải Phòng, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Ph%C3%BA_X%C3%A1"
   },
   {
     "id": 80001777,
@@ -26155,7 +26155,7 @@
     "description": "Đền Tràng Kênh là một ngôi đền tại Hải Phòng, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Qu%E1%BA%A7n_th%E1%BB%83_di_t%C3%ADch_%E2%80%93_danh_th%E1%BA%AFng_Tr%C3%A0ng_K%C3%AAnh"
   },
   {
     "id": 80001784,
@@ -26475,7 +26475,7 @@
     "description": "Đền Mẫu là một ngôi đền tại Phú Thọ (khu vực Hòa Bình cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_M%E1%BA%ABu",
     "oldProvince": "Hòa Bình"
   },
   {
@@ -26596,7 +26596,7 @@
     "description": "Chùa Linh Quang là một ngôi chùa tại Huế, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Linh_Quang"
   },
   {
     "id": 80001820,
@@ -26788,7 +26788,7 @@
     "description": "Chùa Đại Bi là một ngôi chùa tại Hưng Yên, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%C4%90%E1%BA%A1i_Bi_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80001836,
@@ -28298,9 +28298,9 @@
     "lat": 12.7035873,
     "lng": 109.225089,
     "description": "Đình Phú Cang là một đình làng tại Khánh Hòa, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/B%C3%A3i_bi%E1%BB%83n_Nha_Trang.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/B%C3%A3i_bi%E1%BB%83n_Nha_Trang.jpg/500px-B%C3%A3i_bi%E1%BB%83n_Nha_Trang.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Ph%C3%BA_Cang"
   },
   {
     "id": 80001962,
@@ -28747,7 +28747,7 @@
     "description": "Chùa Tam Bảo là một ngôi chùa tại An Giang (khu vực Kiên Giang cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tam_B%E1%BA%A3o_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)",
     "oldProvince": "Kiên Giang"
   },
   {
@@ -29115,7 +29115,7 @@
     "description": "Đền Mẫu là một ngôi đền tại Lào Cai, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_M%E1%BA%ABu"
   },
   {
     "id": 80002026,
@@ -30959,7 +30959,7 @@
     "description": "Chùa Phúc Lâm là một ngôi chùa tại Ninh Bình (khu vực Nam Định cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C3%BAc_L%C3%A2m_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)",
     "oldProvince": "Nam Định"
   },
   {
@@ -31113,8 +31113,8 @@
     "lat": 20.2810741,
     "lng": 106.0607577,
     "description": "Đền thờ vua Đinh là một ngôi đền tại Ninh Bình (khu vực Nam Định cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Dendinhbolinh-6.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Dendinhbolinh-6.jpg/500px-Dendinhbolinh-6.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/Qu%E1%BA%A7n_th%E1%BB%83_di_t%C3%ADch_th%E1%BB%9D_Vua_%C4%90inh_%E1%BB%9F_Ninh_B%C3%ACnh",
     "oldProvince": "Nam Định"
   },
@@ -31216,7 +31216,7 @@
     "description": "Đền Ông Hoàng Mười là một ngôi đền tại Nghệ An, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_%C3%94ng_Ho%C3%A0ng_M%C6%B0%E1%BB%9Di"
   },
   {
     "id": 80002191,
@@ -31262,9 +31262,9 @@
     "lat": 20.1133309,
     "lng": 106.0867574,
     "description": "Chùa Đồng Đắc là một ngôi chùa tại Ninh Bình, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Khu%C3%B4n_vi%C3%AAn_Nh%E1%BA%A5t_Tr%E1%BB%A5_t%E1%BB%B1%2C_2010_%282%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Khu%C3%B4n_vi%C3%AAn_Nh%E1%BA%A5t_Tr%E1%BB%A5_t%E1%BB%B1%2C_2010_%282%29.jpg/500px-Khu%C3%B4n_vi%C3%AAn_Nh%E1%BA%A5t_Tr%E1%BB%A5_t%E1%BB%B1%2C_2010_%282%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Di_t%C3%ADch_%E1%BB%9F_Ninh_B%C3%ACnh"
   },
   {
     "id": 80002195,
@@ -31430,9 +31430,9 @@
     "lat": 20.284612,
     "lng": 105.9051374,
     "description": "Đền vua Đinh Tiên Hoàng là một ngôi đền tại Ninh Bình, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/be/Temple_comm%C3%A9moratif_au_roi_Dinh_Tien_Hoang_%28Hoa_Lu%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Temple_comm%C3%A9moratif_au_roi_Dinh_Tien_Hoang_%28Hoa_Lu%29.jpg/500px-Temple_comm%C3%A9moratif_au_roi_Dinh_Tien_Hoang_%28Hoa_Lu%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_%C4%90inh_Ti%C3%AAn_Ho%C3%A0ng"
   },
   {
     "id": 80002209,
@@ -31442,9 +31442,9 @@
     "lat": 20.2861692,
     "lng": 105.9057242,
     "description": "Đền vua Lê Đại Hành là một ngôi đền tại Ninh Bình, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/%C4%90%E1%BB%81n_L%C3%AA_%C4%90%E1%BA%A1i_H%C3%A0nh%2C_ch%C3%ADnh_%C4%91%E1%BA%A1o.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/%C4%90%E1%BB%81n_L%C3%AA_%C4%90%E1%BA%A1i_H%C3%A0nh%2C_ch%C3%ADnh_%C4%91%E1%BA%A1o.JPG/500px-%C4%90%E1%BB%81n_L%C3%AA_%C4%90%E1%BA%A1i_H%C3%A0nh%2C_ch%C3%ADnh_%C4%91%E1%BA%A1o.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_L%C3%AA_%C4%90%E1%BA%A1i_H%C3%A0nh"
   },
   {
     "id": 80002210,
@@ -31454,9 +31454,9 @@
     "lat": 20.2880639,
     "lng": 105.882765,
     "description": "Đền Vực Vông là một ngôi đền tại Ninh Bình, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Denvucvong.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Denvucvong.jpg/500px-Denvucvong.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_V%E1%BB%B1c_V%C3%B4ng"
   },
   {
     "id": 80002211,
@@ -32228,9 +32228,9 @@
     "lat": 21.1219171,
     "lng": 107.504898,
     "description": "Chùa Cái Bầu là một ngôi chùa tại Quảng Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Truc_Lam_Giac_Tam.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Truc_Lam_Giac_Tam.jpg/500px-Truc_Lam_Giac_Tam.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m_Gi%C3%A1c_T%C3%A2m"
   },
   {
     "id": 80002272,
@@ -32254,7 +32254,7 @@
     "description": "Chùa Hoa Yên là một ngôi chùa tại Quảng Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Khu_di_t%C3%ADch_l%E1%BB%8Bch_s%E1%BB%AD_v%C3%A0_danh_th%E1%BA%AFng_Y%C3%AAn_T%E1%BB%AD"
   },
   {
     "id": 80002274,
@@ -32444,9 +32444,9 @@
     "lat": 21.0280981,
     "lng": 107.3689917,
     "description": "Đền Cửa Ông là một ngôi đền tại Quảng Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/C%E1%BB%ADa_%C3%94ng_Temple_2017.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/C%E1%BB%ADa_%C3%94ng_Temple_2017.jpg/500px-C%E1%BB%ADa_%C3%94ng_Temple_2017.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_C%E1%BB%ADa_%C3%94ng"
   },
   {
     "id": 80002290,
@@ -32600,9 +32600,9 @@
     "lat": 21.4770781,
     "lng": 108.0156757,
     "description": "Đình Trà Cổ là một đình làng tại Quảng Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/77/DinhTraCo.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/DinhTraCo.jpg/500px-DinhTraCo.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Tr%C3%A0_C%E1%BB%95"
   },
   {
     "id": 80002303,
@@ -32923,7 +32923,7 @@
     "description": "Chùa Ông là một ngôi chùa tại Cần Thơ (khu vực Sóc Trăng cũ), Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null,
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%C3%94ng",
     "oldProvince": "Sóc Trăng"
   },
   {
@@ -33923,7 +33923,7 @@
     "description": "Đình Hiệp Ninh là một đình làng tại Tây Ninh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Hi%E1%BB%87p_Ninh"
   },
   {
     "id": 80002407,
@@ -34287,9 +34287,9 @@
     "lat": 21.6233595,
     "lng": 105.8420524,
     "description": "Chùa Hang - Kim Sơn Tự là một ngôi chùa tại Thái Nguyên, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Ch%C3%B9a_Hang_-_Kim_S%C6%A1n_T%E1%BB%B1_%28Th%C3%A1i_Nguy%C3%AAn%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Ch%C3%B9a_Hang_-_Kim_S%C6%A1n_T%E1%BB%B1_%28Th%C3%A1i_Nguy%C3%AAn%29.jpg/500px-Ch%C3%B9a_Hang_-_Kim_S%C6%A1n_T%E1%BB%B1_%28Th%C3%A1i_Nguy%C3%AAn%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Hang_(Kim_S%C6%A1n_T%E1%BB%B1)"
   },
   {
     "id": 80002437,
@@ -35913,8 +35913,8 @@
     "lat": 10.8822888,
     "lng": 106.7669351,
     "description": "Chùa Linh Phước là một ngôi chùa tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Linh_Phuoc_Pagoda_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Linh_Phuoc_Pagoda_01.jpg/500px-Linh_Phuoc_Pagoda_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Linh_Ph%C6%B0%E1%BB%9Bc_Temple"
   },
   {
@@ -35927,7 +35927,7 @@
     "description": "Chùa Linh Quang là một ngôi chùa tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Linh_Quang"
   },
   {
     "id": 80002571,
@@ -35939,7 +35939,7 @@
     "description": "Chùa Linh Sơn là một ngôi chùa tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Linh_S%C6%A1n_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80002572,
@@ -36167,7 +36167,7 @@
     "description": "Chùa Ông là một ngôi chùa tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%C3%94ng"
   },
   {
     "id": 80002591,
@@ -37487,7 +37487,7 @@
     "description": "Chùa Vạn Hạnh là một ngôi chùa tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%E1%BA%A1n_H%E1%BA%A1nh_(%C4%91%E1%BB%8Bnh_h%C6%B0%E1%BB%9Bng)"
   },
   {
     "id": 80002701,
@@ -37665,8 +37665,8 @@
     "lat": 11.1463991,
     "lng": 106.4593929,
     "description": "Đền Bến Dược là một ngôi đền tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/B%E1%BA%BFn_D%C6%B0%E1%BB%A3c_temple.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/B%E1%BA%BFn_D%C6%B0%E1%BB%A3c_temple.jpg/500px-B%E1%BA%BFn_D%C6%B0%E1%BB%A3c_temple.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://en.wikipedia.org/wiki/B%E1%BA%BFn_D%C6%B0%E1%BB%A3c_Memorial_Temple"
   },
   {
@@ -37869,8 +37869,8 @@
     "lat": 10.7872423,
     "lng": 106.7057087,
     "description": "Đền thờ Vua Hùng là một ngôi đền tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/Den_Hung%2C_Ho_Chi_Minh_City.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Den_Hung%2C_Ho_Chi_Minh_City.jpg/500px-Den_Hung%2C_Ho_Chi_Minh_City.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn)"
   },
   {
@@ -37907,7 +37907,7 @@
     "description": "Đình An Hội là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_An_H%E1%BB%99i"
   },
   {
     "id": 80002736,
@@ -38049,9 +38049,9 @@
     "lat": 10.7279273,
     "lng": 106.6414718,
     "description": "Đình Bình Đông là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/04/%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng_%28c%E1%BA%A3nh_to%C3%A0n_c%E1%BA%A3nh%29_%285%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng_%28c%E1%BA%A3nh_to%C3%A0n_c%E1%BA%A3nh%29_%285%29.jpg/500px-%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng_%28c%E1%BA%A3nh_to%C3%A0n_c%E1%BA%A3nh%29_%285%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng"
   },
   {
     "id": 80002748,
@@ -38253,9 +38253,9 @@
     "lat": 10.6687664,
     "lng": 106.5680517,
     "description": "Đình Bình Trường là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/vi/4/49/Congdinh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/vi/4/49/Congdinh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_B%C3%ACnh_Tr%C6%B0%E1%BB%9Dng"
   },
   {
     "id": 80002765,
@@ -38397,9 +38397,9 @@
     "lat": 10.781393,
     "lng": 106.6730941,
     "description": "Đình Chí Hòa là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/%C4%90%C3%ACnh_Ch%C3%AD_H%C3%B2a.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/%C4%90%C3%ACnh_Ch%C3%AD_H%C3%B2a.jpg/500px-%C4%90%C3%ACnh_Ch%C3%AD_H%C3%B2a.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Ch%C3%AD_H%C3%B2a"
   },
   {
     "id": 80002777,
@@ -38673,9 +38673,9 @@
     "lat": 10.7523837,
     "lng": 106.6610674,
     "description": "Đình Minh Hương Gia Thạnh là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c2/%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh.jpg/500px-%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh"
   },
   {
     "id": 80002800,
@@ -38961,9 +38961,9 @@
     "lat": 10.7954324,
     "lng": 106.6737384,
     "description": "Đình Phú Nhuận là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Ho_Chi_Minh_City_%282025_mainland%29_location_map.svg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Ho_Chi_Minh_City_%282025_mainland%29_location_map.svg/500px-Ho_Chi_Minh_City_%282025_mainland%29_location_map.svg.png?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Ph%C3%BA_Nhu%E1%BA%ADn"
   },
   {
     "id": 80002824,
@@ -39683,7 +39683,7 @@
     "description": "Đình Thái Hưng là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
     "image": null,
     "thumbnail": null,
-    "wikipediaUrl": null
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Th%C3%A1i_H%C6%B0ng"
   },
   {
     "id": 80002884,
@@ -40485,9 +40485,9 @@
     "lat": 10.8399742,
     "lng": 106.664782,
     "description": "Đình Thông Tây Hội là một đình làng tại TP. Hồ Chí Minh, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Thongtayhoitemple.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Thongtayhoitemple.JPG/500px-Thongtayhoitemple.JPG?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Th%C3%B4ng_T%C3%A2y_H%E1%BB%99i"
   },
   {
     "id": 80002951,
@@ -41471,9 +41471,9 @@
     "lat": 10.2383232,
     "lng": 105.9898985,
     "description": "Đình Long Thanh là một đình làng tại Vĩnh Long, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/%C4%90%C3%ACnh_T%C3%A2n_Thanh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/%C4%90%C3%ACnh_T%C3%A2n_Thanh.jpg/500px-%C4%90%C3%ACnh_T%C3%A2n_Thanh.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Long_Thanh"
   },
   {
     "id": 80003032,
@@ -41507,9 +41507,9 @@
     "lat": 10.2692723,
     "lng": 105.9077185,
     "description": "Đình Tân Hoa là một đình làng tại Vĩnh Long, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/C%E1%BB%95ng_ch%C3%ADnh_%C4%91%C3%ACnh_T%C3%A2n_Hoa.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/C%E1%BB%95ng_ch%C3%ADnh_%C4%91%C3%ACnh_T%C3%A2n_Hoa.jpg/500px-C%E1%BB%95ng_ch%C3%ADnh_%C4%91%C3%ACnh_T%C3%A2n_Hoa.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_Hoa"
   },
   {
     "id": 80003035,
@@ -41519,9 +41519,9 @@
     "lat": 10.2657935,
     "lng": 105.9323177,
     "description": "Đình Tân Ngãi là một đình làng tại Vĩnh Long, Việt Nam. Vị trí được ghi nhận từ dữ liệu cộng đồng OpenStreetMap; thông tin chi tiết sẽ được bổ sung khi có nguồn tư liệu đáng tin cậy.",
-    "image": null,
-    "thumbnail": null,
-    "wikipediaUrl": null
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/%C4%90%C3%ACnh_T%C3%A2n_Ng%C3%A3i_%28V%C4%A9nh_Long%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=original",
+    "thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/%C4%90%C3%ACnh_T%C3%A2n_Ng%C3%A3i_%28V%C4%A9nh_Long%29.jpg/500px-%C4%90%C3%ACnh_T%C3%A2n_Ng%C3%A3i_%28V%C4%A9nh_Long%29.jpg?utm_source=vi.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wikipediaUrl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_T%C3%A2n_Ng%C3%A3i"
   },
   {
     "id": 80003036,

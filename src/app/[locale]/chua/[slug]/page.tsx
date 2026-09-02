@@ -2,11 +2,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
-import { getPagodaBySlug, pagodas } from "@/lib/data";
+import { getPagodaBySlug, pagodas, provinceSlug } from "@/lib/data";
 import { getDetailsBySlug, type Section } from "@/lib/details";
+import { getFestivalBySlug } from "@/lib/festivals";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import Reveal from "@/components/Reveal";
 import ShareButtons from "@/components/ShareButtons";
+import SaveButtons from "@/components/SaveButtons";
 
 const PagodaMap = dynamic(() => import("@/components/PagodaMap"), { ssr: false });
 
@@ -86,6 +88,7 @@ export default function PagodaPage({
   const name = locale === "en" && d?.nameEn ? d.nameEn : p.name;
 
   const related = pagodas.filter((x) => x.province === p.province && x.id !== p.id).slice(0, 6);
+  const festival = getFestivalBySlug(p.slug);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
@@ -93,7 +96,7 @@ export default function PagodaPage({
         <Link href={`/${locale}`} className="hover:text-amber-700">{t.home}</Link>
         {" / "}
         <Link
-          href={`/${locale}/danh-muc?tinh=${encodeURIComponent(p.province)}`}
+          href={`/${locale}/tinh/${provinceSlug(p.province)}`}
           className="hover:text-amber-700"
         >
           {p.province}
@@ -115,7 +118,10 @@ export default function PagodaPage({
             )}
           </p>
         </div>
-        <ShareButtons title={name} label={t.shareBtn} copiedLabel={t.shareCopied} />
+        <div className="flex flex-wrap items-center gap-2">
+          <SaveButtons slug={p.slug} locale={locale} />
+          <ShareButtons title={name} label={t.shareBtn} copiedLabel={t.shareCopied} />
+        </div>
       </div>
 
       {p.image && (
@@ -142,6 +148,31 @@ export default function PagodaPage({
         )}
       </section>
       </Reveal>
+
+      {festival && (
+        <Reveal>
+        <section className="mt-8">
+          <h2 className="mb-2 text-xl font-semibold">🏮 {t.festivalHeading}</h2>
+          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-stone-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-stone-300">
+            <p className="font-semibold">
+              {locale === "en" ? festival.nameEn : festival.nameVi}
+            </p>
+            <p className="mt-0.5 text-sm text-rose-700 dark:text-rose-300">
+              {locale === "en" ? festival.dateEn : festival.dateVi}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed">
+              {locale === "en" ? festival.descEn : festival.descVi}
+            </p>
+            <Link
+              href={`/${locale}/le-hoi`}
+              className="mt-2 inline-block text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
+            >
+              {t.festivalsTitle} →
+            </Link>
+          </div>
+        </section>
+        </Reveal>
+      )}
 
       {(d?.worshipVi || d?.prayForVi) && (
         <Reveal>

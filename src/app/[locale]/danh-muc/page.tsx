@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { pagodas, provinces } from "@/lib/data";
+import { pagodas, provinces, provinceSlug } from "@/lib/data";
 import { getDict, isLocale } from "@/lib/i18n";
 import Reveal from "@/components/Reveal";
 
@@ -56,7 +56,10 @@ export default function DirectoryPage({
         <Reveal key={pr.name} className="mt-8">
           <section>
           <h2 className="mb-3 border-b border-stone-200 pb-1 text-xl font-semibold dark:border-stone-700">
-            {pr.name} <span className="text-sm font-normal text-stone-400">({pr.count})</span>
+            <Link href={`/${locale}/tinh/${provinceSlug(pr.name)}`} className="hover:text-amber-700 dark:hover:text-amber-400">
+              {pr.name}
+            </Link>{" "}
+            <span className="text-sm font-normal text-stone-400">({pr.count})</span>
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pagodas
