@@ -24,7 +24,8 @@ export default function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 },
+      // threshold 0: tall elements (long grids) never reach a 10% ratio
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
