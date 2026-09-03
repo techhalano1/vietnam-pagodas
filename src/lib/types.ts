@@ -8,6 +8,8 @@ export interface Pagoda {
   lat: number | null;
   lng: number | null;
   description: string;
+  /** English summary; falls back to `description` when absent. */
+  descriptionEn?: string;
   image: string | null;
   thumbnail: string | null;
   wikipediaUrl: string | null;

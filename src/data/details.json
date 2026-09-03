@@ -11080,8 +11080,8 @@
     ]
   },
   "den-hai-ba-trung": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Hai Bà Trưng Temple (Đồng Nhân)",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/Hai_B%C3%A0_Tr%C6%B0ng_Temple_(%C4%90%E1%BB%93ng_Nh%C3%A2n)",
     "sectionsVi": [
       {
         "heading": null,
@@ -11100,9 +11100,15 @@
         "text": "Ngày 4 tháng 4 năm 1926, nhân dân Hà Nội đã tổ chức lễ truy điệu nhà chí sĩ yêu nước Phan Chu Trinh, kích động tinh thần đoàn kết chống Pháp tại sân đền Đồng Nhân này."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "The Hai Bà Trưng Temple is a place of worship in Hanoi near Hoàn Kiếm Lake. It is one of several temples to the two Trưng Sisters in Vietnam.\n\nAccording to tradition it was founded by Lý Anh Tông around 1160 after he visited a shrine to the Trưng Sisters, who then appeared to him as rain spirits. Culturally, the development of the cult of the sisters at that time is in the context of assertion of independence after the end of the Third Chinese domination of Vietnam - nearly 1000 years after the Qin conquest of Jiaozhi.\nThe altar display at the Trưng Sisters temple shows their violent death rather than suicide."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_%C4%90%E1%BB%93ng_Nh%C3%A2n"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_%C4%90%E1%BB%93ng_Nh%C3%A2n",
+      "https://en.wikipedia.org/wiki/Hai_B%C3%A0_Tr%C6%B0ng_Temple_(%C4%90%E1%BB%93ng_Nh%C3%A2n)"
     ]
   },
   "den-kim-lien": {
@@ -11140,8 +11146,8 @@
     ]
   },
   "den-ngoc-son": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Ngọc Sơn Temple",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/Ng%E1%BB%8Dc_S%C6%A1n_Temple",
     "sectionsVi": [
       {
         "heading": null,
@@ -11176,14 +11182,24 @@
         "text": "Phía Nam có đình Trấn Ba (đình chắn sóng - ngụ ý là cột trụ đứng vững giữa làn sóng không lành mạnh trong nền văn hoá đương thời). Đình hình vuông có tám mái, mái hai tầng có 8 cột chống đỡ, bốn cột ngoài bằng đá, bốn cột trong bằng gỗ. Cột trong đình có đôi câu đối:\n\nKiếm hữu dư linh quang nhược thủy\nVăn tòng đại khối thọ như sơn\nChữ Hán:\n\n劍 有 餘 靈 光 若 水\n文 從 大 塊 壽 如 山\nNghĩa là:\n\nKiếm sót khí thiêng ngời tựa nước\nVăn cùng trời đất thọ như non.\nCác nhân vật được thờ trong đền ngoài Văn Xương Đế Quân, Lã Động Tân, Quan Vân Trường, Hưng Đạo Vương, còn thờ cả Phật A-di-đà. Điều này thể hiện quan niệm Tam giáo đồng nguyên của người Việt.\nTuy là một ngôi đền kiến trúc mới, song đền Ngọc Sơn là một điển hình về không gian và tạo tác kiến trúc. Sự kết hợp giữa đền và hồ đã tạo thành một tổng thể kiến trúc Thiên - Nhân hợp nhất, tạo vẻ đẹp cổ kính, hài hoà, đăng đối cho đền và hồ, gợi nên những cảm giác chan hoà giữa con người và thiên nhiên."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "The Ngọc Sơn Temple (Vietnamese: Đền Ngọc Sơn, chữ Nôm: 𪽛玉山) is located on an islet in Hoàn Kiếm Lake, central Hanoi, Vietnam."
+      },
+      {
+        "heading": "History",
+        "text": "The temple was built in early 19th century, originally dedicated to \"Three Sages\" Wenchang Dijun, Guan Yu and Lü Dongbin. At some point, the national hero, Trần Hưng Đạo, was incorporated into the temple.\nFrom the shore, Thê Húc Bridge (Cầu Thê Húc) leads to the islet. Buildings of the temple include the Tháp Bút (\"The Pen Tower\"), the Đài Nghiên (ink-slab), the  Đắc Nguyệt (\"moon contemplation pavilion\") and the Đình Trấn Ba (pavilion against waves), all of which have symbolic meaning."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n",
+      "https://en.wikipedia.org/wiki/Ng%E1%BB%8Dc_S%C6%A1n_Temple"
     ]
   },
   "den-quan-thanh": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Quán Thánh Temple",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/Qu%C3%A1n_Th%C3%A1nh_Temple",
     "sectionsVi": [
       {
         "heading": null,
@@ -11202,9 +11218,31 @@
         "text": "Pho tượng thần Huyền Thiên Trấn Vũ được đúc bằng đồng đen vào năm Vĩnh Trị thứ 2 (1677), đời Lê Hy Tông.\nTượng cao 3,96m, chu vi 8m, nặng 4 tấn tọa trên tảng đá cẩm thạch cao 1,2m. Tượng có khuôn mặt vuông chữ điền nghiêm nghị nhưng bình thản, hiền hậu với đôi mắt nhìn thẳng, râu dài, tóc xoã không đội mũ, mặc áo đạo sĩ ngồi trên bục đá với hai bàn chân để trần. Bàn tay trái của tượng đưa lên ngang ngực bắt ấn thuyết pháp, bàn tay phải úp lên đốc kiếm, kiếm chống trên lưng rùa nằm giữa hai bàn chân, quanh lưỡi kiếm có con rắn quấn từ dưới lên trên. Rùa, rắn và kiếm là biểu trưng của Huyền Thiên Trấn Vũ.\nTheo như sự tích được ghi chép ở đền thì Huyền Thiên Trấn Vũ là thần trấn quản phương Bắc đã nhiều lần giúp nước Việt đánh đuổi ngoại xâm. Lần thứ nhất vào đời Hùng Vương thứ 6 đánh giặc từ vùng biển tràn vào, lần thứ hai vào đời Hùng Vương thứ 7 đánh giặc Thạch Linh... Trong bản ghi chép còn có chi tiết Huyền Thiên Trấn Vũ giúp dân thành Thăng Long trừ tà ma và yêu quái, giúp An Dương Vương trừ tinh gà trắng xây thành Cổ Loa, diệt Hồ ly tinh trên sông Hồng đời Lý Thánh Tông...\nPho tượng Huyền Thiên Trấn Vũ là một công trình nghệ thuật độc đáo, đánh dấu kỹ thuật đúc đồng và tài nghệ của các nghệ nhân Việt Nam cách đây 3 thế kỷ."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "Quán Thánh Temple (Vietnamese: Đền Quán Thánh), also known as Trấn Vũ Temple (Sino-Vietnamese: Chân Vũ Quán, chữ Hán: 真武觀), is a Taoist temple in Hanoi, Vietnam. Dated to the 11th century, the temple was dedicated to Xuan Wu, or Trấn Vũ (chữ Hán: 鎮武) in Vietnamese, one of the principal deities in Taoism. As one of the Four Sacred Temples of the capital, Quan Thánh Temple is located near West Lake in a ward of the same name: Quán Thánh Ward; and is one of the leading tourist attractions in Hanoi. The temple's name means Place (alternatively shop/restaurant) of the Gods. The name of the long street running by the temple is also called 'Quán Thánh' street."
+      },
+      {
+        "heading": "History",
+        "text": "Legend has it that Quán Thánh Temple was established during the reign of Emperor Lý Thái Tổ (reigned 1010–1028) and was dedicated to Trấn Vũ, Deity of the North in Taoism, whose symbols of power are the serpent and turtle (see section on Animal Symbolism below). It is one of the Four Sacred Temples that were built in four directions to protect the capital from malevolent spirits. Quán Thánh protects from the North, while the other three temples protect from the other directions: Bạch Mã from the East, Kim Liên from the South, and Voi Phục from the West. In Hanoi, there is also a second Trấn Vũ Temple in the Gia Lâm District. Though smaller than Quán Thánh Temple, this smaller temple is also dedicated to Trấn Vũ with a 9-tonne statue of the deity.\nNowadays, after many geographical changes to the city layout, Quán Thánh Temple is located on the corner of Quán Thánh Street and Thanh Niên Street, facing West Lake. It is a short walk from Trúc Bạch Lake where pilot (and future United States senator) John McCain was shot down in October 1967."
+      },
+      {
+        "heading": "Architecture",
+        "text": "During its long history, Quán Thánh Temple has been renovated several times, most recently in 1893 when the principal gate and the shrine were redone, so the architecture is a mixture of the many different styles of the imperial era. The main features of Quán Thánh Temple are a large yard shaded by a giant banyan tree and a shrine that contains the famous bronze statue of Trấn Vũ.\nIn 1677, during the reign of Emperor Lê Huy Tông, artisans from the nearby village of Ngũ Xã offered Quán Thánh Temple a very large statue of Trấn Vũ in black bronze, which remains today. This statue is measured 3.96 metres (13.0 ft) in height, weighs around 3,600 kilograms (7,900 lb) and depicts Trấn Vũ as a deity with his two symbolic animals, the serpent and the turtle. Considered a masterpiece of Vietnamese bronze casting and sculpture, it is the second biggest bronze statue in Vietnam. This artwork is evidence of the advanced technical standard of bronze casting and sculpture of Vietnamese artisans in the 17th century. Cast at the same time as Trấn Vũ's statue was a 1.15 metres (3.8 ft) bronze bell. Those were creations of a master craftsman named Trùm Trọng, who had his own statue in Quán Thánh Temple placed alongside the Trấn Vũ statue. Beside the statues of Trấn Vũ and Trùm Trọng, the main shrine also has a valuable collection of ancient texts such as poems or duilians which date from the 17th and 18th century. After each restoration, a stele was often kept in the temple for the record; the oldest one dated from 1677 while the latest was made by viceroy Hoàng Cao Khải in 1894 during the reign of Thành Thái Emperor during the French colonial era.\n\nThe temple currently has writing in Literary Chinese, due to the adoption of Literary Chinese after Vietnamese independence from China. During the 17th century, Portuguese missionaries began to write the Vietnamese language using the Latin alphabet. In the early 20th century, Vietnam officially adopted the Latin alphabet for their writing. Nowadays only a few Vietnamese can read and understand the ancient Chinese characters."
+      },
+      {
+        "heading": "Animal Symbolism",
+        "text": "In most Vietnamese temples, there is a great deal of animal symbolism, and Quán Thánh is no exception. The most famous example of animal symbolism is the image of the serpent and the turtle. The serpent represents wealth and the turtle represents protection. In a traditional Vietnamese fairy tale, the turtle had a powerful sword that made its way to Lê Thái Tổ and allowed the Vietnamese win the war against the Chinese.\nAnother important animal is the crane, which is included in a famous Vietnamese story with the turtle. The story says that there once was a drought and the turtle needed water to stay alive. The crane saw he was in trouble, and flew him to the nearest water source. Later there was a flood and the crane had no place to land, so the turtle let the crane stand on his back until the flood was over. This story shows symbiosis, or friendship. This is shown by how the two animals helped each other when they were in trouble."
+      },
+      {
+        "heading": "Activities",
+        "text": "In the courtyard there is a brick oven where people burn joss papers. The joss papers is typically burned during Tết (Lunar New Year). This is because it is believed that the money and other items will be sent to their ancestors. According to a guide of the temple, the origin of this tradition is still unknown.\nBy tradition, Hanoians often come to Quán Thánh Temple on the occasion of Tết or the first and fifteenth of each lunar month (new and full moon respectively) to worship and pray for health, luck and happiness.\nTaoism has been mixed with other Vietnamese religions since this temple was built, so the people that come to pray are not fully Taoist. Currently two monks live at the temple.\nWith its history and architecture, Quán Thánh Temple is one of the tourist attractions in Hanoi. It is also a training venue for several traditional martial art classes including Vovinam."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Qu%C3%A1n_Th%C3%A1nh"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Qu%C3%A1n_Th%C3%A1nh",
+      "https://en.wikipedia.org/wiki/Qu%C3%A1n_Th%C3%A1nh_Temple"
     ]
   },
   "den-voi-phuc": {
@@ -11660,8 +11698,8 @@
     ]
   },
   "den-tho-vua-hung-ho-chi-minh": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Hùng King Temple (Saigon Botanical Garden)",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/H%C3%B9ng_King_Temple_(Saigon_Botanical_Garden)",
     "sectionsVi": [
       {
         "heading": null,
@@ -11684,9 +11722,23 @@
         "text": "Bên phải Đền Hùng Vương (Thành phố Hồ Chí Minh), có đặt một tượng voi đồng lớn nhất Việt Nam. Voi nặng hơn ba tấn, cách tạo hình và nét chạm khắc rất mỹ thuật, tiêu biểu cho nền thủ công tinh xảo của vương quốc Thái Lan. Voi được đặt trên bệ làm bằng xi măng hình khối chữ nhật. Bốn mặt bệ, có gắn bốn biển đồng lớn cũng hình chữ nhật. Cả bốn biển đều có khắc dòng chữ lưu niệm giống như nhau, bằng bốn thứ tiếng: Việt, Thái, Anh, Pháp. Bản tiếng Việt ghi:\n\nĐức hoàng đế Paramindr Maha Prajadhipok, vua nước Xiêm La, đã tặng để làm kỷ niệm trong việc Ngài ngự qua bên nước Indochine lần đầu, ngự lên tại Sài Gòn ngày 14 tháng 4 1930. Tuy nhiên, mãi đến ngày 20 tháng 10 năm 1935, tượng voi mới được vận chuyển từ Bangkok vào đến bến Nhà Rồng."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "The Hùng King Temple is a temple dedicated to the Hùng kings, the Vietnamese rulers of the Hồng Bàng dynasty. The temple is located in the Saigon Zoo and Botanical Gardens, next to the Ho Chi Minh City Museum of History.\nIt was designed by French architect Auguste Delaval and was inaugurated on 1 January 1929."
+      },
+      {
+        "heading": "History",
+        "text": "The Temple of Hùng King was originally built between 1927 and 1929, under the name Temple du Souvenir Annamite, to honour the Vietnamese soldiers who died while fighting for the French in World War I. The temple was inaugurated at the same as time as the Musée Blanchard de la Brosse (now known as the Ho Chi Minh City Museum of History) on 1 January 1929.\nIn 1955, the temple was rededicated to the rulers of the founding Hồng Bàng dynasty, however the original memorial stele remained nearby. In 1975, following the reunification of Vietnam, the memorial stele was removed by the communist government and the temple was dedicated exclusively to the Hùng kings.\nEach year, on the 10th day of the third lunar month, the temple hosts the Hùng Kings' Festival, which has been a public holiday in Vietnam since 2007."
+      },
+      {
+        "heading": "Architecture",
+        "text": "The Temple of Hùng King was designed in a similar style to Nguyễn dynasty mausoleums. Vietnamese dragons flank the steps leading up to the temple while the curved roof is decorated with Vietnamese dragons and phoenixes.\nThe interior is decorated with sculptural motifs including animals symbolic to Vietnam such as cranes and turtles. The Hùng King shrine stands at the center of the temple guarded by a set of bronze-tipped weapons, a gong and a drum. Inside the temple are two replica Đông Sơn drums and a model of the Hùng Kings Temple Complex in the northern province of Phú Thọ.\nIn the front yard of the Temple of Hùng King is a three-ton bronze elephant statue standing on a rectangular concrete pedestal. It was presented as a gift from King Rama VII during his visit to French Indochina on 14 April 1930."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn)"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn)",
+      "https://en.wikipedia.org/wiki/H%C3%B9ng_King_Temple_(Saigon_Botanical_Garden)"
     ]
   },
   "dinh-than-chau-phu": {
@@ -12912,8 +12964,8 @@
     ]
   },
   "den-vua-dinh-tien-hoang": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Đinh Tiên Hoàng Temple",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/%C4%90inh_Ti%C3%AAn_Ho%C3%A0ng_Temple",
     "sectionsVi": [
       {
         "heading": null,
@@ -12940,9 +12992,31 @@
         "text": "Các đền thờ Đinh Bộ Lĩnh có thể thấy ở nhiều vùng miền khác nhau, tiêu biểu như ở Ninh Bình tìm thấy 50 nơi thờ, trong đó có đền thờ Đinh Bộ Lĩnh ở xã Đại Hoàng, đền thung Lau ở động Hoa Lư, chùa Lạc Khoái Gia Phong; đền Mỹ Hạ xã Gia Tường, các đình thôn Me, thôn Lược phường Tây Hoa Lư; đền Đồi Thờ xã Quỳnh Lưu, phủ Đại, đình Yên Thành, đình Yên Trạch ở cố đô Hoa Lư, đền vua Đinh, đền Cộng Hòa, đình Cát Đằng và đình Thượng Đồng ở xã Vạn Thắng, đình Đằng Động ở xã Phong Doanh; đình Bườn phường Đông A; đình làng việt cổ Bách Cốc, Vụ Bản; đền vua Đinh ở Giao Thủy, đền Lăng, đình Yến Liêm Hà; Đình Lạc Nhuế, Miếu Thượng (Nguyễn Úy); Miếu Trung ở Kim Bảng; đình Phương Khê; đền Ung Liêm ở Phủ Lý; đình Đôn Lương, phường Đồng Văn... Phú Thọ có đình Nông Trang thờ Đinh Bộ Lĩnh; Thái Nguyên có đền Phja Đeng ở Na Rì thờ vua Đinh; Đà Nẵng có đền thờ vua Đinh ở xã Hoà Phú; Lạng Sơn có đình Pác Mòng; Thanh Hóa có đền vua Đinh ở làng Quan Thành; Đắk Lắk có đình Cao Phong ở Hòa Thắng, Buôn Ma Thuột; Hà Nội có đền Bách Linh ở Ứng Hòa thờ vua Đinh cùng 99 vị thần khác...\nBên cạnh các đền thờ, tượng đài anh hùng Đinh Bộ Lĩnh cũng được xây dựng ở Thành phố Hồ Chí Minh tại một số nơi như suối Tiên và công viên Tao Đàn. Tại trung tâm thành phố Hoa Lư đã xây dựng khu quảng trường Đinh Tiên Hoàng Đế.\nVào dịp lễ hội cố đô Hoa Lư, các đền thờ vua Đinh và các di tích thờ danh nhân thời Đinh trong khu vực đều tham gia lễ rước kiệu và chân nhang các danh nhân về Đền vua Đinh Tiên Hoàng."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "Đinh Tiên Hoàng Temple (Vietnamese: Đền thờ Vua Đinh Tiên Hoàng) is a historic temple located in Trường Yên commune, Tây Hoa Lư ward, Ninh Bình province, Vietnam. It is dedicated to Emperor Đinh Tiên Hoàng (also known as Đinh Bộ Lĩnh), the founder of the Đinh dynasty, along with his parents, sons, and key generals. The temple is part of the ancient capital of Hoa Lư and is included in the Tràng An Scenic Landscape Complex, a UNESCO World Heritage Site recognized in 2014."
+      },
+      {
+        "heading": "History",
+        "text": "The temple was constructed in the 17th century on the site of the ancient Hoa Lư palace. Archaeological excavations have revealed bricks from the Đinh and Early Lê periods, inscribed with phrases such as \"Đại Việt Quốc quân thành chuyên\" and \"Giang tây quân.\" The site is central to the eastern citadel of the ancient capital Hoa Lư. It is the only temple in Vietnam that worships Emperor Đinh Tiên Hoàng, his parents, his sons (Đinh Liễn, Đinh Hạng Lang, and Đinh Toàn), and the four key generals of the Đinh court: Nguyễn Bặc, Đinh Điền, Trịnh Tú, and Lưu Cơ. In 2014, as part of the Hoa Lư ancient capital relics, the temple was incorporated into the Tràng An UNESCO World Heritage Site."
+      },
+      {
+        "heading": "Architecture",
+        "text": "The temple follows the \"nội công ngoại quốc\" architectural style, with its main axis oriented eastward. It features a crescent-shaped lake, a screen wall with a sun motif, an outer ceremonial gate (Ngọ môn quan) with tiled roofs and lion-like creatures, and an inner gate (Nghi môn) made of lim wood. The dragon courtyard includes two stone dragon platforms (long sàng), recognized as national treasures in 2017. These platforms are carved with dragons, clouds, and other motifs, flanked by stone nghê guardians from the 17th century. The worship hall (Bái đường) is a five-bay structure, and the main shrine (Chính cung) houses a bronze statue of Emperor Đinh Tiên Hoàng on a green stone pedestal, flanked by statues of his sons and altars for the generals. The architecture incorporates 17th-century Vietnamese folk wood carvings and preserves artifacts like inscribed bricks and steles."
+      },
+      {
+        "heading": "Cultural significance",
+        "text": "The temple holds unique cultural value as it represents the fusion of folk and scholarly traditions in Vietnamese history. It preserves historical steles that document contributions from various families and officials across dynasties. The site symbolizes the aquatic and agricultural aspects of Vietnamese culture, with dragon motifs adapted to the local environment."
+      },
+      {
+        "heading": "Festivals",
+        "text": "The temple is a focal point during the annual Hoa Lư Festival, which includes processions carrying palanquins and incense from surrounding temples. These events commemorate the Đinh dynasty and draw thousands of participants and tourists."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_%C4%90inh_Ti%C3%AAn_Ho%C3%A0ng"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_%C4%90inh_Ti%C3%AAn_Ho%C3%A0ng",
+      "https://en.wikipedia.org/wiki/%C4%90inh_Ti%C3%AAn_Ho%C3%A0ng_Temple"
     ]
   },
   "den-vua-le-dai-hanh": {
@@ -13034,8 +13108,8 @@
     ]
   },
   "den-cua-ong": {
-    "nameEn": null,
-    "wikipediaUrlEn": null,
+    "nameEn": "Cửa Ông Temple",
+    "wikipediaUrlEn": "https://en.wikipedia.org/wiki/C%E1%BB%ADa_%C3%94ng_Temple",
     "sectionsVi": [
       {
         "heading": null,
@@ -13070,9 +13144,31 @@
         "text": "Kết hợp các yếu tố giá trị cảnh quan và tâm linh, Đền Cửa Ông là một địa điểm du lịch rất nổi tiếng ở Quảng Ninh nói riêng và miền Bắc nói chung. Hằng năm đền Cửa Ông thu hút khoảng 800.000 lượt khách đến tham quan. Trong hai tháng đầu năm 2019 đã có 14.000 lượt khách với tổng số tiền công đức và các khoản thu tại đền hơn 10 tỷ đồng."
       }
     ],
-    "sectionsEn": [],
+    "sectionsEn": [
+      {
+        "heading": null,
+        "text": "Cửa Ông Temple (Vietnamese: Đền Cửa Ông) is located in Cửa Ông Ward, Cẩm Phả, Quảng Ninh province, Vietnam. This is a place of worship for Hưng Nhượng Đại Vương Trần Quốc Tảng, a famous figure during the Trần dynasty, and it is also the venue for the annual Cửa Ông Temple Festival. At the end of 2017, Cửa Ông Temple was classified by the government as a Special National Site."
+      },
+      {
+        "heading": "Location",
+        "text": "Cửa Ông Temple is situated on a high hill, approximately 100m above sea level, in Zone 9A of Cửa Ông Ward, Cẩm Phả City, Quảng Ninh Province. The temple is located about 40 km northeast of the city center of Halong City. The total planned area of Cửa Ông Temple is 12,125 hectares.\nThe temple enjoys a favorable geographical position, with a combination of Feng Shui advantages. It faces the sea and is surrounded by scenic features such as Thanh Long (Green Dragon) to the left and Bạch Hổ (White Tiger) to the right. In front of the temple lies Minh Đường (Bái Tử Long Bay), and behind it is Huyền Vũ (a prosperous valley densely populated by local residents, with a range of mountains extending to Mông Dương, providing a solid foundation)."
+      },
+      {
+        "heading": "History",
+        "text": "Before worshiping Trần Quốc Tảng, the area of Cửa Ông Temple only had the Hoàng Tiết Chế Temple. At that time, people worshiped Hoàng Cần, a local hero who had made great contributions in fighting against invaders and pirates, and the emperors bestowed upon him the title \"Khâm Sai Đồng Đạo Tiết Chế\" (Courageous General Defending the Eastern Sea). \nFrom the beginning of the 20th century, people upgraded (destroyed and rebuilt) the Hoàng Tiết Chế Temple into the Cửa Ông Temple. Since then, Trần Quốc Tảng was worshiped as the main deity here, alongside Hoàng Cần and other deities. Many people mistakenly believed that Trần Quốc Tảng had been worshiped here for a long time, but it was not until 1887 and beyond that there was no record of any temple dedicated to him in the Cẩm Phả area, as only the Hoàng Tiết Chế Temple dedicated to Hoàng Cần was mentioned in the Đồng Khánh Địa Dư Chí (an old geography book).\nThis confusion seems to have originated from Hoàng Việt Văn Tuyển, a book by Bùi Huy Bích (1744-1818), in which the author stated that Hưng Ninh Vương was Trần Quốc Tảng. However, An Nam chí lược, compiled by Lê Tắc in 1335, clearly stated that Hưng Ninh Vương Trần Tung (Tuệ Trung Thượng Sĩ) was the older brother of the Crown Prince (referring to Trần Thánh Tông), and Trần Quốc Tảng was just the older brother of Trần Nhân Tông, who should be called \"chú\" (uncle) to address Trần Thánh Tông. Hưng Ninh Vương \"retreated to live in Tịnh Bang hamlet and changed his name to Hương Vạn Niên. Tịnh Bang and An Bang were part of the Trần dynasty; An Quảng belonged to the Later Lê dynasty; and they later became Quảng Yên and Hải Ninh provinces during the Nguyễn dynasty and are now part of Quảng Ninh province. Note that the accuracy of geographical names is not entirely certain due to the multiple administrative divisions throughout history. Some sources state that Tịnh Bang, where Trần Tung retreated to, was in Vĩnh Bảo, Haiphong, nowadays. However, it can be determined that Tinh Bang was near Yên Tử (the land of the Trúc Lâm school), situated at the border between Quảng Ninh and Haiphong nowadays. The town of Quảng Yên also had a gate called \"Cửa Suất\" (mispronounced as \"Cửa Suốt\"), and from \"Cửa Suốt Quảng Yên,\" it became \"Cửa Suốt Cửa Ông,\" which is still part of Quảng Yên province."
+      },
+      {
+        "heading": "Festival",
+        "text": "The Cửa Ông Temple Festival is one of the major festivals in Quảng Ninh province, held annually on the 3rd day of the 2nd lunar month. According to tradition, people often visit Cửa Ông Temple from the beginning of the Vietnamese New Year, following the festival tourism route of Côn Sơn - Kiếp Bạc - Yên Tử - Cửa Ông.\nCửa Ông Temple attracts the most visitors and is most bustling during the festival season, which takes place from the 3rd day of the 2nd lunar month and lasts for three months in spring. The festival features a variety of cultural activities. It starts with the offering ceremony, followed by the procession of the tablet of Trần Quốc Tảng from Cửa Ông Temple to the Nhãn Garden Temple - the place where, according to legend, Đức Ông drifted into a deity and returned to the temple. This procession reenacts the coastal protection tours of Hưng Nhượng Vương in the past, symbolizing the remembrance of his merits in safeguarding the nation's borders. During the festival days, there are also cultural activities such as dragon dances, displaying fruit trays, offering sacrifices to Đức Ông, and traditional folk games like blindfolded pot smashing, tug-of-war, and pushing sticks.\nThe Cửa Ông Temple Festival in Quảng Ninh was recognized as a national intangible cultural heritage by the Ministry of Culture, Sports, and Tourism at the end of 2016."
+      },
+      {
+        "heading": "Tourism",
+        "text": "Having both aesthetic and spiritual value, Cửa Ông Temple is a very famous tourist destination in Quảng Ninh province, specifically and in the northern region in general. Every year, Cửa Ông Temple attracts about 800,000 visitors. In the first two months of 2019 alone, there were 14,000 visitors with a total amount of revenue at the temple exceeding 10 billion Vietnamese dong."
+      }
+    ],
     "references": [
-      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_C%E1%BB%ADa_%C3%94ng"
+      "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_C%E1%BB%ADa_%C3%94ng",
+      "https://en.wikipedia.org/wiki/C%E1%BB%ADa_%C3%94ng_Temple"
     ]
   },
   "dinh-tra-co": {

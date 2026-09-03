@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { pagodas, provinces, provinceSlug } from "@/lib/data";
+import { describe, pagodas, provinces, provinceSlug } from "@/lib/data";
 import { getDict, isLocale } from "@/lib/i18n";
 import Reveal from "@/components/Reveal";
 
@@ -80,7 +80,7 @@ export default function DirectoryPage({
                   </div>
                   <div className="p-3">
                     <div className="font-medium transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">{p.name}</div>
-                    <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{p.description}</div>
+                    <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{describe(p, locale)}</div>
                   </div>
                 </Link>
               ))}
