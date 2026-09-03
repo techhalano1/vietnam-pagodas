@@ -36,7 +36,7 @@ export default function Explorer({
       (p) =>
         (!province || p.province === province) &&
         (!type || siteType(p.name) === type) &&
-        (!q || normalize(p.name).includes(q) || normalize(p.description).includes(q))
+        (!q || normalize(p.name).includes(q) || normalize(describe(p, locale)).includes(q))
     );
     if (!origin) return base;
     const dist = (p: Pagoda) =>
@@ -44,7 +44,7 @@ export default function Explorer({
         ? distanceKm(origin.lat, origin.lng, p.lat, p.lng)
         : Infinity;
     return [...base].sort((a, b) => dist(a) - dist(b));
-  }, [pagodas, query, province, type, origin]);
+  }, [pagodas, query, province, type, origin, locale]);
 
   const requestLocation = () => {
     if (origin) {
