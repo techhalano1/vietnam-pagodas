@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Pagoda } from "@/lib/types";
-import { distanceKm, normalize, siteType, type SiteType } from "@/lib/data";
+import { describe, distanceKm, normalize, siteType, type SiteType } from "@/lib/data";
 import { getDict, type Locale } from "@/lib/i18n";
 
 const PagodaMap = dynamic(() => import("./PagodaMap"), {
@@ -36,7 +36,7 @@ export default function Explorer({
       (p) =>
         (!province || p.province === province) &&
         (!type || siteType(p.name) === type) &&
-        (!q || normalize(p.name).includes(q) || normalize(p.description).includes(q))
+        (!q || normalize(p.name).includes(q) || normalize(describe(p, locale)).includes(q))
     );
     if (!origin) return base;
     const dist = (p: Pagoda) =>
@@ -44,7 +44,7 @@ export default function Explorer({
         ? distanceKm(origin.lat, origin.lng, p.lat, p.lng)
         : Infinity;
     return [...base].sort((a, b) => dist(a) - dist(b));
-  }, [pagodas, query, province, type, origin]);
+  }, [pagodas, query, province, type, origin, locale]);
 
   const requestLocation = () => {
     if (origin) {
@@ -163,7 +163,7 @@ export default function Explorer({
                     <div className="truncate font-medium dark:text-stone-100">{p.name}</div>
                     <div className="text-xs text-stone-500 dark:text-stone-400">{p.province}</div>
                     <div className="mt-0.5 line-clamp-1 text-xs text-stone-400 dark:text-stone-500">
-                      {p.description}
+                      {describe(p, locale)}
                     </div>
                   </div>
                 </Link>

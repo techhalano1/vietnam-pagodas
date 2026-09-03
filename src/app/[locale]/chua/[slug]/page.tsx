@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
-import { getPagodaBySlug, pagodas, provinceSlug } from "@/lib/data";
+import { describe, getPagodaBySlug, pagodas, provinceSlug } from "@/lib/data";
 import { getDetailsBySlug, type Section } from "@/lib/details";
 import { getFestivalBySlug } from "@/lib/festivals";
 import { getDict, isLocale, locales } from "@/lib/i18n";
@@ -25,7 +25,7 @@ export function generateMetadata({
   if (!p || !isLocale(params.locale)) return {};
   const d = getDetailsBySlug(params.slug);
   const name = params.locale === "en" && d?.nameEn ? d.nameEn : p.name;
-  const description = p.description.slice(0, 160);
+  const description = describe(p, params.locale).slice(0, 160);
   const path = `/${params.locale}/chua/${p.slug}`;
   return {
     title: `${name} — ${p.province}`,
@@ -78,13 +78,21 @@ export default function PagodaPage({
 
   const d = getDetailsBySlug(params.slug);
   const useEnglish = locale === "en" && d && d.sectionsEn.length > 0;
-  const sections: Section[] = useEnglish
-    ? d.sectionsEn
-    : d && d.sectionsVi.length > 0
+  const viSections: Section[] =
+    d && d.sectionsVi.length > 0
       ? d.sectionsVi
       : p.description
         ? [{ heading: null, text: p.description }]
         : [];
+  const sections: Section[] = useEnglish ? d.sectionsEn : viSections;
+  // On /en without an English article: lead with the English summary; skip the
+  // Vietnamese text only when it is the auto-generated OSM placeholder.
+  const enSummary =
+    locale === "en" && !useEnglish && p.descriptionEn ? p.descriptionEn : null;
+  const isOsmPlaceholder =
+    (d === undefined || d.sectionsVi.length === 0) &&
+    p.description.includes("dữ liệu cộng đồng OpenStreetMap");
+  const showViFallback = !enSummary || !isOsmPlaceholder;
   const name = locale === "en" && d?.nameEn ? d.nameEn : p.name;
 
   const related = pagodas.filter((x) => x.province === p.province && x.id !== p.id).slice(0, 6);
@@ -136,15 +144,20 @@ export default function PagodaPage({
       <Reveal>
       <section className="mt-6">
         <h2 className="mb-2 text-xl font-semibold">{t.historyHeading}</h2>
-        {locale === "en" && !useEnglish && sections.length > 0 && (
+        {enSummary && (
+          <p className="mb-4 leading-relaxed text-stone-700 dark:text-stone-300">{enSummary}</p>
+        )}
+        {showViFallback && locale === "en" && !useEnglish && sections.length > 0 && (
           <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950 dark:text-amber-200">
             {t.viOnlyNote}
           </p>
         )}
-        {sections.length > 0 ? (
+        {showViFallback && sections.length > 0 ? (
           <Sections sections={sections} />
         ) : (
-          <p className="text-stone-500 dark:text-stone-400">{t.noDescription}</p>
+          !enSummary && (
+            <p className="text-stone-500 dark:text-stone-400">{t.noDescription}</p>
+          )
         )}
       </section>
       </Reveal>
@@ -382,7 +395,7 @@ export default function PagodaPage({
                 </div>
                 <div className="p-3">
                   <div className="font-medium transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">{r.name}</div>
-                  <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{r.description}</div>
+                  <div className="mt-0.5 line-clamp-2 text-xs text-stone-500 dark:text-stone-400">{describe(r, locale)}</div>
                 </div>
               </Link>
             ))}

@@ -15,6 +15,10 @@ export function getPagodaBySlug(slug: string): Pagoda | undefined {
   return pagodas.find((p) => p.slug === slug);
 }
 
+export function describe(p: Pagoda, locale: string): string {
+  return locale === "en" && p.descriptionEn ? p.descriptionEn : p.description;
+}
+
 export function normalize(s: string): string {
   return s
     .toLowerCase()
