@@ -88,8 +88,8 @@ export default function PagodasScreen() {
       clear();
       return;
     }
-    setNearOn(true);
-    if (!position) await request();
+    const ok = position ? true : await request();
+    setNearOn(ok);
   }, [nearOn, position, request, clear]);
 
   const rows = useMemo<Row[]>(() => {
@@ -220,7 +220,7 @@ export default function PagodasScreen() {
         ))}
       </ScrollView>
 
-      {error && nearOn ? (
+      {error && !position ? (
         <AppText variant="caption" tone="danger" style={styles.geoError}>
           {t.geoError}
         </AppText>
