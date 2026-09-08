@@ -1,325 +1,349 @@
 import { Ionicons } from "@expo/vector-icons";
-import * as Location from "expo-location";
-import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "expo-router";
+import { useMemo } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { AppText } from "@/components/Text";
 import {
-  FlatList,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { Chip, Empty, PagodaRow } from "@/components/ui";
+  Button,
+  Card,
+  GoldCard,
+  IconButton,
+  ListRow,
+  PagodaRow,
+  PagodaTile,
+  PressableCard,
+  QuickAction,
+  Screen,
+  SectionHeader,
+  useTabBarPadding,
+} from "@/components/ui";
 import {
   displayName,
   distanceKm,
-  normalize,
+  festivals,
+  getPagodaBySlug,
+  hasDetails,
   pagodas,
-  provinces,
-  siteType,
-  siteTypes,
-  type SiteType,
 } from "@/lib/data";
+import {
+  daysUntilNextObservance,
+  holidaysOn,
+  lunarToday,
+  upcomingHolidays,
+  yearAnimalEn,
+  yearCanChi,
+} from "@/lib/lunar";
+import { useSaved } from "@/lib/saved";
 import { useSettings } from "@/lib/settings";
+import { space } from "@/lib/theme";
 import type { Pagoda } from "@/lib/types";
+import { useLocation } from "@/lib/useLocation";
 
-const PAGE = 100;
-
-interface Row {
-  pagoda: Pagoda;
-  distance?: number;
+function greeting(t: ReturnType<typeof useSettings>["t"], h = new Date().getHours()) {
+  if (h < 12) return t.greetingMorning;
+  if (h < 18) return t.greetingAfternoon;
+  return t.greetingEvening;
 }
 
-export default function ExploreScreen() {
+function dayOfYear(d: Date) {
+  const start = new Date(d.getFullYear(), 0, 0);
+  return Math.floor((d.getTime() - start.getTime()) / 86_400_000);
+}
+
+const featuredPool = pagodas.filter((p) => p.image && hasDetails(p.slug));
+const featuredCache = new Map<number, Pagoda[]>();
+function featuredFor(seed: number): Pagoda[] {
+  const cached = featuredCache.get(seed);
+  if (cached) return cached;
+  const out: Pagoda[] = [];
+  for (let i = 0; i < 8 && featuredPool.length; i++) {
+    out.push(featuredPool[(seed * 7 + i * 131) % featuredPool.length]);
+  }
+  const result = Array.from(new Set(out));
+  featuredCache.set(seed, result);
+  return result;
+}
+
+export default function HomeScreen() {
   const { theme, t, locale } = useSettings();
-  const [query, setQuery] = useState("");
-  const [province, setProvince] = useState<string | null>(null);
-  const [type, setType] = useState<SiteType | null>(null);
-  const [pickerOpen, setPickerOpen] = useState(false);
-  const [near, setNear] = useState<{ lat: number; lng: number } | null>(null);
-  const [geoError, setGeoError] = useState(false);
-  const [locating, setLocating] = useState(false);
-  const [limit, setLimit] = useState(PAGE);
+  const { favorites } = useSaved();
+  const router = useRouter();
+  const bottom = useTabBarPadding();
+  const { position, loading, request } = useLocation();
 
-  const toggleNearMe = useCallback(async () => {
-    if (near) {
-      setNear(null);
-      return;
-    }
-    setGeoError(false);
-    setLocating(true);
-    try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") throw new Error("denied");
-      const pos =
-        (await Location.getLastKnownPositionAsync({ maxAge: 5 * 60_000 })) ??
-        (await Location.getCurrentPositionAsync({
-          accuracy: Location.Accuracy.Balanced,
-        }));
-      setNear({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-    } catch {
-      setGeoError(true);
-    } finally {
-      setLocating(false);
-    }
-  }, [near]);
+  const now = new Date();
+  const lunar = lunarToday(now);
+  const canChi = locale === "en" ? yearAnimalEn(lunar.year) : yearCanChi(lunar.year);
+  const todayHolidays = holidaysOn(lunar);
+  const next = daysUntilNextObservance(now);
+  const isObservance = lunar.day === 1 || lunar.day === 15;
+  const upcoming = upcomingHolidays(now, 3);
 
-  const rows = useMemo<Row[]>(() => {
-    const q = normalize(query.trim());
-    let list = pagodas.filter((p) => {
-      if (province && p.province !== province) return false;
-      if (type && siteType(p.name) !== type) return false;
-      if (q) {
-        const hay = normalize(
-          `${p.name} ${p.province} ${p.oldProvince ?? ""} ${locale === "en" ? (p.descriptionEn ?? "") : p.description}`,
-        );
-        if (!hay.includes(q)) return false;
-      }
-      return true;
+  const nearby = useMemo(() => {
+    if (!position) return [];
+    return pagodas
+      .filter((p): p is Pagoda & { lat: number; lng: number } => p.lat !== null && p.lng !== null)
+      .map((p) => ({ p, d: distanceKm(position.lat, position.lng, p.lat, p.lng) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, 4);
+  }, [position]);
+
+  const featured = featuredFor(dayOfYear(now));
+
+  const upcomingFestivals = festivals
+    .filter((f) => f.lunarMonth === lunar.month || f.lunarMonth === (lunar.month % 12) + 1)
+    .slice(0, 2);
+
+  const goChua = (params?: Record<string, string>) =>
+    router.push({
+      pathname: "/(tabs)/chua",
+      params: params ? { ...params, ts: String(Date.now()) } : undefined,
     });
-    if (near) {
-      return list
-        .filter(
-          (p): p is Pagoda & { lat: number; lng: number } =>
-            p.lat !== null && p.lng !== null,
-        )
-        .map((p) => ({
-          pagoda: p,
-          distance: distanceKm(near.lat, near.lng, p.lat, p.lng),
-        }))
-        .sort((a, b) => a.distance - b.distance);
-    }
-    list = [...list].sort((a, b) =>
-      displayName(a, locale).localeCompare(displayName(b, locale), locale),
-    );
-    return list.map((pagoda) => ({ pagoda }));
-  }, [query, province, type, near, locale]);
-
-  const visible = rows.slice(0, limit);
-
-  const resetLimit = () => setLimit(PAGE);
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.bg }}>
-      <View
-        style={[
-          styles.searchWrap,
-          { backgroundColor: theme.card, borderColor: theme.border },
-        ]}
-      >
-        <Ionicons name="search" size={18} color={theme.muted} />
-        <TextInput
-          value={query}
-          onChangeText={(v) => {
-            setQuery(v);
-            resetLimit();
-          }}
-          placeholder={t.searchPlaceholder}
-          placeholderTextColor={theme.muted}
-          style={[styles.input, { color: theme.text }]}
-          autoCorrect={false}
-          returnKeyType="search"
-          clearButtonMode="while-editing"
-        />
-        {query.length > 0 && (
-          <Pressable
-            onPress={() => setQuery("")}
-            hitSlop={8}
-            accessibilityLabel="Clear"
-          >
-            <Ionicons name="close-circle" size={18} color={theme.muted} />
-          </Pressable>
-        )}
-      </View>
-
+    <Screen>
       <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.chipBar}
-        contentContainerStyle={styles.chips}
-        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ paddingBottom: bottom }}
+        showsVerticalScrollIndicator={false}
       >
-        <Chip
-          icon="location-outline"
-          label={province ?? t.allProvinces}
-          active={!!province}
-          onPress={() => setPickerOpen(true)}
-        />
-        <Chip
-          icon={
-            locating
-              ? "hourglass-outline"
-              : near
-                ? "navigate"
-                : "navigate-outline"
-          }
-          label={near ? t.nearMeOn : t.nearMe}
-          active={!!near}
-          onPress={toggleNearMe}
-        />
-        <Chip
-          label={t.allTypes}
-          active={type === null}
-          onPress={() => {
-            setType(null);
-            resetLimit();
-          }}
-        />
-        {siteTypes.map((st) => (
-          <Chip
-            key={st}
-            label={t.typeLabels[st]}
-            active={type === st}
-            onPress={() => {
-              setType(type === st ? null : st);
-              resetLimit();
-            }}
-          />
-        ))}
-      </ScrollView>
-
-      {geoError && (
-        <Text style={[styles.geoError, { color: theme.danger }]}>
-          {t.geoError}
-        </Text>
-      )}
-
-      <FlatList
-        data={visible}
-        keyExtractor={(r) => r.pagoda.slug}
-        renderItem={({ item }) => (
-          <PagodaRow pagoda={item.pagoda} distanceKm={item.distance} />
-        )}
-        keyboardShouldPersistTaps="handled"
-        keyboardDismissMode="on-drag"
-        initialNumToRender={12}
-        windowSize={7}
-        removeClippedSubviews
-        ListHeaderComponent={
-          <Text style={[styles.count, { color: theme.muted }]}>
-            {rows.length.toLocaleString(locale)} {t.results}
-          </Text>
-        }
-        ListEmptyComponent={<Empty text={t.noResults} />}
-        ListFooterComponent={
-          rows.length > limit ? (
-            <Pressable
-              onPress={() => setLimit((l) => l + PAGE)}
-              style={({ pressed }) => [
-                styles.more,
-                { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 },
-              ]}
-            >
-              <Text style={{ color: theme.accentText, fontWeight: "600" }}>
-                {t.showMore} ({(rows.length - limit).toLocaleString(locale)})
-              </Text>
-            </Pressable>
-          ) : (
-            <View style={{ height: 24 }} />
-          )
-        }
-      />
-
-      <Modal
-        visible={pickerOpen}
-        animationType="slide"
-        presentationStyle="pageSheet"
-        onRequestClose={() => setPickerOpen(false)}
-      >
-        <View style={{ flex: 1, backgroundColor: theme.bg }}>
-          <View style={[styles.modalHeader, { backgroundColor: theme.header }]}>
-            <Text style={[styles.modalTitle, { color: theme.headerText }]}>
-              {t.allProvinces}
-            </Text>
-            <Pressable
-              onPress={() => setPickerOpen(false)}
-              hitSlop={10}
-              accessibilityLabel="Close"
-            >
-              <Ionicons name="close" size={24} color={theme.headerText} />
-            </Pressable>
+        <View style={styles.header}>
+          <View style={{ flex: 1 }}>
+            <AppText variant="display" numberOfLines={1}>
+              {greeting(t)}
+            </AppText>
+            <AppText variant="bodyS" tone="text2">
+              {t.homeSubtitle}
+            </AppText>
           </View>
-          <FlatList
-            data={[{ name: null, count: pagodas.length }, ...provinces]}
-            keyExtractor={(pr) => pr.name ?? "__all"}
-            renderItem={({ item }) => {
-              const active = item.name === province;
-              return (
-                <Pressable
-                  onPress={() => {
-                    setProvince(item.name);
-                    resetLimit();
-                    setPickerOpen(false);
-                  }}
-                  style={[
-                    styles.provinceRow,
-                    { borderBottomColor: theme.border },
-                  ]}
-                >
-                  <Text
-                    style={{
-                      color: active ? theme.accent : theme.text,
-                      fontWeight: active ? "700" : "400",
-                      fontSize: 16,
-                      flex: 1,
-                    }}
-                  >
-                    {item.name ?? t.allProvinces}
-                  </Text>
-                  <Text style={{ color: theme.muted }}>{item.count}</Text>
-                  {active && (
-                    <Ionicons name="checkmark" size={18} color={theme.accent} />
-                  )}
-                </Pressable>
-              );
-            }}
+          <IconButton
+            icon="person-outline"
+            label={t.tabProfile}
+            size={44}
+            onPress={() => router.push("/(tabs)/ca-nhan")}
           />
         </View>
-      </Modal>
-    </View>
+
+        <GoldCard style={{ marginHorizontal: space.screen }}>
+          <View style={styles.heroTop}>
+            <View style={{ flex: 1 }}>
+              <AppText variant="overline" color="rgba(255,255,255,0.85)">
+                {t.lunarToday}
+              </AppText>
+              <View style={styles.heroDate}>
+                <AppText color="#fff" style={styles.heroDay}>
+                  {lunar.day}
+                </AppText>
+                <View style={{ flex: 1 }}>
+                  <AppText variant="h3" color="#fff">
+                    {t.lunarDate(lunar.day, lunar.month, canChi)}
+                  </AppText>
+                  <AppText variant="caption" color="rgba(255,255,255,0.85)">
+                    {t.solarDate(now)}
+                  </AppText>
+                </View>
+              </View>
+            </View>
+            <View style={styles.heroIcon}>
+              <Ionicons name={lunar.day === 15 ? "moon" : "flower"} size={26} color="#fff" />
+            </View>
+          </View>
+
+          <View style={styles.heroPill}>
+            <Ionicons name="sparkles" size={14} color="#fff" />
+            <AppText variant="caption" color="#fff" weight={600} style={{ flex: 1 }}>
+              {todayHolidays.length
+                ? todayHolidays.map((h) => (locale === "en" ? h.en : h.vi)).join(" · ")
+                : isObservance
+                  ? t.todayObservance(lunar.day === 1 ? "mung1" : "ram")
+                  : t.daysUntil(next.days, next.kind)}
+            </AppText>
+            <Button
+              label={t.tabCalendar}
+              size="sm"
+              variant="secondary"
+              onPress={() => router.push("/(tabs)/lich")}
+              style={{ backgroundColor: "rgba(255,255,255,0.22)" }}
+              textColor="#fff"
+            />
+          </View>
+        </GoldCard>
+
+        <Card style={styles.quick}>
+          <View style={styles.quickGrid}>
+            <QuickAction icon="navigate" label={t.qaNearby} onPress={() => goChua({ near: "1" })} />
+            <QuickAction icon="map" label={t.qaMap} onPress={() => goChua({ view: "map" })} />
+            <QuickAction
+              icon="book"
+              label={t.qaScriptures}
+              tone="lotus"
+              onPress={() => router.push("/(tabs)/kinh")}
+            />
+            <QuickAction
+              icon="sparkles"
+              label={t.qaFestivals}
+              tone="jade"
+              onPress={() => router.push("/le-hoi")}
+            />
+            <QuickAction icon="trail-sign" label={t.qaRoutes} onPress={() => router.push("/hanh-trinh")} />
+            <QuickAction
+              icon="heart"
+              label={t.qaFavorites}
+              tone="lotus"
+              badge={favorites.length ? String(favorites.length) : undefined}
+              onPress={() => router.push("/da-luu")}
+            />
+            <QuickAction
+              icon="calendar"
+              label={t.qaCalendar}
+              tone="jade"
+              onPress={() => router.push("/(tabs)/lich")}
+            />
+            <QuickAction icon="search" label={t.qaSearch} onPress={() => goChua()} />
+          </View>
+        </Card>
+
+        <SectionHeader
+          title={t.nearbyHeading}
+          action={nearby.length ? t.seeAll : undefined}
+          onAction={() => goChua({ near: "1" })}
+        />
+        {nearby.length ? (
+          nearby.map(({ p, d }) => <PagodaRow key={p.slug} p={p} distanceKm={d} compact />)
+        ) : (
+          <Card style={{ marginHorizontal: space.screen }} tone="alt">
+            <View style={{ flexDirection: "row", gap: 14, alignItems: "center" }}>
+              <View style={[styles.nearIcon, { backgroundColor: theme.jadeSoft }]}>
+                <Ionicons name="locate" size={24} color={theme.jade} />
+              </View>
+              <View style={{ flex: 1, gap: 2 }}>
+                <AppText variant="h3">{loading ? t.nearbyLoading : t.nearbyEnable}</AppText>
+                <AppText variant="bodyS" tone="text2">
+                  {t.nearbyEnableText}
+                </AppText>
+              </View>
+            </View>
+            <Button
+              label={t.nearbyEnable}
+              icon="navigate"
+              onPress={() => void request()}
+              disabled={loading}
+              style={{ marginTop: 14 }}
+            />
+          </Card>
+        )}
+
+        <SectionHeader
+          title={t.upcomingHeading}
+          action={t.seeAll}
+          onAction={() => router.push("/(tabs)/lich")}
+        />
+        <Card style={{ marginHorizontal: space.screen, paddingVertical: 4 }}>
+          {upcoming.map((h, i) => (
+            <ListRow
+              key={`${h.month}-${h.day}-${h.vi}`}
+              emoji={h.kind === "buddhist" ? "🪷" : "🏮"}
+              title={locale === "en" ? h.en : h.vi}
+              subtitle={`${h.day}/${h.month} ${locale === "en" ? "lunar" : "âm lịch"} · ${t.solarDate(h.date)}`}
+              right={
+                <View style={[styles.days, { backgroundColor: theme.primarySoft }]}>
+                  <AppText variant="caption" tone="primary" weight={700}>
+                    {t.inDays(h.daysAway)}
+                  </AppText>
+                </View>
+              }
+              last={i === upcoming.length - 1 && upcomingFestivals.length === 0}
+              onPress={() => router.push("/(tabs)/lich")}
+            />
+          ))}
+          {upcomingFestivals.map((f, i) => {
+            const p = getPagodaBySlug(f.slug);
+            return (
+              <ListRow
+                key={f.slug}
+                icon="sparkles"
+                iconTone="jade"
+                title={locale === "en" ? f.nameEn : f.nameVi}
+                subtitle={`${locale === "en" ? f.dateEn : f.dateVi}${p ? ` · ${displayName(p, locale)}` : ""}`}
+                last={i === upcomingFestivals.length - 1}
+                onPress={() => router.push("/le-hoi")}
+              />
+            );
+          })}
+        </Card>
+
+        <SectionHeader title={t.featuredHeading} action={t.seeAll} onAction={() => goChua()} />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: space.screen, gap: 12, paddingBottom: 6 }}
+        >
+          {featured.map((p) => (
+            <PagodaTile key={p.slug} p={p} />
+          ))}
+        </ScrollView>
+
+        <PressableCard
+          tone="soft"
+          style={{ marginHorizontal: space.screen, marginTop: 22 }}
+          onPress={() => router.push("/(tabs)/kinh")}
+        >
+          <View style={{ flexDirection: "row", gap: 14, alignItems: "center" }}>
+            <View style={[styles.nearIcon, { backgroundColor: theme.card }]}>
+              <Ionicons name="book" size={24} color={theme.lotus} />
+            </View>
+            <View style={{ flex: 1, gap: 2 }}>
+              <AppText variant="h3">{t.comingSoonScriptures}</AppText>
+              <AppText variant="bodyS" tone="text2">
+                {t.comingSoonScripturesText}
+              </AppText>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={theme.text3} />
+          </View>
+        </PressableCard>
+      </ScrollView>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  searchWrap: {
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingHorizontal: space.screen,
+    paddingTop: 12,
+    paddingBottom: 16,
+  },
+  heroTop: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  heroDate: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 6 },
+  heroDay: { fontSize: 52, lineHeight: 58, fontFamily: "BeVietnamPro_800ExtraBold" },
+  heroIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    backgroundColor: "rgba(255,255,255,0.18)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  heroPill: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    margin: 12,
-    marginBottom: 8,
-    paddingHorizontal: 12,
-    height: 44,
-    borderRadius: 12,
-    borderWidth: StyleSheet.hairlineWidth,
+    marginTop: 18,
+    paddingLeft: 12,
+    paddingRight: 6,
+    paddingVertical: 6,
+    borderRadius: 14,
+    backgroundColor: "rgba(0,0,0,0.16)",
   },
-  input: { flex: 1, fontSize: 15, height: 44 },
-  chipBar: { flexGrow: 0, flexShrink: 0 },
-  chips: { paddingHorizontal: 12, paddingBottom: 8 },
-  geoError: { paddingHorizontal: 16, paddingBottom: 6, fontSize: 12 },
-  count: { paddingHorizontal: 16, paddingBottom: 8, fontSize: 12 },
-  more: {
-    marginHorizontal: 12,
-    marginVertical: 12,
-    padding: 12,
-    borderRadius: 12,
+  quick: { marginHorizontal: space.screen, marginTop: 16, paddingHorizontal: 8, paddingVertical: 10 },
+  quickGrid: { flexDirection: "row", flexWrap: "wrap", rowGap: 8 },
+  nearIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 18,
     alignItems: "center",
+    justifyContent: "center",
   },
-  modalHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-  },
-  modalTitle: { fontSize: 17, fontWeight: "700" },
-  provinceRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
+  days: { paddingHorizontal: 10, height: 26, borderRadius: 8, justifyContent: "center" },
 });

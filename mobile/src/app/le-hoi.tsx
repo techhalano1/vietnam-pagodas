@@ -1,85 +1,96 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
-import { Card, SectionTitle } from "@/components/ui";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { AppText } from "@/components/Text";
+import { Card, SectionHeader, Tag } from "@/components/ui";
 import { displayName, festivals, getPagodaBySlug } from "@/lib/data";
+import * as haptics from "@/lib/haptics";
 import { useSettings } from "@/lib/settings";
+import { space } from "@/lib/theme";
 
 export default function FestivalsScreen() {
   const { theme, t } = useSettings();
-  const months = Array.from(new Set(festivals.map((f) => f.lunarMonth))).sort(
-    (a, b) => a - b,
-  );
+  const months = Array.from(new Set(festivals.map((f) => f.lunarMonth))).sort((a, b) => a - b);
 
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: theme.bg }}
       contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
     >
-      <Text style={[styles.intro, { color: theme.muted }]}>
+      <AppText variant="bodyS" tone="text2" style={{ paddingHorizontal: space.screen }}>
         {t.festivalsIntro}
-      </Text>
+      </AppText>
       {months.map((m) => (
-        <SectionGroup key={m} month={m} />
+        <MonthGroup key={m} month={m} />
       ))}
     </ScrollView>
   );
 }
 
-function SectionGroup({ month }: { month: number }) {
+function MonthGroup({ month }: { month: number }) {
   const { theme, t, locale } = useSettings();
   const router = useRouter();
+  const en = locale === "en";
   return (
     <>
-      <SectionTitle>{t.lunarMonth(month)}</SectionTitle>
-      {festivals
-        .filter((f) => f.lunarMonth === month)
-        .map((f) => {
-          const p = getPagodaBySlug(f.slug);
-          return (
-            <Card key={f.slug} style={{ marginBottom: 10 }}>
-              <Text style={[styles.name, { color: theme.text }]}>
-                {locale === "en" ? f.nameEn : f.nameVi}
-              </Text>
-              <Text
-                style={{ color: theme.accent, fontSize: 13, marginBottom: 6 }}
-              >
-                {locale === "en" ? f.dateEn : f.dateVi}
-              </Text>
-              <Text style={[styles.desc, { color: theme.text }]}>
-                {locale === "en" ? f.descEn : f.descVi}
-              </Text>
-              {p && (
-                <Pressable
-                  style={styles.link}
-                  onPress={() =>
-                    router.push({
-                      pathname: "/chua/[slug]",
-                      params: { slug: p.slug },
-                    })
-                  }
-                >
-                  <Ionicons
-                    name="location-outline"
-                    size={14}
-                    color={theme.accent}
-                  />
-                  <Text style={{ color: theme.accent, fontSize: 14 }}>
-                    {displayName(p, locale)} · {p.province}
-                  </Text>
-                </Pressable>
-              )}
-            </Card>
-          );
-        })}
+      <SectionHeader title={t.lunarMonth(month)} />
+      <View style={{ paddingHorizontal: space.screen, gap: space.gap }}>
+        {festivals
+          .filter((f) => f.lunarMonth === month)
+          .map((f) => {
+            const p = getPagodaBySlug(f.slug);
+            return (
+              <Card key={f.slug}>
+                <View style={styles.head}>
+                  <View style={[styles.icon, { backgroundColor: theme.primarySoft }]}>
+                    <Ionicons name="sparkles" size={18} color={theme.primaryText} />
+                  </View>
+                  <View style={{ flex: 1, gap: 4 }}>
+                    <AppText variant="h3">{en ? f.nameEn : f.nameVi}</AppText>
+                    <Tag label={en ? f.dateEn : f.dateVi} tone="primary" />
+                  </View>
+                </View>
+                <AppText variant="bodyS" style={{ marginTop: 10 }}>
+                  {en ? f.descEn : f.descVi}
+                </AppText>
+                {p ? (
+                  <Pressable
+                    accessibilityRole="button"
+                    style={({ pressed }) => [
+                      styles.link,
+                      { borderTopColor: theme.line, opacity: pressed ? 0.6 : 1 },
+                    ]}
+                    onPress={() => {
+                      haptics.tap();
+                      router.push({ pathname: "/chua/[slug]", params: { slug: p.slug } });
+                    }}
+                  >
+                    <Ionicons name="location" size={16} color={theme.primaryText} />
+                    <AppText variant="bodyS" tone="primary" weight={600} style={{ flex: 1 }}>
+                      {displayName(p, locale)} · {p.province}
+                    </AppText>
+                    <Ionicons name="chevron-forward" size={16} color={theme.text3} />
+                  </Pressable>
+                ) : null}
+              </Card>
+            );
+          })}
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  content: { padding: 16, paddingBottom: 32 },
-  intro: { fontSize: 14, lineHeight: 21 },
-  name: { fontSize: 16, fontWeight: "700" },
-  desc: { fontSize: 14, lineHeight: 21 },
-  link: { flexDirection: "row", alignItems: "center", gap: 4, marginTop: 8 },
+  content: { paddingTop: 12, paddingBottom: 40 },
+  head: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  icon: { width: 40, height: 40, borderRadius: 12, alignItems: "center", justifyContent: "center" },
+  link: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 12,
+    paddingTop: 12,
+    borderTopWidth: 1,
+  },
 });

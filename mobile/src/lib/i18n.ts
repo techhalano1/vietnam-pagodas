@@ -43,6 +43,8 @@ export interface Dict {
   shareBtn: string;
   shareCopied: string;
   contributePhotos: string;
+  contributePhotosText: string;
+  back: string;
   readMoreHeading: string;
   readMoreIntro: string;
   linkExperiences: string;
@@ -103,6 +105,86 @@ export interface Dict {
   viewDetails: string;
   detailsNotAvailable: string;
   version: string;
+  detailedArticle: string;
+  // v2 tabs
+  tabHome: string;
+  tabPagodas: string;
+  tabScriptures: string;
+  tabCalendar: string;
+  tabProfile: string;
+  // home
+  greetingMorning: string;
+  greetingAfternoon: string;
+  greetingEvening: string;
+  homeSubtitle: string;
+  lunarToday: string;
+  lunarDate: (d: number, m: number, canChi: string) => string;
+  solarDate: (date: Date) => string;
+  daysUntil: (n: number, kind: "mung1" | "ram") => string;
+  todayObservance: (kind: "mung1" | "ram") => string;
+  quickActions: string;
+  qaNearby: string;
+  qaMap: string;
+  qaScriptures: string;
+  qaFestivals: string;
+  qaRoutes: string;
+  qaFavorites: string;
+  qaCalendar: string;
+  qaSearch: string;
+  nearbyHeading: string;
+  nearbyEnable: string;
+  nearbyEnableText: string;
+  nearbyLoading: string;
+  featuredHeading: string;
+  upcomingHeading: string;
+  inDays: (n: number) => string;
+  today: string;
+  tomorrow: string;
+  seeAll: string;
+  comingSoonScriptures: string;
+  comingSoonScripturesText: string;
+  // pagodas tab
+  listView: string;
+  mapView: string;
+  filters: string;
+  filterProvince: string;
+  filterType: string;
+  clearFilters: string;
+  apply: string;
+  resultsCount: (n: number) => string;
+  sortedByDistance: string;
+  // scriptures / calendar placeholders
+  scripturesTitle: string;
+  scripturesIntro: string;
+  scriptureCatSutra: string;
+  scriptureCatPrayer: string;
+  scriptureCatRitual: string;
+  scriptureCatMala: string;
+  scriptureComingSoon: string;
+  comingSoon: string;
+  calendarTitle: string;
+  calendarUpcoming: string;
+  calendarHolidayKind: Record<"buddhist" | "folk", string>;
+  calendarFestivals: string;
+  calendarRemindersSoon: string;
+  // profile
+  profileTitle: string;
+  profileGuest: string;
+  profileGuestText: string;
+  statFavorites: string;
+  statVisited: string;
+  statProvinces: string;
+  sectionCollections: string;
+  sectionDiscover: string;
+  sectionSettings: string;
+  sectionAbout: string;
+  aboutApp: string;
+  sourceCode: string;
+  rateApp: string;
+  websiteSubtitle: string;
+  languageVi: string;
+  languageEn: string;
+  madeWith: string;
 }
 
 const dict: Record<Locale, Dict> = {
@@ -158,6 +240,8 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Chia sẻ",
     shareCopied: "Đã sao chép liên kết!",
     contributePhotos: "Đóng góp ảnh",
+    contributePhotosText: "Chưa có ảnh cho địa điểm này. Bạn có ảnh? Hãy đóng góp để mọi ngưới cùng chiêm ngưỡng.",
+    back: "Quay lại",
     readMoreHeading: "Đọc thêm & tham khảo",
     readMoreIntro: "Các liên kết hữu ích để tìm hiểu thêm trước khi ghé thăm:",
     linkExperiences: "Kinh nghiệm đi",
@@ -223,6 +307,84 @@ const dict: Record<Locale, Dict> = {
     viewDetails: "Xem chi tiết",
     detailsNotAvailable: "Chưa có bài viết chi tiết cho địa điểm này.",
     version: "Phiên bản",
+    detailedArticle: "Bài chi tiết",
+    tabHome: "Trang chủ",
+    tabPagodas: "Chùa",
+    tabScriptures: "Kinh",
+    tabCalendar: "Lịch",
+    tabProfile: "Cá nhân",
+    greetingMorning: "Chào buổi sáng",
+    greetingAfternoon: "Chào buổi chiều",
+    greetingEvening: "Chào buổi tối",
+    homeSubtitle: "An lạc trong tấm lòng hướng thiện",
+    lunarToday: "Âm lịch hôm nay",
+    lunarDate: (d, m, canChi) => `Ngày ${d} tháng ${m} · năm ${canChi}`,
+    solarDate: (date) =>
+      date.toLocaleDateString("vi-VN", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+    daysUntil: (n, kind) =>
+      `Còn ${n} ngày đến ${kind === "mung1" ? "mùng 1" : "ngày rằm"}`,
+    todayObservance: (kind) => (kind === "mung1" ? "Hôm nay là mùng 1" : "Hôm nay là ngày rằm"),
+    quickActions: "Truy cập nhanh",
+    qaNearby: "Gần tôi",
+    qaMap: "Bản đồ",
+    qaScriptures: "Kinh & khấn",
+    qaFestivals: "Lễ hội",
+    qaRoutes: "Hành hương",
+    qaFavorites: "Yêu thích",
+    qaCalendar: "Lịch âm",
+    qaSearch: "Tìm chùa",
+    nearbyHeading: "Chùa gần bạn",
+    nearbyEnable: "Bật vị trí",
+    nearbyEnableText: "Cho phép truy cập vị trí để xem chùa, đền gần bạn nhất.",
+    nearbyLoading: "Đang xác định vị trí…",
+    featuredHeading: "Danh thắng nổi bật",
+    upcomingHeading: "Sắp tới",
+    inDays: (n) => (n === 0 ? "Hôm nay" : n === 1 ? "Ngày mai" : `Còn ${n} ngày`),
+    today: "Hôm nay",
+    tomorrow: "Ngày mai",
+    seeAll: "Xem tất cả",
+    comingSoonScriptures: "Kinh & văn khấn",
+    comingSoonScripturesText:
+      "Chú Đại Bi, Tâm Kinh, văn khấn mùng 1 – rằm… đọc chữ lớn và nghe audio. Sắp ra mắt.",
+    listView: "Danh sách",
+    mapView: "Bản đồ",
+    filters: "Bộ lọc",
+    filterProvince: "Tỉnh thành",
+    filterType: "Loại hình",
+    clearFilters: "Xoá lọc",
+    apply: "Áp dụng",
+    resultsCount: (n) => `${n.toLocaleString("vi-VN")} địa điểm`,
+    sortedByDistance: "Sắp theo khoảng cách",
+    scripturesTitle: "Kinh & văn khấn",
+    scripturesIntro: "Đọc và nghe kinh, chú, văn khấn thông dụng khi đi chùa.",
+    scriptureCatSutra: "Kinh & chú",
+    scriptureCatPrayer: "Văn khấn",
+    scriptureCatRitual: "Nghi thức",
+    scriptureCatMala: "Niệm Phật",
+    scriptureComingSoon: "Sắp ra mắt trong bản cập nhật tới",
+    comingSoon: "Sắp ra mắt",
+    calendarTitle: "Lịch âm & ngày lễ",
+    calendarUpcoming: "Ngày lễ sắp tới",
+    calendarHolidayKind: { buddhist: "Phật giáo", folk: "Dân gian" },
+    calendarFestivals: "Lễ hội chùa & đền",
+    calendarRemindersSoon: "Nhắc mùng 1 – rằm sắp ra mắt",
+    profileTitle: "Cá nhân",
+    profileGuest: "Phật tử hữu duyên",
+    profileGuestText: "Dữ liệu lưu trên máy của bạn, không cần tài khoản.",
+    statFavorites: "Yêu thích",
+    statVisited: "Đã đi",
+    statProvinces: "Tỉnh thành",
+    sectionCollections: "Bộ sưu tập",
+    sectionDiscover: "Khám phá",
+    sectionSettings: "Cài đặt",
+    sectionAbout: "Thông tin",
+    aboutApp: "Giới thiệu & nguồn dữ liệu",
+    sourceCode: "Mã nguồn trên GitHub",
+    rateApp: "Đánh giá ứng dụng",
+    websiteSubtitle: "vietnam-pagodas.com",
+    languageVi: "Tiếng Việt",
+    languageEn: "English",
+    madeWith: "Tài trợ bởi Cognition",
   },
   en: {
     siteName: "Vietnam Pagodas",
@@ -276,6 +438,8 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Share",
     shareCopied: "Link copied!",
     contributePhotos: "Contribute photos",
+    contributePhotosText: "No photos yet for this site. Have some? Contribute them so everyone can enjoy.",
+    back: "Back",
     readMoreHeading: "Read more & references",
     readMoreIntro: "Useful links to learn more before your visit:",
     linkExperiences: "Visiting tips for",
@@ -343,6 +507,85 @@ const dict: Record<Locale, Dict> = {
     viewDetails: "View details",
     detailsNotAvailable: "No detailed article for this site yet.",
     version: "Version",
+    detailedArticle: "Full article",
+    tabHome: "Home",
+    tabPagodas: "Pagodas",
+    tabScriptures: "Scriptures",
+    tabCalendar: "Calendar",
+    tabProfile: "Profile",
+    greetingMorning: "Good morning",
+    greetingAfternoon: "Good afternoon",
+    greetingEvening: "Good evening",
+    homeSubtitle: "Peace to every kind heart",
+    lunarToday: "Lunar date today",
+    lunarDate: (d, m, canChi) => `Day ${d}, month ${m} · year of ${canChi}`,
+    solarDate: (date) =>
+      date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+    daysUntil: (n, kind) =>
+      `${n} day${n === 1 ? "" : "s"} until the ${kind === "mung1" ? "new moon (1st)" : "full moon (15th)"}`,
+    todayObservance: (kind) =>
+      kind === "mung1" ? "Today is the 1st lunar day" : "Today is the full-moon day",
+    quickActions: "Quick actions",
+    qaNearby: "Near me",
+    qaMap: "Map",
+    qaScriptures: "Scriptures",
+    qaFestivals: "Festivals",
+    qaRoutes: "Pilgrimage",
+    qaFavorites: "Favorites",
+    qaCalendar: "Lunar calendar",
+    qaSearch: "Search",
+    nearbyHeading: "Near you",
+    nearbyEnable: "Enable location",
+    nearbyEnableText: "Allow location access to see the pagodas and temples closest to you.",
+    nearbyLoading: "Finding your location…",
+    featuredHeading: "Featured sites",
+    upcomingHeading: "Coming up",
+    inDays: (n) => (n === 0 ? "Today" : n === 1 ? "Tomorrow" : `In ${n} days`),
+    today: "Today",
+    tomorrow: "Tomorrow",
+    seeAll: "See all",
+    comingSoonScriptures: "Scriptures & prayers",
+    comingSoonScripturesText:
+      "Great Compassion Mantra, Heart Sutra, new-moon and full-moon prayers… large-print reading and audio. Coming soon.",
+    listView: "List",
+    mapView: "Map",
+    filters: "Filters",
+    filterProvince: "Province",
+    filterType: "Type",
+    clearFilters: "Clear",
+    apply: "Apply",
+    resultsCount: (n) => `${n.toLocaleString("en-US")} sites`,
+    sortedByDistance: "Sorted by distance",
+    scripturesTitle: "Scriptures & prayers",
+    scripturesIntro: "Read and listen to common sutras, mantras and prayers for temple visits.",
+    scriptureCatSutra: "Sutras & mantras",
+    scriptureCatPrayer: "Prayers",
+    scriptureCatRitual: "Rituals",
+    scriptureCatMala: "Recitation",
+    scriptureComingSoon: "Coming in the next update",
+    comingSoon: "Coming soon",
+    calendarTitle: "Lunar calendar & holy days",
+    calendarUpcoming: "Upcoming holy days",
+    calendarHolidayKind: { buddhist: "Buddhist", folk: "Folk" },
+    calendarFestivals: "Pagoda & temple festivals",
+    calendarRemindersSoon: "New-moon / full-moon reminders coming soon",
+    profileTitle: "Profile",
+    profileGuest: "Fellow traveller",
+    profileGuestText: "Your data stays on this device — no account needed.",
+    statFavorites: "Favorites",
+    statVisited: "Visited",
+    statProvinces: "Provinces",
+    sectionCollections: "Collections",
+    sectionDiscover: "Discover",
+    sectionSettings: "Settings",
+    sectionAbout: "About",
+    aboutApp: "About & data sources",
+    sourceCode: "Source code on GitHub",
+    rateApp: "Rate the app",
+    websiteSubtitle: "vietnam-pagodas.com",
+    languageVi: "Tiếng Việt",
+    languageEn: "English",
+    madeWith: "Sponsored by Cognition",
   },
 };
 

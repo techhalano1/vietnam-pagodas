@@ -1,4 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BeVietnamPro_400Regular } from "@expo-google-fonts/be-vietnam-pro/400Regular";
+import { BeVietnamPro_500Medium } from "@expo-google-fonts/be-vietnam-pro/500Medium";
+import { BeVietnamPro_600SemiBold } from "@expo-google-fonts/be-vietnam-pro/600SemiBold";
+import { BeVietnamPro_700Bold } from "@expo-google-fonts/be-vietnam-pro/700Bold";
+import { BeVietnamPro_800ExtraBold } from "@expo-google-fonts/be-vietnam-pro/800ExtraBold";
+import { useFonts } from "expo-font";
 import { getLocales } from "expo-localization";
 import {
   createContext,
@@ -44,7 +50,15 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const system = useColorScheme();
   const [locale, setLocaleState] = useState<Locale>("vi");
   const [themePreference, setThemeState] = useState<ThemePreference>("system");
-  const [ready, setReady] = useState(false);
+  const [stored, setStored] = useState(false);
+  const [fontsLoaded, fontsError] = useFonts({
+    BeVietnamPro_400Regular,
+    BeVietnamPro_500Medium,
+    BeVietnamPro_600SemiBold,
+    BeVietnamPro_700Bold,
+    BeVietnamPro_800ExtraBold,
+  });
+  const ready = stored && (fontsLoaded || fontsError !== null);
 
   useEffect(() => {
     AsyncStorage.multiGet([LOCALE_KEY, THEME_KEY])
@@ -53,7 +67,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         if (th && isThemePreference(th)) setThemeState(th);
       })
       .catch(() => setLocaleState(deviceLocale()))
-      .finally(() => setReady(true));
+      .finally(() => setStored(true));
   }, []);
 
   const setLocale = useCallback((l: Locale) => {

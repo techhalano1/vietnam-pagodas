@@ -8,11 +8,6 @@
     "scheme": "vietnampagodas",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#451a03"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.vietnampagodas.app",
@@ -24,7 +19,7 @@
     "android": {
       "package": "com.vietnampagodas.app",
       "adaptiveIcon": {
-        "backgroundColor": "#451a03",
+        "backgroundColor": "#D4A017",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -51,11 +46,25 @@
       [
         "expo-status-bar",
         {
-          "style": "light",
-          "backgroundColor": "#451a03"
+          "style": "auto",
+          "backgroundColor": "#FFFDF7"
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFDF7",
+          "dark": {
+            "image": "./assets/splash-icon-dark.png",
+            "backgroundColor": "#14110B"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

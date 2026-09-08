@@ -42,17 +42,18 @@ function buildHtml(
 <link rel="stylesheet" href="${CLUSTER_CSS}" />
 <link rel="stylesheet" href="${CLUSTER_CSS_DEFAULT}" />
 <style>
-  html, body, #map { margin: 0; height: 100%; width: 100%; background: ${dark ? "#0c0a09" : "#fafaf9"}; }
+  html, body, #map { margin: 0; height: 100%; width: 100%; background: ${dark ? "#14110B" : "#FFFDF7"}; }
   ${dark ? ".leaflet-tile { filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7); }" : ""}
   .leaflet-popup-content { margin: 10px 12px; font: 14px -apple-system, Roboto, sans-serif; }
   .leaflet-popup-content b { display: block; margin-bottom: 6px; }
-  .leaflet-popup-content button { background: #b45309; color: #fff; border: 0; padding: 6px 10px; border-radius: 6px; font-size: 13px; }
-  .marker-cluster-small { background-color: rgba(251, 191, 36, 0.6); }
-  .marker-cluster-small div { background-color: rgba(217, 119, 6, 0.8); color: #fff; }
-  .marker-cluster-medium { background-color: rgba(245, 158, 11, 0.6); }
-  .marker-cluster-medium div { background-color: rgba(180, 83, 9, 0.85); color: #fff; }
-  .marker-cluster-large { background-color: rgba(217, 119, 6, 0.6); }
-  .marker-cluster-large div { background-color: rgba(120, 53, 15, 0.9); color: #fff; }
+  .leaflet-popup-content-wrapper { border-radius: 14px; }
+  .leaflet-popup-content button { background: #B8860B; color: #fff; border: 0; padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .marker-cluster-small { background-color: rgba(254, 243, 199, 0.8); }
+  .marker-cluster-small div { background-color: rgba(212, 160, 23, 0.9); color: #fff; font-weight: 700; }
+  .marker-cluster-medium { background-color: rgba(252, 211, 77, 0.7); }
+  .marker-cluster-medium div { background-color: rgba(184, 134, 11, 0.92); color: #fff; font-weight: 700; }
+  .marker-cluster-large { background-color: rgba(212, 160, 23, 0.6); }
+  .marker-cluster-large div { background-color: rgba(139, 101, 8, 0.95); color: #fff; font-weight: 700; }
 </style>
 </head><body><div id="map"></div>
 <script src="${LEAFLET_JS}"></script>
@@ -66,7 +67,7 @@ ${cluster ? `<script src="${CLUSTER_JS}"></script>` : ""}
   }).addTo(map);
   var icon = L.divIcon({
     className: '',
-    html: '<div style="width:14px;height:14px;border-radius:50%;background:#b45309;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)"></div>',
+    html: '<div style="width:14px;height:14px;border-radius:50%;background:#B8860B;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)"></div>',
     iconSize: [14, 14], iconAnchor: [7, 7], popupAnchor: [0, -8]
   });
   var layer = ${cluster ? "L.markerClusterGroup({ chunkedLoading: true, maxClusterRadius: 60, disableClusteringAtZoom: 14 })" : "L.layerGroup()"};
