@@ -234,9 +234,18 @@ export const LUNAR_HOLIDAYS: LunarHoliday[] = [
   { day: 23, month: 12, vi: "Ông Công Ông Táo", en: "Kitchen Gods' day", kind: "folk" },
 ];
 
+/** True when the (non-leap) lunar month has only 29 days. */
+export function isShortLunarMonth(month: number, year: number): boolean {
+  const s = lunarToSolar(30, month, year, false);
+  return s !== null && solarToLunar(s.day, s.month, s.year).day === 1;
+}
+
+/** Observances on this lunar day; a 30th-day observance falls on the 29th in a 29-day month. */
 export function holidaysOn(lunar: LunarDate): LunarHoliday[] {
   if (lunar.leap) return [];
-  return LUNAR_HOLIDAYS.filter((h) => h.day === lunar.day && h.month === lunar.month);
+  const days = [lunar.day];
+  if (lunar.day === 29 && isShortLunarMonth(lunar.month, lunar.year)) days.push(30);
+  return LUNAR_HOLIDAYS.filter((h) => days.includes(h.day) && h.month === lunar.month);
 }
 
 /** Days from `from` (inclusive) until the next 1st or 15th lunar day. */
@@ -269,8 +278,7 @@ export function upcomingHolidays(from = new Date(), limit = 5): UpcomingHoliday[
       const s = lunarToSolar(h.day, h.month, y, false);
       if (!s) continue;
       let jd = jdFromDate(s.day, s.month, s.year);
-      // A 30th-day observance in a 29-day month is held on the 29th.
-      if (h.day === 30 && solarToLunar(s.day, s.month, s.year).day === 1) jd -= 1;
+      if (h.day === 30 && isShortLunarMonth(h.month, y)) jd -= 1;
       const daysAway = jd - startJd;
       if (daysAway < 0) continue;
       const date = new Date(start.getFullYear(), start.getMonth(), start.getDate() + daysAway);

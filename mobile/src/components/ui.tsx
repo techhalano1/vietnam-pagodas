@@ -264,7 +264,15 @@ export function Button({
       ]}
     >
       {icon ? <Ionicons name={icon} size={size === "sm" ? 16 : 18} color={fg} /> : null}
-      <AppText variant={size === "sm" ? "caption" : "h3"} weight={700} color={fg}>
+      <AppText
+        variant={size === "sm" ? "caption" : "h3"}
+        weight={700}
+        color={fg}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.85}
+        style={{ flexShrink: 1 }}
+      >
         {label}
       </AppText>
     </Pressable>
@@ -422,6 +430,10 @@ export function SegmentedControl<T extends string>({
               variant="caption"
               weight={700}
               color={active ? theme.primaryText : theme.text2}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.8}
+              style={{ flexShrink: 1 }}
             >
               {o.label}
             </AppText>
@@ -835,6 +847,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 6,
     height: 36,
+    paddingHorizontal: 6,
     borderRadius: 11,
   },
   tag: {

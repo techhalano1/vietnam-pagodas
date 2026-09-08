@@ -240,7 +240,7 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Chia sẻ",
     shareCopied: "Đã sao chép liên kết!",
     contributePhotos: "Đóng góp ảnh",
-    contributePhotosText: "Chưa có ảnh cho địa điểm này. Bạn có ảnh? Hãy đóng góp để mọi ngưới cùng chiêm ngưỡng.",
+    contributePhotosText: "Chưa có ảnh cho địa điểm này. Bạn có ảnh? Hãy đóng góp để mọi người cùng chiêm ngưỡng.",
     back: "Quay lại",
     readMoreHeading: "Đọc thêm & tham khảo",
     readMoreIntro: "Các liên kết hữu ích để tìm hiểu thêm trước khi ghé thăm:",

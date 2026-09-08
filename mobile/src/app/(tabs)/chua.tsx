@@ -88,8 +88,8 @@ export default function PagodasScreen() {
       clear();
       return;
     }
-    const ok = position ? true : await request();
-    if (ok) setNearOn(true);
+    setNearOn(true);
+    if (!position) await request();
   }, [nearOn, position, request, clear]);
 
   const rows = useMemo<Row[]>(() => {
@@ -303,7 +303,7 @@ export default function PagodasScreen() {
               }}
             />
             <Button
-              label={`${t.apply} · ${t.resultsCount(rows.length)}`}
+              label={`${t.apply} · ${rows.length.toLocaleString(locale === "en" ? "en-US" : "vi-VN")}`}
               style={{ flex: 2 }}
               onPress={() => setFilterOpen(false)}
             />
@@ -332,7 +332,7 @@ export default function PagodasScreen() {
           <AppText variant="overline" tone="text2" style={{ marginTop: 18, marginBottom: 8 }}>
             {t.filterProvince}
           </AppText>
-          <View style={[styles.search, { backgroundColor: theme.cardAlt, borderColor: theme.line, marginBottom: 8 }]}>
+          <View style={[styles.search, styles.sheetSearch, { backgroundColor: theme.cardAlt, borderColor: theme.line }]}>
             <Ionicons name="search" size={16} color={theme.text3} />
             <TextInput
               value={provinceQuery}
@@ -406,6 +406,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.button,
     borderWidth: 1,
   },
+  sheetSearch: { flex: 0, height: 44, marginBottom: 8 },
   input: { flex: 1, fontSize: 15, height: 48, fontFamily: "BeVietnamPro_400Regular" },
   chipBar: { flexGrow: 0, flexShrink: 0 },
   chips: { paddingHorizontal: space.screen, gap: 8, paddingBottom: 10 },
