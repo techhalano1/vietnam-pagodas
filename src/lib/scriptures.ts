@@ -75,7 +75,7 @@ export function blankPlaceholders(text: string, locale: Locale): string {
   const vi: Record<string, string> = {
     name: "[họ tên tín chủ]",
     address: "[địa chỉ]",
-    lunarDate: "[ngày … tháng … năm …]",
+    lunarDate: "[… tháng … năm … âm lịch]",
     wish: "[điều mong cầu]",
   };
   const en: Record<string, string> = {
@@ -86,6 +86,11 @@ export function blankPlaceholders(text: string, locale: Locale): string {
   };
   const map = locale === "en" ? en : vi;
   return text.replace(/\{\{(\w+)\}\}/g, (m, k: string) => map[k] ?? m);
+}
+
+export function repeatsToShow(s: Scripture): number[] | null {
+  const r = s.recommendedRepeats?.filter((n) => n > 1) ?? [];
+  return r.length ? r : null;
 }
 
 export const kindGroups: { key: "kinh" | "khan"; kinds: ScriptureKind[] }[] = [

@@ -38,6 +38,7 @@ import {
   hasHanViet,
   lunarDateText,
   needsProfile,
+  repeatsToShow,
   scriptureIntro,
   scripturePreparation,
   scriptureTitle,
@@ -67,25 +68,35 @@ export default function ScriptureReader() {
   const [tab, setTab] = useState<ReaderTab>("read");
   const [current, setCurrent] = useState(0);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [showResume, setShowResume] = useState(true);
+  // Snapshot of the stored position when the reader opened; the live value is
+  // overwritten as soon as the list reports its first visible verse.
+  const [saved] = useState(() => (s ? reading.positions[s.slug] : undefined));
+  const canResume = !!s && !!saved && saved.verse > 0 && saved.verse < s.verses.length - 1;
+  const [showResume, setShowResume] = useState(canResume);
   const listRef = useRef<FlatList<ScriptureVerse>>(null);
   const lastSaved = useRef(-1);
+  const resumePending = useRef(canResume);
 
-  const lunar = useMemo(() => {
+  const lunarParts = useMemo(() => {
     const l = lunarToday();
-    return lunarDateText(l, yearCanChi(l.year), locale);
-  }, [locale]);
+    const cc = yearCanChi(l.year);
+    return { vi: lunarDateText(l, cc, "vi"), en: lunarDateText(l, cc, "en") };
+  }, []);
+  const lunar = lunarParts[locale];
 
-  const saved = s ? reading.positions[s.slug] : undefined;
-  const canResume = !!s && !!saved && saved.verse > 0 && saved.verse < s.verses.length - 1;
-
-  // Persist the top visible verse (throttled: only when it changes).
+  // Persist the top visible verse (throttled: only when it changes). While the
+  // resume banner is still up, the initial verse-0 report must not clobber the
+  // stored position.
   const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken<ScriptureVerse>[] }) => {
       if (!s) return;
       const first = viewableItems.find((v) => v.isViewable && typeof v.index === "number");
       if (!first || typeof first.index !== "number") return;
       setCurrent(first.index);
+      if (resumePending.current) {
+        if (first.index === 0) return;
+        resumePending.current = false;
+      }
       if (first.index !== lastSaved.current) {
         lastSaved.current = first.index;
         reading.savePosition(s.slug, first.index, s.verses.length);
@@ -115,10 +126,12 @@ export default function ScriptureReader() {
     s.kind === "prayer" ? HEADER_GRADIENT.lotus : s.kind === "ritual" ? HEADER_GRADIENT.jade : HEADER_GRADIENT.gold;
   const preparation = scripturePreparation(s, locale);
   const personal = needsProfile(s);
-  const hasRitualTab = !!preparation || personal || (s.recommendedRepeats?.length ?? 0) > 0;
+  const hasRitualTab = !!preparation || personal || !!repeatsToShow(s);
   const px = fontScalePx[reading.fontScale];
+  const repeats = repeatsToShow(s);
 
-  const fill = (text: string) => fillPlaceholders(text, reading.profile, lunar, locale);
+  const fill = (text: string, lang: "vi" | "en" = locale) =>
+    fillPlaceholders(text, reading.profile, lunarParts[lang], lang);
 
   const share = () => {
     haptics.tap();
@@ -134,6 +147,7 @@ export default function ScriptureReader() {
     if (!saved) return;
     haptics.tap();
     setShowResume(false);
+    resumePending.current = false;
     setTimeout(() => scrollTo(saved.verse), 50);
   };
 
@@ -141,6 +155,7 @@ export default function ScriptureReader() {
     haptics.success();
     reading.clearPosition(s.slug);
     lastSaved.current = -1;
+    resumePending.current = true;
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   };
 
@@ -191,7 +206,7 @@ export default function ScriptureReader() {
           ) : null}
           <AppText variant="caption" color="rgba(255,255,255,0.85)" style={{ marginTop: 8 }}>
             {t.versesCount(s.verses.length)}
-            {s.recommendedRepeats?.length ? ` · ${t.repeatsHint(s.recommendedRepeats)}` : ""}
+            {repeats ? ` · ${t.repeatsHint(repeats)}` : ""}
           </AppText>
         </View>
       </LinearGradient>
@@ -268,7 +283,15 @@ export default function ScriptureReader() {
           <AppText variant="caption" weight={700} tone="primary" style={{ flex: 1 }}>
             {t.resumeReading} · {t.readingProgress(saved.verse + 1, s.verses.length)}
           </AppText>
-          <Pressable onPress={() => setShowResume(false)} hitSlop={8} accessibilityLabel={t.startOver}>
+          <Pressable
+            onPress={() => {
+              setShowResume(false);
+              resumePending.current = false;
+              reading.savePosition(s.slug, 0, s.verses.length);
+            }}
+            hitSlop={8}
+            accessibilityLabel={t.startOver}
+          >
             <Ionicons name="close" size={18} color={theme.text3} />
           </Pressable>
         </Pressable>
@@ -284,9 +307,9 @@ export default function ScriptureReader() {
           <AppText variant="h3" center>
             {t.finishedReading}
           </AppText>
-          {s.recommendedRepeats?.length ? (
+          {repeats ? (
             <AppText variant="bodyS" tone="text2" center>
-              {t.repeatsHint(s.recommendedRepeats)}
+              {t.repeatsHint(repeats)}
             </AppText>
           ) : null}
           <Button label={t.markFinished} icon="checkmark-circle" onPress={finish} variant="secondary" />
@@ -340,14 +363,14 @@ export default function ScriptureReader() {
           }}
           weight={showHan && item.hanViet ? 400 : 500}
         >
-          {fill(item.vi)}
+          {fill(item.vi, "vi")}
         </AppText>
         {showEn && item.en ? (
           <AppText
             tone="text2"
             style={{ fontSize: px.han - 1, lineHeight: px.hanLine - 2, marginTop: 6, fontStyle: "italic" }}
           >
-            {fill(item.en)}
+            {fill(item.en, "en")}
           </AppText>
         ) : null}
       </Pressable>
@@ -398,10 +421,12 @@ export default function ScriptureReader() {
                             {v.hanViet}
                           </AppText>
                         ) : null}
-                        <AppText variant="body">{locale === "en" && v.en ? fill(v.en) : fill(v.vi)}</AppText>
+                        <AppText variant="body">
+                          {locale === "en" && v.en ? fill(v.en, "en") : fill(v.vi, "vi")}
+                        </AppText>
                         {locale !== "en" && v.en && reading.showEnglish ? (
                           <AppText variant="bodyS" tone="text2" style={{ fontStyle: "italic" }}>
-                            {fill(v.en)}
+                            {fill(v.en, "en")}
                           </AppText>
                         ) : null}
                       </View>
@@ -421,11 +446,11 @@ export default function ScriptureReader() {
                   <AppText variant="body">{preparation}</AppText>
                 </Card>
               ) : null}
-              {s.recommendedRepeats?.length ? (
+              {repeats ? (
                 <Card tone="soft" style={{ marginTop: 12, flexDirection: "row", alignItems: "center", gap: 10 }}>
                   <Ionicons name="repeat" size={18} color={theme.primaryText} />
                   <AppText variant="body" style={{ flex: 1 }}>
-                    {t.repeatsHint(s.recommendedRepeats)}
+                    {t.repeatsHint(repeats)}
                   </AppText>
                 </Card>
               ) : null}

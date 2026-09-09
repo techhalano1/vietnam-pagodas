@@ -143,8 +143,9 @@ const LUNAR_MONTH_VI = [
 ];
 
 export function lunarDateText(l: LunarDate, canChiYear: string, locale: Locale): string {
-  if (locale === "en") return `the ${l.day}${ordinal(l.day)} day of lunar month ${l.month}${l.leap ? " (leap)" : ""}, year ${canChiYear}`;
-  return `ngày ${l.day} tháng ${LUNAR_MONTH_VI[l.month - 1]}${l.leap ? " (nhuận)" : ""} năm ${canChiYear}`;
+  if (locale === "en")
+    return `the ${l.day}${ordinal(l.day)} day of the ${l.month}${ordinal(l.month)}${l.leap ? " (leap)" : ""} lunar month, year ${canChiYear}`;
+  return `${l.day} tháng ${LUNAR_MONTH_VI[l.month - 1]}${l.leap ? " (nhuận)" : ""} năm ${canChiYear}`;
 }
 
 function ordinal(n: number): string {
@@ -170,6 +171,12 @@ export function fillPlaceholders(
     const v = profile[k].trim();
     return v || FALLBACK[locale][k];
   });
+}
+
+/** Repeat counts worth surfacing (a bare [1] is just "read once"). */
+export function repeatsToShow(s: Scripture): number[] | null {
+  const r = s.recommendedRepeats?.filter((n) => n > 1) ?? [];
+  return r.length ? r : null;
 }
 
 export function needsProfile(s: Scripture): boolean {

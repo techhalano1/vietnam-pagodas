@@ -7,6 +7,7 @@ import {
   blankPlaceholders,
   getScriptureBySlug,
   hasEnglish,
+  repeatsToShow,
   hasHanViet,
   scriptureIntro,
   scripturePreparation,
@@ -57,6 +58,7 @@ export default function ScripturePage({
   const en = hasEnglish(s);
   const preparation = scripturePreparation(s, locale);
   const hasPlaceholders = (s.placeholders?.length ?? 0) > 0;
+  const repeats = repeatsToShow(s);
   const related = scriptures.filter((x) => x.slug !== s.slug && x.kind === s.kind).slice(0, 6);
   const fill = (text: string) => blankPlaceholders(text, locale);
 
@@ -80,9 +82,7 @@ export default function ScripturePage({
         {s.subtitle && s.subtitle !== altTitle && (
           <p className="mt-0.5 text-sm text-amber-100/80">{s.subtitle}</p>
         )}
-        {s.recommendedRepeats?.length ? (
-          <p className="mt-3 text-sm text-amber-100/90">{t.repeatsHint(s.recommendedRepeats)}</p>
-        ) : null}
+        {repeats ? <p className="mt-3 text-sm text-amber-100/90">{t.repeatsHint(repeats)}</p> : null}
       </header>
 
       <Reveal className="mt-6">

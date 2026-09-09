@@ -3050,7 +3050,7 @@
         "id": "v11",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}} âm lịch.",
-        "en": "Today is the lunar date {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": "lời cầu an"
       },
       {
@@ -3186,7 +3186,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the day {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -3372,7 +3372,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the lunar date: {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -3754,7 +3754,7 @@
         "id": "v9",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the lunar date {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -3955,7 +3955,7 @@
         "id": "v11",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}, thành tâm sắm sửa lễ vật, hương hoa, trà quả, kính dâng lên ban Mẫu.",
-        "en": "On this day, the {{lunarDate}}, I sincerely prepare offerings of incense, flowers, tea, and fruits to respectfully present at the Mother Goddesses’ altar.",
+        "en": "On this day, {{lunarDate}}, I sincerely prepare offerings of incense, flowers, tea, and fruits to respectfully present at the Mother Goddesses’ altar.",
         "note": null
       },
       {
@@ -4113,7 +4113,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}},",
-        "en": "On this day, the {{lunarDate}},",
+        "en": "On this day, {{lunarDate}},",
         "note": null
       },
       {
@@ -4293,7 +4293,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the day {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -4459,7 +4459,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}} âm lịch.",
-        "en": "Today is the lunar date {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -4617,7 +4617,7 @@
         "id": "v6",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}} âm lịch.",
-        "en": "Today is the lunar date: {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -4799,7 +4799,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the day {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
@@ -6041,7 +6041,7 @@
         "id": "v7",
         "hanViet": null,
         "vi": "Hôm nay là ngày {{lunarDate}}.",
-        "en": "Today is the lunar date {{lunarDate}}.",
+        "en": "Today is {{lunarDate}}.",
         "note": null
       },
       {
