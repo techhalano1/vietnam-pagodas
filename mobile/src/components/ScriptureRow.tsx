@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import { formatTime, getAudio } from "@/lib/audio";
 import * as haptics from "@/lib/haptics";
+import { ENGLISH_ENABLED } from "@/lib/i18n";
 import { useReading } from "@/lib/reading";
 import {
   hasHanViet,
@@ -49,7 +50,7 @@ export function ScriptureRow({
   const pos = positions[s.slug];
   const progress = pos && pos.total > 0 ? Math.min(1, (pos.verse + 1) / pos.total) : 0;
   const title = scriptureTitle(s, locale);
-  const sub = locale === "en" ? s.title : (s.subtitle ?? s.titleEn);
+  const sub = locale === "en" ? s.title : (s.subtitle ?? (ENGLISH_ENABLED ? s.titleEn : undefined));
   const audio = getAudio(s.slug);
 
   return (

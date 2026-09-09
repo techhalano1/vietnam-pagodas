@@ -16,7 +16,7 @@ import {
 import { formatBytes } from "@/lib/audio";
 import { getPagodaBySlug, SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
-import type { Locale } from "@/lib/i18n";
+import { ENGLISH_ENABLED, type Locale } from "@/lib/i18n";
 import { usePlayer } from "@/lib/player";
 import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
@@ -157,12 +157,14 @@ export default function ProfileScreen() {
 
         <SectionHeader title={t.sectionSettings} />
         <Card style={[styles.group, { gap: 14 }]}>
-          <View style={{ gap: 8 }}>
-            <AppText variant="overline" tone="text2">
-              {t.settingsLanguage}
-            </AppText>
-            <SegmentedControl<Locale> value={locale} onChange={setLocale} options={langs} />
-          </View>
+          {ENGLISH_ENABLED ? (
+            <View style={{ gap: 8 }}>
+              <AppText variant="overline" tone="text2">
+                {t.settingsLanguage}
+              </AppText>
+              <SegmentedControl<Locale> value={locale} onChange={setLocale} options={langs} />
+            </View>
+          ) : null}
           <View style={{ gap: 8 }}>
             <AppText variant="overline" tone="text2">
               {t.settingsTheme}

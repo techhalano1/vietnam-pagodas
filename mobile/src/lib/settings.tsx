@@ -16,7 +16,7 @@ import {
   type ReactNode,
 } from "react";
 import { useColorScheme } from "react-native";
-import { getDict, isLocale, type Dict, type Locale } from "./i18n";
+import { ENGLISH_ENABLED, getDict, isEnabledLocale, type Dict, type Locale } from "./i18n";
 import { darkTheme, lightTheme, type Theme } from "./theme";
 
 export type ThemePreference = "system" | "light" | "dark";
@@ -38,8 +38,9 @@ const THEME_KEY = "vp-theme";
 const SettingsContext = createContext<Settings | null>(null);
 
 function deviceLocale(): Locale {
+  if (!ENGLISH_ENABLED) return "vi";
   const code = getLocales()[0]?.languageCode ?? "vi";
-  return isLocale(code) ? code : "en";
+  return isEnabledLocale(code) ? code : "en";
 }
 
 function isThemePreference(x: string): x is ThemePreference {
@@ -63,7 +64,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     AsyncStorage.multiGet([LOCALE_KEY, THEME_KEY])
       .then(([[, l], [, th]]) => {
-        setLocaleState(l && isLocale(l) ? l : deviceLocale());
+        setLocaleState(l && isEnabledLocale(l) ? l : deviceLocale());
         if (th && isThemePreference(th)) setThemeState(th);
       })
       .catch(() => setLocaleState(deviceLocale()))

@@ -161,7 +161,7 @@ function parsePrefs(raw: string | null): { speed: Speed; repeat: number; voice: 
 const audioDir = () => new Directory(Paths.document, "audio");
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
-  const { locale } = useSettings();
+  const { locale, t: dict } = useSettings();
   const player = useAudioPlayer(null, { updateInterval: 250 });
   const raw = useAudioPlayerStatus(player);
 
@@ -368,7 +368,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         try {
           player.setActiveForLockScreen(true, {
             title: scriptureTitle(s, locale),
-            artist: v === "chant" && a.chant ? a.chant.performer : "Vietnam Pagodas",
+            artist: v === "chant" && a.chant ? a.chant.performer : dict.siteName,
             albumTitle: locale === "en" ? "Scriptures & prayers" : "Kinh & văn khấn",
           });
         } catch {
@@ -379,7 +379,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, recordHistory, voicePref],
+    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, dict, recordHistory, voicePref],
   );
 
   const setVoice = useCallback(

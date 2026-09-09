@@ -31,6 +31,7 @@ import {
 import { formatTime, getAudio, resolveVoice, trackOf } from "@/lib/audio";
 import { SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
+import { ENGLISH_ENABLED } from "@/lib/i18n";
 import { lunarToday, yearCanChi } from "@/lib/lunar";
 import { usePlayer } from "@/lib/player";
 import { fontScalePx, useReading, type FontScale } from "@/lib/reading";
@@ -137,10 +138,10 @@ export default function ScriptureReader() {
   }
 
   const title = scriptureTitle(s, locale);
-  const altTitle = locale === "en" ? s.title : s.titleEn;
+  const altTitle = locale === "en" ? s.title : ENGLISH_ENABLED ? s.titleEn : undefined;
   const fav = reading.favorites.includes(s.slug);
   const hanAvail = hasHanViet(s);
-  const enAvail = hasEnglish(s);
+  const enAvail = ENGLISH_ENABLED && hasEnglish(s);
   const showHan = hanAvail && reading.showHanViet;
   const showEn = enAvail && (locale === "en" || reading.showEnglish);
   const gradient =
@@ -502,7 +503,7 @@ export default function ScriptureReader() {
                         <AppText variant="body">
                           {locale === "en" && v.en ? fill(v.en, "en") : fill(v.vi, "vi")}
                         </AppText>
-                        {locale !== "en" && v.en && reading.showEnglish ? (
+                        {enAvail && locale !== "en" && v.en && reading.showEnglish ? (
                           <AppText variant="bodyS" tone="text2" style={{ fontStyle: "italic" }}>
                             {fill(v.en, "en")}
                           </AppText>

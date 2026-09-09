@@ -1,8 +1,15 @@
 export const locales = ["vi", "en"] as const;
 export type Locale = (typeof locales)[number];
 
+/** English UI/content is planned for a later release; the first release ships Vietnamese only. */
+export const ENGLISH_ENABLED = false;
+
 export function isLocale(x: string): x is Locale {
   return (locales as readonly string[]).includes(x);
+}
+
+export function isEnabledLocale(x: string): x is Locale {
+  return isLocale(x) && (ENGLISH_ENABLED || x === "vi");
 }
 
 export interface Dict {
