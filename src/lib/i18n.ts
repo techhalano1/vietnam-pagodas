@@ -81,6 +81,24 @@ export interface Dict {
   directorySubtitle: (n: number, p: number) => string;
   all: string;
   footer: string;
+  navScriptures: string;
+  scripturesTitle: string;
+  scripturesIntro: string;
+  scriptureGroupKinh: string;
+  scriptureGroupKhan: string;
+  scriptureKind: Record<"sutra" | "mantra" | "prayer" | "ritual", string>;
+  versesCount: (n: number) => string;
+  hanVietLabel: string;
+  englishLabel: string;
+  readerAbout: string;
+  readerText: string;
+  preparationHeading: string;
+  repeatsHint: (n: number[]) => string;
+  sourceHeading: string;
+  licenseLabel: string;
+  placeholderNote: string;
+  appPromo: string;
+  moreScriptures: string;
   sponsor: string;
   licenseWiki: string;
   licenseOsm: string;
@@ -186,6 +204,26 @@ const dict: Record<Locale, Dict> = {
     directorySubtitle: (n: number, p: number) => `${n} chùa, đền, tự viện tại ${p} tỉnh thành.`,
     all: "Tất cả",
     footer: "Chùa Việt Nam — dữ liệu tổng hợp từ Wikipedia (tiếng Việt & tiếng Anh), Wikidata, Wikimedia Commons, OpenStreetMap và các nguồn công khai.",
+    navScriptures: "Kinh & văn khấn",
+    scripturesTitle: "Kinh, chú & văn khấn",
+    scripturesIntro:
+      "Các bài kinh, chú, nghi thức và văn khấn thông dụng khi đi chùa, đền, đình — kèm âm Hán-Việt, dịch nghĩa và bản tiếng Anh, ghi rõ nguồn.",
+    scriptureGroupKinh: "Kinh, chú & nghi thức",
+    scriptureGroupKhan: "Văn khấn",
+    scriptureKind: { sutra: "Kinh", mantra: "Chú", prayer: "Văn khấn", ritual: "Nghi thức" },
+    versesCount: (n: number) => `${n} câu`,
+    hanVietLabel: "Hán-Việt",
+    englishLabel: "Tiếng Anh",
+    readerAbout: "Giới thiệu",
+    readerText: "Nội dung",
+    preparationHeading: "Chuẩn bị & lễ vật",
+    repeatsHint: (n: number[]) => `Thường tụng ${n.join(" · ")} biến`,
+    sourceHeading: "Nguồn & bản quyền",
+    licenseLabel: "Giấy phép",
+    placeholderNote:
+      "Phần trong ngoặc vuông là chỗ tín chủ tự điền (họ tên, địa chỉ, ngày âm lịch, điều mong cầu). Ứng dụng di động sẽ tự điền giúp bạn.",
+    appPromo: "Đọc chữ lớn, lưu vị trí đọc và tự điền tên tín chủ trong ứng dụng Vietnam Pagodas.",
+    moreScriptures: "Các bài khác",
     sponsor: "Tài trợ bởi",
     licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
     licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
@@ -292,6 +330,26 @@ const dict: Record<Locale, Dict> = {
     all: "All",
     footer:
       "Vietnam Pagodas — data aggregated from Wikipedia (Vietnamese & English), Wikidata, Wikimedia Commons, OpenStreetMap and other public sources.",
+    navScriptures: "Scriptures",
+    scripturesTitle: "Sutras, mantras & prayers",
+    scripturesIntro:
+      "Common sutras, mantras, rituals and prayers for visits to pagodas, temples and communal houses — with Hán-Việt, meaning and English rendering, sources cited.",
+    scriptureGroupKinh: "Sutras, mantras & rituals",
+    scriptureGroupKhan: "Prayers",
+    scriptureKind: { sutra: "Sutra", mantra: "Mantra", prayer: "Prayer", ritual: "Ritual" },
+    versesCount: (n: number) => `${n} verses`,
+    hanVietLabel: "Hán-Việt",
+    englishLabel: "English",
+    readerAbout: "About this text",
+    readerText: "Text",
+    preparationHeading: "Preparation & offerings",
+    repeatsHint: (n: number[]) => `Usually recited ${n.join(" · ")} times`,
+    sourceHeading: "Source & license",
+    licenseLabel: "License",
+    placeholderNote:
+      "Bracketed parts are for you to fill in (name, address, lunar date, wish). The mobile app fills them in automatically.",
+    appPromo: "Large print, saved reading position and auto-filled prayers in the Vietnam Pagodas app.",
+    moreScriptures: "More texts",
     sponsor: "Sponsored by",
     licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
     licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",

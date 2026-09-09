@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { pagodas, provinces, provinceSlug } from "@/lib/data";
 import { locales } from "@/lib/i18n";
+import { scriptures } from "@/lib/scriptures";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/danh-muc", "/gioi-thieu", "/le-hoi", "/hanh-trinh"];
+  const staticPaths = ["", "/danh-muc", "/gioi-thieu", "/le-hoi", "/hanh-trinh", "/kinh"];
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPaths) {
@@ -32,6 +33,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: Object.fromEntries(
             locales.map((l) => [l, `${SITE_URL}/${l}/tinh/${slug}`]),
+          ),
+        },
+      });
+    }
+  }
+
+  for (const s of scriptures) {
+    for (const locale of locales) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/kinh/${s.slug}`,
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: {
+          languages: Object.fromEntries(
+            locales.map((l) => [l, `${SITE_URL}/${l}/kinh/${s.slug}`]),
           ),
         },
       });

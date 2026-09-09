@@ -185,6 +185,62 @@ export interface Dict {
   languageVi: string;
   languageEn: string;
   madeWith: string;
+  // scriptures (P2)
+  scriptureSearch: string;
+  scriptureGroupAll: string;
+  scriptureGroupKinh: string;
+  scriptureGroupKhan: string;
+  scriptureKind: Record<"sutra" | "mantra" | "prayer" | "ritual", string>;
+  occasionLabels: Record<string, string>;
+  continueReading: string;
+  readingProgress: (verse: number, total: number) => string;
+  scriptureFavorites: string;
+  scriptureCount: (n: number) => string;
+  versesCount: (n: number) => string;
+  minutesRead: (n: number) => string;
+  hanVietBadge: string;
+  englishBadge: string;
+  readerTabRead: string;
+  readerTabMeaning: string;
+  readerTabRitual: string;
+  toggleHanViet: string;
+  toggleEnglish: string;
+  fontSize: string;
+  fontSizeSmall: string;
+  fontSizeMedium: string;
+  fontSizeLarge: string;
+  repeatsHint: (n: number[]) => string;
+  preparationHeading: string;
+  sourceHeading: string;
+  licenseLabel: string;
+  sourceNoteLabel: string;
+  updatedLabel: (d: string) => string;
+  personalizeHeading: string;
+  personalizeText: string;
+  profileName: string;
+  profileAddress: string;
+  profileWish: string;
+  profileNamePlaceholder: string;
+  profileAddressPlaceholder: string;
+  profileWishPlaceholder: string;
+  profileSave: string;
+  profileSaved: string;
+  profileClear: string;
+  lunarDateAuto: (d: string) => string;
+  prayersHereHeading: string;
+  prayersHereText: string;
+  todayScripture: string;
+  todayScriptureText: (kind: "mung1" | "ram" | "normal") => string;
+  scriptureNotFound: string;
+  resumeReading: string;
+  startOver: string;
+  finishedReading: string;
+  markFinished: string;
+  favoritesEmptyScripture: string;
+  noVerseTranslation: string;
+  meaningIntro: string;
+  readerSettings: string;
+  keepAwakeHint: string;
 }
 
 const dict: Record<Locale, Dict> = {
@@ -345,7 +401,7 @@ const dict: Record<Locale, Dict> = {
     seeAll: "Xem tất cả",
     comingSoonScriptures: "Kinh & văn khấn",
     comingSoonScripturesText:
-      "Chú Đại Bi, Tâm Kinh, văn khấn mùng 1 – rằm… đọc chữ lớn và nghe audio. Sắp ra mắt.",
+      "Chú Đại Bi, Tâm Kinh, văn khấn mùng 1 – rằm… đọc chữ lớn, Hán-Việt & tiếng Anh.",
     listView: "Danh sách",
     mapView: "Bản đồ",
     filters: "Bộ lọc",
@@ -356,7 +412,7 @@ const dict: Record<Locale, Dict> = {
     resultsCount: (n) => `${n.toLocaleString("vi-VN")} địa điểm`,
     sortedByDistance: "Sắp theo khoảng cách",
     scripturesTitle: "Kinh & văn khấn",
-    scripturesIntro: "Đọc và nghe kinh, chú, văn khấn thông dụng khi đi chùa.",
+    scripturesIntro: "Kinh, chú, nghi thức và văn khấn thông dụng — chữ lớn, dễ đọc.",
     scriptureCatSutra: "Kinh & chú",
     scriptureCatPrayer: "Văn khấn",
     scriptureCatRitual: "Nghi thức",
@@ -385,6 +441,75 @@ const dict: Record<Locale, Dict> = {
     languageVi: "Tiếng Việt",
     languageEn: "English",
     madeWith: "Tài trợ bởi Cognition",
+    scriptureSearch: "Tìm kinh, chú, văn khấn…",
+    scriptureGroupAll: "Tất cả",
+    scriptureGroupKinh: "Kinh & chú",
+    scriptureGroupKhan: "Văn khấn",
+    scriptureKind: { sutra: "Kinh", mantra: "Chú", prayer: "Văn khấn", ritual: "Nghi thức" },
+    occasionLabels: {
+      "mung-1": "Mùng 1",
+      ram: "Ngày rằm",
+      tet: "Tết",
+      "ram-thang-gieng": "Rằm tháng Giêng",
+      "vu-lan": "Vu Lan",
+      "ong-tao": "Ông Táo 23/12",
+      "giao-thua": "Giao thừa",
+    },
+    continueReading: "Đọc tiếp",
+    readingProgress: (v, n) => `Câu ${v}/${n}`,
+    scriptureFavorites: "Bài yêu thích",
+    scriptureCount: (n) => `${n} bài`,
+    versesCount: (n) => `${n} câu`,
+    minutesRead: (n) => `~${n} phút`,
+    hanVietBadge: "Hán-Việt",
+    englishBadge: "EN",
+    readerTabRead: "Đọc",
+    readerTabMeaning: "Ý nghĩa",
+    readerTabRitual: "Nghi thức",
+    toggleHanViet: "Hiện âm Hán-Việt",
+    toggleEnglish: "Hiện bản tiếng Anh",
+    fontSize: "Cỡ chữ",
+    fontSizeSmall: "Vừa",
+    fontSizeMedium: "Lớn",
+    fontSizeLarge: "Rất lớn",
+    repeatsHint: (n) => `Thường tụng ${n.join(" · ")} biến`,
+    preparationHeading: "Chuẩn bị & lễ vật",
+    sourceHeading: "Nguồn & bản quyền",
+    licenseLabel: "Giấy phép",
+    sourceNoteLabel: "Ghi chú",
+    updatedLabel: (d) => `Cập nhật ${d}`,
+    personalizeHeading: "Thông tin tín chủ",
+    personalizeText:
+      "Điền một lần, app sẽ tự chèn vào các bài văn khấn. Dữ liệu chỉ lưu trên máy bạn.",
+    profileName: "Họ tên tín chủ",
+    profileAddress: "Địa chỉ (ngụ tại)",
+    profileWish: "Điều mong cầu",
+    profileNamePlaceholder: "Ví dụ: Nguyễn Văn An",
+    profileAddressPlaceholder: "Số nhà, phường/xã, tỉnh thành",
+    profileWishPlaceholder: "Sức khoẻ, bình an, công việc hanh thông…",
+    profileSave: "Lưu thông tin",
+    profileSaved: "Đã lưu",
+    profileClear: "Xoá",
+    lunarDateAuto: (d) => `Ngày âm lịch tự điền: ${d}`,
+    prayersHereHeading: "Văn khấn tại đây",
+    prayersHereText: "Gợi ý theo loại hình và vị thờ của địa điểm này.",
+    todayScripture: "Kinh hôm nay",
+    todayScriptureText: (k) =>
+      k === "mung1"
+        ? "Hôm nay mùng 1 — nên tụng kinh, khấn thần linh & gia tiên."
+        : k === "ram"
+          ? "Hôm nay ngày rằm — nên tụng kinh, khấn thần linh & gia tiên."
+          : "Mỗi ngày một bài kinh ngắn để tâm an.",
+    scriptureNotFound: "Không tìm thấy bài này.",
+    resumeReading: "Tiếp tục từ câu đã đọc",
+    startOver: "Đọc lại từ đầu",
+    finishedReading: "Đã đọc hết bài",
+    markFinished: "Hoàn thành",
+    favoritesEmptyScripture: "Chưa có bài yêu thích. Nhấn ♥ trong bài để lưu.",
+    noVerseTranslation: "Chưa có bản dịch cho câu này.",
+    meaningIntro: "Giới thiệu",
+    readerSettings: "Tuỳ chỉnh đọc",
+    keepAwakeHint: "Màn hình luôn sáng khi đọc",
   },
   en: {
     siteName: "Vietnam Pagodas",
@@ -546,7 +671,7 @@ const dict: Record<Locale, Dict> = {
     seeAll: "See all",
     comingSoonScriptures: "Scriptures & prayers",
     comingSoonScripturesText:
-      "Great Compassion Mantra, Heart Sutra, new-moon and full-moon prayers… large-print reading and audio. Coming soon.",
+      "Great Compassion Mantra, Heart Sutra, new-moon and full-moon prayers… large print, Hán-Việt & English.",
     listView: "List",
     mapView: "Map",
     filters: "Filters",
@@ -557,7 +682,7 @@ const dict: Record<Locale, Dict> = {
     resultsCount: (n) => `${n.toLocaleString("en-US")} sites`,
     sortedByDistance: "Sorted by distance",
     scripturesTitle: "Scriptures & prayers",
-    scripturesIntro: "Read and listen to common sutras, mantras and prayers for temple visits.",
+    scripturesIntro: "Common sutras, mantras, rituals and prayers — large, easy-to-read text.",
     scriptureCatSutra: "Sutras & mantras",
     scriptureCatPrayer: "Prayers",
     scriptureCatRitual: "Rituals",
@@ -586,6 +711,75 @@ const dict: Record<Locale, Dict> = {
     languageVi: "Tiếng Việt",
     languageEn: "English",
     madeWith: "Sponsored by Cognition",
+    scriptureSearch: "Search sutras, mantras, prayers…",
+    scriptureGroupAll: "All",
+    scriptureGroupKinh: "Sutras & mantras",
+    scriptureGroupKhan: "Prayers",
+    scriptureKind: { sutra: "Sutra", mantra: "Mantra", prayer: "Prayer", ritual: "Ritual" },
+    occasionLabels: {
+      "mung-1": "New moon (1st)",
+      ram: "Full moon (15th)",
+      tet: "Tết",
+      "ram-thang-gieng": "First full moon",
+      "vu-lan": "Vu Lan",
+      "ong-tao": "Kitchen Gods",
+      "giao-thua": "New Year's Eve",
+    },
+    continueReading: "Continue reading",
+    readingProgress: (v, n) => `Verse ${v}/${n}`,
+    scriptureFavorites: "Favorite texts",
+    scriptureCount: (n) => `${n} texts`,
+    versesCount: (n) => `${n} verses`,
+    minutesRead: (n) => `~${n} min`,
+    hanVietBadge: "Hán-Việt",
+    englishBadge: "EN",
+    readerTabRead: "Read",
+    readerTabMeaning: "Meaning",
+    readerTabRitual: "Ritual",
+    toggleHanViet: "Show Hán-Việt",
+    toggleEnglish: "Show English",
+    fontSize: "Text size",
+    fontSizeSmall: "Regular",
+    fontSizeMedium: "Large",
+    fontSizeLarge: "Extra large",
+    repeatsHint: (n) => `Usually recited ${n.join(" · ")} times`,
+    preparationHeading: "Preparation & offerings",
+    sourceHeading: "Source & license",
+    licenseLabel: "License",
+    sourceNoteLabel: "Note",
+    updatedLabel: (d) => `Updated ${d}`,
+    personalizeHeading: "Your details for prayers",
+    personalizeText:
+      "Fill in once and the app inserts them into every prayer. Stored only on this device.",
+    profileName: "Full name",
+    profileAddress: "Address",
+    profileWish: "Your wish",
+    profileNamePlaceholder: "e.g. Nguyễn Văn An",
+    profileAddressPlaceholder: "Street, ward, province",
+    profileWishPlaceholder: "Health, peace, success at work…",
+    profileSave: "Save details",
+    profileSaved: "Saved",
+    profileClear: "Clear",
+    lunarDateAuto: (d) => `Lunar date filled automatically: ${d}`,
+    prayersHereHeading: "Prayers for this site",
+    prayersHereText: "Suggested from the site type and the deities worshipped here.",
+    todayScripture: "Today's reading",
+    todayScriptureText: (k) =>
+      k === "mung1"
+        ? "New-moon day — a good day to chant and pray to the deities and ancestors."
+        : k === "ram"
+          ? "Full-moon day — a good day to chant and pray to the deities and ancestors."
+          : "A short text each day for a calm mind.",
+    scriptureNotFound: "This text could not be found.",
+    resumeReading: "Resume where you left off",
+    startOver: "Start from the beginning",
+    finishedReading: "Finished",
+    markFinished: "Mark as finished",
+    favoritesEmptyScripture: "No favorite texts yet. Tap ♥ in a text to save it.",
+    noVerseTranslation: "No translation for this verse yet.",
+    meaningIntro: "About this text",
+    readerSettings: "Reading options",
+    keepAwakeHint: "Screen stays on while reading",
   },
 };
 

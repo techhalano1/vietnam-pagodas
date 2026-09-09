@@ -33,7 +33,9 @@ import {
   yearAnimalEn,
   yearCanChi,
 } from "@/lib/lunar";
+import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
+import { dailyScripture, readingMinutes, scriptureTitle, verseCount } from "@/lib/scriptures";
 import { useSettings } from "@/lib/settings";
 import { space } from "@/lib/theme";
 import type { Pagoda } from "@/lib/types";
@@ -73,6 +75,9 @@ export default function HomeScreen() {
 
   const now = new Date();
   const lunar = lunarToday(now);
+  const { positions } = useReading();
+  const daily = dailyScripture(lunar, now);
+  const dailyPos = positions[daily.slug];
   const canChi = locale === "en" ? yearAnimalEn(lunar.year) : yearCanChi(lunar.year);
   const todayHolidays = holidaysOn(lunar);
   const next = daysUntilNextObservance(now);
@@ -282,19 +287,31 @@ export default function HomeScreen() {
           ))}
         </ScrollView>
 
+        <SectionHeader
+          title={t.todayScripture}
+          action={t.seeAll}
+          onAction={() => router.push("/(tabs)/kinh")}
+          style={{ marginTop: 22 }}
+        />
         <PressableCard
           tone="soft"
-          style={{ marginHorizontal: space.screen, marginTop: 22 }}
-          onPress={() => router.push("/(tabs)/kinh")}
+          style={{ marginHorizontal: space.screen }}
+          accessibilityLabel={`${t.todayScripture}: ${scriptureTitle(daily, locale)}`}
+          onPress={() => router.push({ pathname: "/kinh/[slug]", params: { slug: daily.slug } })}
         >
           <View style={{ flexDirection: "row", gap: 14, alignItems: "center" }}>
             <View style={[styles.nearIcon, { backgroundColor: theme.card }]}>
               <Ionicons name="book" size={24} color={theme.lotus} />
             </View>
             <View style={{ flex: 1, gap: 2 }}>
-              <AppText variant="h3">{t.comingSoonScriptures}</AppText>
+              <AppText variant="overline" tone="primary">
+                {t.scriptureKind[daily.kind]}
+                {dailyPos ? ` · ${t.readingProgress(dailyPos.verse + 1, dailyPos.total)}` : ""}
+              </AppText>
+              <AppText variant="h3">{scriptureTitle(daily, locale)}</AppText>
               <AppText variant="bodyS" tone="text2">
-                {t.comingSoonScripturesText}
+                {t.todayScriptureText(lunar.day === 1 ? "mung1" : lunar.day === 15 ? "ram" : "normal")}{" "}
+                {t.versesCount(verseCount(daily))} · {t.minutesRead(readingMinutes(daily))}
               </AppText>
             </View>
             <Ionicons name="chevron-forward" size={18} color={theme.text3} />

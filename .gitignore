@@ -37,3 +37,4 @@ next-env.d.ts
 
 # translation cache (scripts/translate-details.mjs)
 .translate-cache.json
+.scriptures-cache.json

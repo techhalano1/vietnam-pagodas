@@ -57,3 +57,44 @@ export interface PilgrimageRoute {
   descEn: string;
   stops: string[];
 }
+
+export type ScriptureKind = "sutra" | "mantra" | "prayer" | "ritual";
+export type ScriptureCategory = "daily" | "occasion" | "shrine" | "home" | "memorial" | "wish";
+export type ScripturePlaceholder = "name" | "address" | "lunarDate" | "wish";
+
+export interface ScriptureVerse {
+  id: string;
+  vi: string;
+  hanViet: string | null;
+  en: string | null;
+  note: string | null;
+}
+
+export interface ScriptureSource {
+  name: string;
+  url?: string;
+  license: string;
+  note?: string;
+}
+
+export interface Scripture {
+  slug: string;
+  order: number;
+  kind: ScriptureKind;
+  title: string;
+  titleEn: string;
+  subtitle?: string;
+  categories: ScriptureCategory[];
+  occasions?: string[];
+  shrines?: string[];
+  siteTypes?: string[];
+  intro: string;
+  introEn: string;
+  preparation?: string;
+  preparationEn?: string;
+  verses: ScriptureVerse[];
+  placeholders?: ScripturePlaceholder[];
+  recommendedRepeats?: number[];
+  source: ScriptureSource;
+  updatedAt: string;
+}

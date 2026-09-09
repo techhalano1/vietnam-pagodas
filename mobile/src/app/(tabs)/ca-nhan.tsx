@@ -16,6 +16,7 @@ import {
 import { getPagodaBySlug, SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import type { Locale } from "@/lib/i18n";
+import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
 import { useSettings, type ThemePreference } from "@/lib/settings";
 import { space } from "@/lib/theme";
@@ -46,6 +47,7 @@ function Stat({ value, label, onPress }: { value: number; label: string; onPress
 export default function ProfileScreen() {
   const { theme, t, locale, setLocale, themePreference, setThemePreference } = useSettings();
   const { favorites, visited } = useSaved();
+  const reading = useReading();
   const router = useRouter();
   const bottom = useTabBarPadding();
   const version = Constants.expoConfig?.version ?? "1.0.0";
@@ -135,9 +137,16 @@ export default function ProfileScreen() {
             icon="book"
             iconTone="lotus"
             title={t.scripturesTitle}
-            subtitle={t.comingSoon}
-            last
+            subtitle={`${t.scriptureFavorites}: ${reading.favorites.length}`}
             onPress={() => router.push("/(tabs)/kinh")}
+          />
+          <ListRow
+            icon="person-circle-outline"
+            iconTone="lotus"
+            title={t.personalizeHeading}
+            subtitle={reading.profile.name.trim() || t.personalizeText}
+            last
+            onPress={() => router.push({ pathname: "/kinh/[slug]", params: { slug: "khan-tam-bao" } })}
           />
         </Card>
 

@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LeafletMap } from "@/components/LeafletMap";
+import { ScriptureRow } from "@/components/ScriptureRow";
 import { AppText } from "@/components/Text";
 import {
   AppHeader,
@@ -41,6 +42,7 @@ import {
 } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import { useSaved } from "@/lib/saved";
+import { prayersForPagoda } from "@/lib/scriptures";
 import { useSettings } from "@/lib/settings";
 import { radius, space } from "@/lib/theme";
 import type { Section } from "@/lib/types";
@@ -176,6 +178,7 @@ export default function DetailScreen() {
   const worship = locale === "en" ? (d?.worshipEn ?? d?.worshipVi) : d?.worshipVi;
   const prayFor = locale === "en" ? (d?.prayForEn ?? d?.prayForVi) : d?.prayForVi;
   const festival = festivals.find((f) => f.slug === p.slug);
+  const prayers = prayersForPagoda(p, d);
   const directions = directionsUrl(p);
   const links = relatedLinks(p, locale);
   const isFav = favorites.includes(p.slug);
@@ -343,6 +346,24 @@ export default function DetailScreen() {
                   </View>
                 ) : null}
               </Card>
+            </>
+          ) : null}
+
+          {prayers.length > 0 ? (
+            <>
+              <SectionHeader
+                title={t.prayersHereHeading}
+                action={t.seeAll}
+                onAction={() => router.push("/(tabs)/kinh")}
+              />
+              <AppText variant="caption" tone="text3" style={{ paddingHorizontal: space.screen, marginTop: -6, marginBottom: 10 }}>
+                {t.prayersHereText}
+              </AppText>
+              <View style={{ paddingHorizontal: space.screen, gap: 10 }}>
+                {prayers.map((sc) => (
+                  <ScriptureRow key={sc.slug} s={sc} showProgress={false} />
+                ))}
+              </View>
             </>
           ) : null}
 
