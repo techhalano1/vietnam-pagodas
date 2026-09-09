@@ -45,6 +45,20 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
   const [showOptions, setShowOptions] = useState(false);
   const activeIdx = playing || time > 0 ? cueIndexAt(cues, time) : -1;
   const startedRef = useRef(false);
+  const userScrollAt = useRef(0);
+
+  // Manual scrolling pauses auto-follow for a few seconds.
+  useEffect(() => {
+    const onWheel = () => {
+      userScrollAt.current = Date.now();
+    };
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("touchmove", onWheel, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchmove", onWheel);
+    };
+  }, []);
 
   // Highlight + follow the spoken verse.
   useEffect(() => {
@@ -52,7 +66,7 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
     const el = document.getElementById(cues[activeIdx].id);
     if (!el) return;
     el.classList.add(...ACTIVE_CLASSES);
-    if (playing) {
+    if (playing && Date.now() - userScrollAt.current > 4000) {
       const r = el.getBoundingClientRect();
       const out = r.top < 80 || r.bottom > window.innerHeight - 140;
       if (out) el.scrollIntoView({ block: "center", behavior: "smooth" });

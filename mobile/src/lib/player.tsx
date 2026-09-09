@@ -240,6 +240,13 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     }
   }, [raw.isLoaded, player]);
 
+  // Surface native load/playback errors (e.g. offline stream) and stalled loads.
+  useEffect(() => {
+    if (!track || raw.isLoaded) return;
+    const id = setTimeout(() => setError(raw.error ?? "load-timeout"), raw.error ? 0 : 15000);
+    return () => clearTimeout(id);
+  }, [track, raw.error, raw.isLoaded]);
+
   // Repeat handling + periodic history persistence.
   useEffect(() => {
     const t = trackRef.current;
@@ -294,7 +301,12 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         if (h && h.positionSec > 2 && h.positionSec < a.durationSec - 2) startSec = h.positionSec;
       }
       if (sameTrack && raw.isLoaded) {
-        if (typeof opts?.verse === "number") player.seekTo(startSec).catch(() => undefined);
+        const atEnd = raw.duration > 0 && raw.currentTime >= raw.duration - 0.5;
+        if (typeof opts?.verse === "number" || atEnd) {
+          finishHandled.current = false;
+          setRepeatDone(0);
+          player.seekTo(startSec).catch(() => undefined);
+        }
         player.play();
         return;
       }
@@ -320,7 +332,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [history, raw.isLoaded, player, sourceFor, speed, locale, recordHistory],
+    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, recordHistory],
   );
 
   const toggle = useCallback(() => {
@@ -329,9 +341,15 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       player.pause();
       recordHistory(trackRef.current.slug, raw.currentTime);
     } else {
+      const atEnd = raw.duration > 0 && raw.currentTime >= raw.duration - 0.5;
+      if (atEnd) {
+        finishHandled.current = false;
+        setRepeatDone(0);
+        player.seekTo(0).catch(() => undefined);
+      }
       player.play();
     }
-  }, [raw.playing, raw.currentTime, player, recordHistory]);
+  }, [raw.playing, raw.currentTime, raw.duration, player, recordHistory]);
 
   const stop = useCallback(() => {
     const t = trackRef.current;
@@ -342,7 +360,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     } catch {
       // see above
     }
-    player.replace(null);
+    // Android rejects replace(null); keep the source loaded but idle.
+    player.seekTo(0).catch(() => undefined);
     setTrack(null);
     setSleepUntil(null);
     setRepeatDone(0);
