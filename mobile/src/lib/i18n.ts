@@ -218,6 +218,7 @@ export interface Dict {
   fontSizeLarge: string;
   repeatsHint: (n: number[]) => string;
   preparationHeading: string;
+  heroFigureAlt: string;
   /** About screen: consolidated sources for scriptures, prayers and audio. */
   scriptureSourcesHeading: string;
   scriptureSourcesText: string;
@@ -519,6 +520,7 @@ const dict: Record<Locale, Dict> = {
     fontSizeLarge: "Rất lớn",
     repeatsHint: (n) => `Thường tụng ${n.join(" · ")} biến`,
     preparationHeading: "Chuẩn bị & lễ vật",
+    heroFigureAlt: "Tượng Quan Thế Âm Bồ Tát",
     scriptureSourcesHeading: "Kinh, văn khấn & âm thanh",
     scriptureSourcesText:
       "Âm Hán-Việt và nguyên bản Pāli theo Đại Chính Tân Tu Đại Tạng Kinh (Taishō) và tam tạng Pāli (công hữu); nghi thức và văn khấn theo truyền thống Bắc tông và dân gian Việt Nam. Phần dịch nghĩa, rút gọn và biên tập do Vietnam Pagodas soạn, phát hành theo CC BY-SA 4.0.",
@@ -829,6 +831,7 @@ const dict: Record<Locale, Dict> = {
     fontSizeLarge: "Extra large",
     repeatsHint: (n) => `Usually recited ${n.join(" · ")} times`,
     preparationHeading: "Preparation & offerings",
+    heroFigureAlt: "Statue of Avalokiteshvara (Quan Âm)",
     scriptureSourcesHeading: "Scriptures, prayers & audio",
     scriptureSourcesText:
       "Sino-Vietnamese readings and Pāli originals follow the Taishō Tripiṭaka and the Pāli Canon (public domain); liturgies and prayers follow Vietnamese Mahayana and folk tradition. Translations, abridgements and editing by Vietnam Pagodas, released under CC BY-SA 4.0.",

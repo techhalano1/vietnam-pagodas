@@ -50,7 +50,7 @@ function isThemePreference(x: string): x is ThemePreference {
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const system = useColorScheme();
   const [locale, setLocaleState] = useState<Locale>("vi");
-  const [themePreference, setThemeState] = useState<ThemePreference>("system");
+  const [themePreference, setThemeState] = useState<ThemePreference>("light");
   const [stored, setStored] = useState(false);
   const [fontsLoaded, fontsError] = useFonts({
     BeVietnamPro_400Regular,

@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -137,6 +138,12 @@ export default function HomeScreen() {
         </View>
 
         <GoldCard style={{ marginHorizontal: space.screen }}>
+          <Image
+            source={require("../../../assets/quan-am.png")}
+            style={styles.heroFigure}
+            contentFit="contain"
+            accessibilityLabel={t.heroFigureAlt}
+          />
           <View style={styles.heroTop}>
             <View style={{ flex: 1 }}>
               <AppText variant="overline" color="rgba(255,255,255,0.85)">
@@ -155,9 +162,6 @@ export default function HomeScreen() {
                   </AppText>
                 </View>
               </View>
-            </View>
-            <View style={styles.heroIcon}>
-              <Ionicons name={lunar.day === 15 ? "moon" : "flower"} size={26} color="#fff" />
             </View>
           </View>
 
@@ -385,22 +389,23 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 16,
   },
-  heroTop: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  heroTop: { flexDirection: "row", alignItems: "flex-start", gap: 12, paddingRight: 108 },
   heroDate: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 6 },
   heroDay: { fontSize: 52, lineHeight: 58, fontFamily: "BeVietnamPro_800ExtraBold" },
-  heroIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.18)",
-    alignItems: "center",
-    justifyContent: "center",
+  heroFigure: {
+    position: "absolute",
+    right: -2,
+    top: 6,
+    width: 122,
+    height: 182,
+    transform: [{ rotate: "-8deg" }],
   },
   heroPill: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     marginTop: 18,
+    marginRight: 108,
     paddingLeft: 12,
     paddingRight: 6,
     paddingVertical: 6,
