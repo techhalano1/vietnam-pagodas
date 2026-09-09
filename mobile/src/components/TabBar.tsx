@@ -4,6 +4,7 @@ import { useEffect, useState, type ComponentProps } from "react";
 import { Animated, Platform, Pressable, StyleSheet, View } from "react-native";
 import * as haptics from "@/lib/haptics";
 import { useSettings } from "@/lib/settings";
+import { MiniPlayer } from "./Player";
 import { AppText } from "./Text";
 import type { IconName } from "./ui";
 
@@ -27,6 +28,7 @@ export function TabBar({
       pointerEvents="box-none"
       style={[styles.wrap, { paddingBottom: Math.max(insets.bottom, 12) }]}
     >
+      <MiniPlayer />
       <View
         accessibilityRole="tablist"
         style={[

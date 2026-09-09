@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import ScriptureAudioPlayer from "@/components/ScriptureAudioPlayer";
 import { getDict, isLocale, locales } from "@/lib/i18n";
+import { formatTime, getScriptureAudio, scriptureAudioUrl } from "@/lib/scripture-audio";
 import {
   blankPlaceholders,
   getScriptureBySlug,
@@ -61,6 +63,8 @@ export default function ScripturePage({
   const repeats = repeatsToShow(s);
   const related = scriptures.filter((x) => x.slug !== s.slug && x.kind === s.kind).slice(0, 6);
   const fill = (text: string) => blankPlaceholders(text, locale);
+  const audio = getScriptureAudio(s.slug);
+  const cueStart = new Map(audio?.cues.map((c) => [c.id, c.start]) ?? []);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-8">
@@ -76,6 +80,11 @@ export default function ScripturePage({
           <span className="rounded-full bg-white/20 px-2 py-0.5">{t.versesCount(s.verses.length)}</span>
           {han && <span className="rounded-full bg-white/20 px-2 py-0.5">{t.hanVietLabel}</span>}
           {en && <span className="rounded-full bg-white/20 px-2 py-0.5">EN</span>}
+          {audio && (
+            <span className="rounded-full bg-white/20 px-2 py-0.5">
+              🎧 {t.audio.listen} · {formatTime(audio.durationSec)}
+            </span>
+          )}
         </div>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight">{title}</h1>
         {altTitle && altTitle !== title && <p className="mt-1 text-amber-100">{altTitle}</p>}
@@ -116,7 +125,10 @@ export default function ScripturePage({
             <li
               key={v.id}
               id={v.id}
-              className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800"
+              data-cue-start={cueStart.get(v.id)}
+              className={`rounded-2xl border border-stone-200 bg-white p-4 transition-shadow dark:border-stone-700 dark:bg-stone-800 ${
+                audio ? "cursor-pointer" : ""
+              }`}
             >
               <div className="flex items-center gap-3 text-xs text-stone-400">
                 <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-stone-100 px-2 font-semibold text-stone-500 dark:bg-stone-700 dark:text-stone-300">
@@ -145,6 +157,16 @@ export default function ScripturePage({
           ))}
         </ol>
       </section>
+
+      {audio && (
+        <ScriptureAudioPlayer
+          src={scriptureAudioUrl(audio)}
+          title={title}
+          durationSec={audio.durationSec}
+          cues={audio.cues}
+          labels={t.audio}
+        />
+      )}
 
       <section className="mt-8 rounded-2xl border border-stone-200 bg-stone-50 p-5 text-sm dark:border-stone-700 dark:bg-stone-800/60">
         <h2 className="font-semibold">{t.sourceHeading}</h2>

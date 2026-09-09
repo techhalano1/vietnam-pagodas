@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { PlayerProvider } from "@/lib/player";
 import { ReadingProvider } from "@/lib/reading";
 import { SavedProvider } from "@/lib/saved";
 import { SettingsProvider, useSettings } from "@/lib/settings";
@@ -53,7 +54,9 @@ export default function RootLayout() {
       <SettingsProvider>
         <SavedProvider>
           <ReadingProvider>
-            <RootNavigator />
+            <PlayerProvider>
+              <RootNavigator />
+            </PlayerProvider>
           </ReadingProvider>
         </SavedProvider>
       </SettingsProvider>

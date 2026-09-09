@@ -13,9 +13,11 @@ import {
   SegmentedControl,
   useTabBarPadding,
 } from "@/components/ui";
+import { formatBytes } from "@/lib/audio";
 import { getPagodaBySlug, SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import type { Locale } from "@/lib/i18n";
+import { usePlayer } from "@/lib/player";
 import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
 import { useSettings, type ThemePreference } from "@/lib/settings";
@@ -51,6 +53,9 @@ export default function ProfileScreen() {
   const router = useRouter();
   const bottom = useTabBarPadding();
   const version = Constants.expoConfig?.version ?? "1.0.0";
+  const player = usePlayer();
+  const downloadCount = Object.keys(player.downloads).length;
+  const downloadBytes = Object.values(player.downloads).reduce((n, d) => n + d.bytes, 0);
 
   const provincesVisited = useMemo(
     () =>
@@ -168,6 +173,31 @@ export default function ProfileScreen() {
               options={themes}
             />
           </View>
+          <ListRow
+            icon="cloud-download-outline"
+            title={t.offlineAudio}
+            subtitle={t.offlineAudioCount(downloadCount, formatBytes(downloadBytes))}
+            last
+            right={
+              downloadCount > 0 ? (
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={t.clearDownloads}
+                  hitSlop={8}
+                  onPress={() => {
+                    haptics.tap();
+                    player.clearDownloads();
+                  }}
+                >
+                  <AppText variant="caption" weight={700} tone="danger">
+                    {t.clearDownloads}
+                  </AppText>
+                </Pressable>
+              ) : (
+                <View />
+              )
+            }
+          />
         </Card>
 
         <SectionHeader title={t.sectionAbout} />

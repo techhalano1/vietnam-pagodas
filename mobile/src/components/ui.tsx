@@ -14,6 +14,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { describe, displayName, hasDetails, imageUrl, siteType } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
+import { usePlayer } from "@/lib/player";
 import { useSettings } from "@/lib/settings";
 import { radius, space } from "@/lib/theme";
 import type { Pagoda } from "@/lib/types";
@@ -47,10 +48,11 @@ export function Screen({
   );
 }
 
-/** Bottom padding so scroll content clears the floating tab bar. */
+/** Bottom padding so scroll content clears the floating tab bar (and mini player). */
 export function useTabBarPadding() {
   const insets = useSafeAreaInsets();
-  return 72 + Math.max(insets.bottom, 12) + 16;
+  const { track } = usePlayer();
+  return 72 + Math.max(insets.bottom, 12) + 16 + (track ? 84 : 0);
 }
 
 export function AppHeader({

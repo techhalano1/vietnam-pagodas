@@ -53,6 +53,12 @@
       "expo-localization",
       "expo-font",
       [
+        "expo-audio",
+        {
+          "enableBackgroundPlayback": true
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",

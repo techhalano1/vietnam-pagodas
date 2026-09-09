@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useKeepAwake } from "expo-keep-awake";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   FlatList,
   Pressable,
@@ -14,6 +14,7 @@ import {
   type ViewToken,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PlayerBar } from "@/components/Player";
 import { kindIcon } from "@/components/ScriptureRow";
 import { Sheet } from "@/components/Sheet";
 import { AppText } from "@/components/Text";
@@ -27,9 +28,11 @@ import {
   SegmentedControl,
   Tag,
 } from "@/components/ui";
+import { formatTime, getAudio } from "@/lib/audio";
 import { SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import { lunarToday, yearCanChi } from "@/lib/lunar";
+import { usePlayer } from "@/lib/player";
 import { fontScalePx, useReading, type FontScale } from "@/lib/reading";
 import {
   fillPlaceholders,
@@ -63,7 +66,10 @@ export default function ScriptureReader() {
   const insets = useSafeAreaInsets();
   const { theme, t, locale, isDark, setThemePreference } = useSettings();
   const reading = useReading();
+  const player = usePlayer();
   const s = getScripture(slug ?? "");
+  const audio = slug ? getAudio(slug) : undefined;
+  const playingThis = !!s && player.track?.slug === s.slug;
 
   const [tab, setTab] = useState<ReaderTab>("read");
   const [current, setCurrent] = useState(0);
@@ -106,6 +112,17 @@ export default function ScriptureReader() {
   );
   const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 40, minimumViewTime: 250 }), []);
 
+  // Follow the spoken verse while playing, but back off for a few seconds after
+  // the reader scrolls by hand so manual reading is not hijacked.
+  const userScrollAt = useRef(0);
+  const followIndex = playingThis && player.status.playing && tab === "read" ? player.verseIndex : -1;
+  useEffect(() => {
+    if (followIndex < 0) return;
+    if (Date.now() - userScrollAt.current < 4000) return;
+    resumePending.current = false;
+    listRef.current?.scrollToIndex({ index: followIndex, animated: true, viewPosition: 0.15 });
+  }, [followIndex]);
+
   if (!s) {
     return (
       <Screen>
@@ -132,6 +149,16 @@ export default function ScriptureReader() {
 
   const fill = (text: string, lang: "vi" | "en" = locale) =>
     fillPlaceholders(text, reading.profile, lunarParts[lang], lang);
+
+  const slugKey = s.slug;
+  const listened = player.history.find((e) => e.slug === slugKey);
+  const listenLabel = playingThis
+    ? player.status.playing
+      ? t.playerPause
+      : t.playerPlay
+    : listened && audio && listened.positionSec > 2 && listened.positionSec < audio.durationSec - 2
+      ? t.listenResume(formatTime(listened.positionSec))
+      : t.listenBtn;
 
   const share = () => {
     haptics.tap();
@@ -206,8 +233,30 @@ export default function ScriptureReader() {
           ) : null}
           <AppText variant="caption" color="rgba(255,255,255,0.85)" style={{ marginTop: 8 }}>
             {t.versesCount(s.verses.length)}
+            {audio ? ` · ${formatTime(audio.durationSec)}` : ""}
             {repeats ? ` · ${t.repeatsHint(repeats)}` : ""}
           </AppText>
+          {audio ? (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={listenLabel}
+              onPress={() => {
+                haptics.tap();
+                if (playingThis) player.toggle();
+                else player.play(slugKey, { resume: true });
+              }}
+              style={({ pressed }) => [styles.listen, { opacity: pressed ? 0.85 : 1 }]}
+            >
+              <Ionicons
+                name={playingThis && player.status.playing ? "pause" : "play"}
+                size={18}
+                color="#8B6508"
+              />
+              <AppText variant="caption" weight={700} color="#8B6508">
+                {listenLabel}
+              </AppText>
+            </Pressable>
+          ) : null}
         </View>
       </LinearGradient>
 
@@ -320,25 +369,38 @@ export default function ScriptureReader() {
   );
 
   const renderVerse = ({ item, index }: { item: ScriptureVerse; index: number }) => {
-    const active = index === current;
+    const spoken = playingThis && index === player.verseIndex;
+    const active = spoken || (!playingThis && index === current);
     return (
       <Pressable
-        onPress={() => setCurrent(index)}
+        onPress={() => {
+          if (playingThis) {
+            haptics.select();
+            player.seekToVerse(index);
+          } else {
+            setCurrent(index);
+          }
+        }}
         accessibilityLabel={t.readingProgress(index + 1, s.verses.length)}
+        accessibilityState={{ selected: active }}
         style={[
           styles.verse,
           {
             backgroundColor: active ? theme.card : "transparent",
-            borderColor: active ? theme.line : "transparent",
+            borderColor: spoken ? theme.primary : active ? theme.line : "transparent",
           },
           active ? theme.shadow : null,
         ]}
       >
         <View style={styles.verseHead}>
           <View style={[styles.verseNum, { backgroundColor: active ? theme.primarySoft : theme.cardAlt }]}>
-            <AppText variant="caption" weight={700} tone={active ? "primary" : "text3"}>
-              {index + 1}
-            </AppText>
+            {spoken ? (
+              <Ionicons name="volume-high" size={13} color={theme.primaryText} />
+            ) : (
+              <AppText variant="caption" weight={700} tone={active ? "primary" : "text3"}>
+                {index + 1}
+              </AppText>
+            )}
           </View>
           {item.note ? (
             <AppText variant="caption" tone="jade" weight={600} style={{ flex: 1 }}>
@@ -387,9 +449,12 @@ export default function ScriptureReader() {
           renderItem={renderVerse}
           ListHeaderComponent={header}
           ListFooterComponent={footer}
-          contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
+          contentContainerStyle={{ paddingBottom: playingThis ? 24 : insets.bottom + 24 }}
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewabilityConfig}
+          onScrollBeginDrag={() => {
+            userScrollAt.current = Date.now();
+          }}
           onScrollToIndexFailed={({ index, averageItemLength }) => {
             listRef.current?.scrollToOffset({ offset: averageItemLength * index, animated: false });
             setTimeout(() => scrollTo(index), 120);
@@ -479,6 +544,8 @@ export default function ScriptureReader() {
           {footer}
         </ScrollView>
       )}
+
+      {playingThis ? <PlayerBar bottomInset={insets.bottom} /> : null}
 
       <ProfileSheet
         open={profileOpen}
@@ -698,6 +765,17 @@ const styles = StyleSheet.create({
   heroBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 },
   heroBody: { paddingHorizontal: space.screen, paddingTop: 10 },
   glass: { backgroundColor: "rgba(0,0,0,0.28)", borderColor: "transparent" },
+  listen: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 999,
+    backgroundColor: "#FFFDF7",
+  },
   sheetTop: {
     marginTop: -radius.sheet,
     borderTopLeftRadius: radius.sheet,

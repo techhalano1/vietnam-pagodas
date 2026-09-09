@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+import { formatTime, getAudio } from "@/lib/audio";
 import * as haptics from "@/lib/haptics";
 import { useReading } from "@/lib/reading";
 import {
@@ -49,6 +50,7 @@ export function ScriptureRow({
   const progress = pos && pos.total > 0 ? Math.min(1, (pos.verse + 1) / pos.total) : 0;
   const title = scriptureTitle(s, locale);
   const sub = locale === "en" ? s.title : (s.subtitle ?? s.titleEn);
+  const audio = getAudio(s.slug);
 
   return (
     <Pressable
@@ -85,6 +87,14 @@ export function ScriptureRow({
             <View style={[styles.badge, { borderColor: theme.line }]}>
               <AppText variant="caption" tone="text2" style={{ fontSize: 10 }}>
                 {t.hanVietBadge}
+              </AppText>
+            </View>
+          ) : null}
+          {audio ? (
+            <View style={[styles.badge, styles.audioBadge, { backgroundColor: theme.primarySoft }]}>
+              <Ionicons name="headset" size={10} color={theme.primaryText} />
+              <AppText variant="caption" tone="primary" weight={600} style={{ fontSize: 10 }}>
+                {formatTime(audio.durationSec)}
               </AppText>
             </View>
           ) : null}
@@ -130,6 +140,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 5,
     paddingVertical: 1,
+  },
+  audioBadge: {
+    borderColor: "transparent",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
   },
   track: { height: 4, borderRadius: 2, marginTop: 6, overflow: "hidden" },
   fill: { height: 4, borderRadius: 2 },

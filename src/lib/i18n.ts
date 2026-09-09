@@ -99,6 +99,19 @@ export interface Dict {
   placeholderNote: string;
   appPromo: string;
   moreScriptures: string;
+  audio: {
+    listen: string;
+    play: string;
+    pause: string;
+    speed: string;
+    repeat: string;
+    repeatOnce: string;
+    repeatUnit: string;
+    round: string;
+    seek: string;
+    voiceNote: string;
+    download: string;
+  };
   sponsor: string;
   licenseWiki: string;
   licenseOsm: string;
@@ -224,6 +237,19 @@ const dict: Record<Locale, Dict> = {
       "Phần trong ngoặc vuông là chỗ tín chủ tự điền (họ tên, địa chỉ, ngày âm lịch, điều mong cầu). Ứng dụng di động sẽ tự điền giúp bạn.",
     appPromo: "Đọc chữ lớn, lưu vị trí đọc và tự điền tên tín chủ trong ứng dụng Vietnam Pagodas.",
     moreScriptures: "Các bài khác",
+    audio: {
+      listen: "Nghe",
+      play: "Phát",
+      pause: "Tạm dừng",
+      speed: "Tốc độ",
+      repeat: "Lặp",
+      repeatOnce: "1 biến",
+      repeatUnit: "biến",
+      round: "Biến",
+      seek: "Tua",
+      voiceNote: "Giọng đọc được tạo bằng AI (OpenAI TTS); cách đọc Hán-Việt có thể chưa hoàn toàn chuẩn. Nhấn vào một câu để nghe từ câu đó.",
+      download: "Tải MP3",
+    },
     sponsor: "Tài trợ bởi",
     licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
     licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
@@ -350,6 +376,19 @@ const dict: Record<Locale, Dict> = {
       "Bracketed parts are for you to fill in (name, address, lunar date, wish). The mobile app fills them in automatically.",
     appPromo: "Large print, saved reading position and auto-filled prayers in the Vietnam Pagodas app.",
     moreScriptures: "More texts",
+    audio: {
+      listen: "Listen",
+      play: "Play",
+      pause: "Pause",
+      speed: "Speed",
+      repeat: "Repeat",
+      repeatOnce: "Once",
+      repeatUnit: "×",
+      round: "Round",
+      seek: "Seek",
+      voiceNote: "AI-generated voice (OpenAI TTS); Sino-Vietnamese pronunciation may not be perfect. Click a verse to listen from there.",
+      download: "Download MP3",
+    },
     sponsor: "Sponsored by",
     licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
     licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",

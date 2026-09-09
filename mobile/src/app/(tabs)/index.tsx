@@ -33,9 +33,11 @@ import {
   yearAnimalEn,
   yearCanChi,
 } from "@/lib/lunar";
+import { formatTime, getAudio } from "@/lib/audio";
+import { usePlayer } from "@/lib/player";
 import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
-import { dailyScripture, readingMinutes, scriptureTitle, verseCount } from "@/lib/scriptures";
+import { dailyScripture, getScripture, readingMinutes, scriptureTitle, verseCount } from "@/lib/scriptures";
 import { useSettings } from "@/lib/settings";
 import { space } from "@/lib/theme";
 import type { Pagoda } from "@/lib/types";
@@ -78,6 +80,10 @@ export default function HomeScreen() {
   const { positions } = useReading();
   const daily = dailyScripture(lunar, now);
   const dailyPos = positions[daily.slug];
+  const player = usePlayer();
+  const lastListen = player.history.find((e) => e.slug !== player.track?.slug && getScripture(e.slug));
+  const lastListenS = lastListen ? getScripture(lastListen.slug) : undefined;
+  const lastListenAudio = lastListen ? getAudio(lastListen.slug) : undefined;
   const canChi = locale === "en" ? yearAnimalEn(lunar.year) : yearCanChi(lunar.year);
   const todayHolidays = holidaysOn(lunar);
   const next = daysUntilNextObservance(now);
@@ -317,12 +323,58 @@ export default function HomeScreen() {
             <Ionicons name="chevron-forward" size={18} color={theme.text3} />
           </View>
         </PressableCard>
+
+        {lastListen && lastListenS && lastListenAudio ? (
+          <>
+            <SectionHeader title={t.continueListening} style={{ marginTop: 22 }} />
+            <PressableCard
+              style={{ marginHorizontal: space.screen }}
+              accessibilityLabel={`${t.continueListening}: ${scriptureTitle(lastListenS, locale)}`}
+              onPress={() => {
+                player.play(lastListen.slug, { resume: true });
+                router.push({ pathname: "/kinh/[slug]", params: { slug: lastListen.slug } });
+              }}
+            >
+              <View style={{ flexDirection: "row", gap: 14, alignItems: "center" }}>
+                <View style={[styles.nearIcon, { backgroundColor: theme.primarySoft }]}>
+                  <Ionicons name="headset" size={22} color={theme.primaryText} />
+                </View>
+                <View style={{ flex: 1, gap: 2 }}>
+                  <AppText variant="overline" tone="primary">
+                    {t.scriptureKind[lastListenS.kind]}
+                  </AppText>
+                  <AppText variant="h3">{scriptureTitle(lastListenS, locale)}</AppText>
+                  <AppText variant="bodyS" tone="text2">
+                    {formatTime(lastListen.positionSec)} / {formatTime(lastListenAudio.durationSec)}
+                  </AppText>
+                  <View style={[styles.listenTrack, { backgroundColor: theme.cardAlt }]}>
+                    <View
+                      style={{
+                        width: `${Math.round(
+                          Math.min(1, lastListen.positionSec / lastListenAudio.durationSec) * 100,
+                        )}%`,
+                        height: 4,
+                        borderRadius: 2,
+                        backgroundColor: theme.primary,
+                      }}
+                    />
+                  </View>
+                </View>
+                <View style={[styles.playCircle, { backgroundColor: theme.primaryDark }]}>
+                  <Ionicons name="play" size={18} color="#fff" style={{ marginLeft: 2 }} />
+                </View>
+              </View>
+            </PressableCard>
+          </>
+        ) : null}
       </ScrollView>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  listenTrack: { height: 4, borderRadius: 2, marginTop: 6, overflow: "hidden" },
+  playCircle: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
   header: {
     flexDirection: "row",
     alignItems: "center",

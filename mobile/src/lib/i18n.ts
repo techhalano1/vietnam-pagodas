@@ -241,6 +241,37 @@ export interface Dict {
   meaningIntro: string;
   readerSettings: string;
   keepAwakeHint: string;
+  // audio (P3)
+  audioBadge: string;
+  listenBtn: string;
+  listenResume: (time: string) => string;
+  nowPlaying: string;
+  playerPlay: string;
+  playerPause: string;
+  playerClose: string;
+  prevVerse: string;
+  nextVerse: string;
+  playbackOptions: string;
+  speedLabel: string;
+  repeatLabel: string;
+  repeatOnce: string;
+  repeatTimes: (n: number) => string;
+  repeatProgress: (done: number, total: number) => string;
+  sleepLabel: string;
+  sleepOff: string;
+  sleepMinutes: (n: number) => string;
+  sleepRemaining: (time: string) => string;
+  downloadBtn: string;
+  downloadedLabel: string;
+  downloadingLabel: string;
+  removeDownload: string;
+  continueListening: string;
+  audioVoiceNote: string;
+  offlineAudio: string;
+  offlineAudioCount: (n: number, size: string) => string;
+  clearDownloads: string;
+  audioError: string;
+  seekLabel: string;
 }
 
 const dict: Record<Locale, Dict> = {
@@ -510,6 +541,37 @@ const dict: Record<Locale, Dict> = {
     meaningIntro: "Giới thiệu",
     readerSettings: "Tuỳ chỉnh đọc",
     keepAwakeHint: "Màn hình luôn sáng khi đọc",
+    audioBadge: "Audio",
+    listenBtn: "Nghe",
+    listenResume: (time) => `Nghe tiếp từ ${time}`,
+    nowPlaying: "Đang phát",
+    playerPlay: "Phát",
+    playerPause: "Tạm dừng",
+    playerClose: "Đóng trình phát",
+    prevVerse: "Câu trước",
+    nextVerse: "Câu sau",
+    playbackOptions: "Tuỳ chọn phát",
+    speedLabel: "Tốc độ",
+    repeatLabel: "Số biến",
+    repeatOnce: "1 lần",
+    repeatTimes: (n) => `${n} biến`,
+    repeatProgress: (d, n) => `Biến ${d}/${n}`,
+    sleepLabel: "Hẹn giờ tắt",
+    sleepOff: "Tắt",
+    sleepMinutes: (n) => `${n} phút`,
+    sleepRemaining: (time) => `Tắt sau ${time}`,
+    downloadBtn: "Tải để nghe offline",
+    downloadedLabel: "Đã tải",
+    downloadingLabel: "Đang tải…",
+    removeDownload: "Xoá bản tải",
+    continueListening: "Tiếp tục nghe",
+    audioVoiceNote:
+      "Giọng đọc được tạo bằng AI (OpenAI TTS); cách đọc Hán-Việt có thể chưa hoàn toàn chuẩn.",
+    offlineAudio: "Âm thanh đã tải",
+    offlineAudioCount: (n, size) => `${n} bài · ${size}`,
+    clearDownloads: "Xoá tất cả",
+    audioError: "Không phát được âm thanh. Hãy kiểm tra kết nối mạng.",
+    seekLabel: "Thanh tiến trình",
   },
   en: {
     siteName: "Vietnam Pagodas",
@@ -780,6 +842,37 @@ const dict: Record<Locale, Dict> = {
     meaningIntro: "About this text",
     readerSettings: "Reading options",
     keepAwakeHint: "Screen stays on while reading",
+    audioBadge: "Audio",
+    listenBtn: "Listen",
+    listenResume: (time) => `Resume from ${time}`,
+    nowPlaying: "Now playing",
+    playerPlay: "Play",
+    playerPause: "Pause",
+    playerClose: "Close player",
+    prevVerse: "Previous verse",
+    nextVerse: "Next verse",
+    playbackOptions: "Playback options",
+    speedLabel: "Speed",
+    repeatLabel: "Repeats",
+    repeatOnce: "Once",
+    repeatTimes: (n) => `${n} times`,
+    repeatProgress: (d, n) => `Pass ${d}/${n}`,
+    sleepLabel: "Sleep timer",
+    sleepOff: "Off",
+    sleepMinutes: (n) => `${n} min`,
+    sleepRemaining: (time) => `Stops in ${time}`,
+    downloadBtn: "Download for offline",
+    downloadedLabel: "Downloaded",
+    downloadingLabel: "Downloading…",
+    removeDownload: "Remove download",
+    continueListening: "Continue listening",
+    audioVoiceNote:
+      "AI-generated voice (OpenAI TTS); Sino-Vietnamese pronunciation may not be perfect.",
+    offlineAudio: "Downloaded audio",
+    offlineAudioCount: (n, size) => `${n} tracks · ${size}`,
+    clearDownloads: "Remove all",
+    audioError: "Could not play audio. Please check your connection.",
+    seekLabel: "Progress bar",
   },
 };
 
