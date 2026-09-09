@@ -523,7 +523,7 @@ const dict: Record<Locale, Dict> = {
     scriptureSourcesText:
       "Âm Hán-Việt và nguyên bản Pāli theo Đại Chính Tân Tu Đại Tạng Kinh (Taishō) và tam tạng Pāli (công hữu); nghi thức và văn khấn theo truyền thống Bắc tông và dân gian Việt Nam. Phần dịch nghĩa, rút gọn và biên tập do Vietnam Pagodas soạn, phát hành theo CC BY-SA 4.0.",
     chantSourcesText: (p, source) =>
-      `Bản tụng: Thầy ${p.join(", Thầy ")} — nguồn ${source} (ấn tống, phát miễn phí). Giọng “Đọc theo chữ” được tạo bằng AI.`,
+      `Bản tụng: Thầy ${p.join(", Thầy ")} — nguồn ${source}, ấn tống phát miễn phí. Giọng “Đọc theo chữ” được tạo bằng AI.`,
     personalizeHeading: "Thông tin tín chủ",
     personalizeText:
       "Điền một lần, app sẽ tự chèn vào các bài văn khấn. Dữ liệu chỉ lưu trên máy bạn.",
@@ -592,7 +592,7 @@ const dict: Record<Locale, Dict> = {
     voiceAi: "Đọc theo chữ (AI)",
     chantBy: (p) => `Thầy ${p} tụng`,
     chantCredit: (p, source) =>
-      `Thầy ${p} tụng (${source}). Bản tụng không đồng bộ từng câu với chữ — chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
+      `Thầy ${p} tụng — ${source}. Bản tụng không đồng bộ từng câu với chữ — chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
     skipBack: "Lùi 30 giây",
     skipForward: "Tiến 30 giây",
   },
@@ -833,7 +833,7 @@ const dict: Record<Locale, Dict> = {
     scriptureSourcesText:
       "Sino-Vietnamese readings and Pāli originals follow the Taishō Tripiṭaka and the Pāli Canon (public domain); liturgies and prayers follow Vietnamese Mahayana and folk tradition. Translations, abridgements and editing by Vietnam Pagodas, released under CC BY-SA 4.0.",
     chantSourcesText: (p, source) =>
-      `Chanted recordings: Ven. ${p.join(", Ven. ")} — from ${source} (free Dharma distribution). The “Read-along” voice is AI-generated.`,
+      `Chanted recordings: Ven. ${p.join(", Ven. ")} — from ${source}, free Dharma distribution. The “Read-along” voice is AI-generated.`,
     personalizeHeading: "Your details for prayers",
     personalizeText:
       "Fill in once and the app inserts them into every prayer. Stored only on this device.",
@@ -902,7 +902,7 @@ const dict: Record<Locale, Dict> = {
     voiceAi: "Read-along (AI)",
     chantBy: (p) => `Chanted by Ven. ${p}`,
     chantCredit: (p, source) =>
-      `Chanted by Ven. ${p} (${source}). The chant is not synced to the text — choose “Read-along” to highlight the current verse.`,
+      `Chanted by Ven. ${p} — ${source}. The chant is not synced to the text — choose “Read-along” to highlight the current verse.`,
     skipBack: "Back 30 seconds",
     skipForward: "Forward 30 seconds",
   },
