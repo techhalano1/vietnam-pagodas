@@ -157,7 +157,12 @@ export default function HomeScreen() {
                   <AppText variant="h3" color="#fff">
                     {t.lunarDate(lunar.day, lunar.month, canChi)}
                   </AppText>
-                  <AppText variant="caption" color="rgba(255,255,255,0.85)">
+                  <AppText
+                    variant="caption"
+                    color="rgba(255,255,255,0.85)"
+                    numberOfLines={1}
+                    adjustsFontSizeToFit
+                  >
                     {t.solarDate(now)}
                   </AppText>
                 </View>
@@ -389,15 +394,15 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 16,
   },
-  heroTop: { flexDirection: "row", alignItems: "flex-start", gap: 12, paddingRight: 108 },
+  heroTop: { flexDirection: "row", alignItems: "flex-start", gap: 12, paddingRight: 94 },
   heroDate: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 6 },
   heroDay: { fontSize: 52, lineHeight: 58, fontFamily: "BeVietnamPro_800ExtraBold" },
   heroFigure: {
     position: "absolute",
-    right: -2,
-    top: 6,
-    width: 122,
-    height: 182,
+    right: -4,
+    top: 8,
+    width: 112,
+    height: 168,
     transform: [{ rotate: "-8deg" }],
   },
   heroPill: {
@@ -405,7 +410,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     marginTop: 18,
-    marginRight: 108,
+    marginRight: 94,
     paddingLeft: 12,
     paddingRight: 6,
     paddingVertical: 6,
