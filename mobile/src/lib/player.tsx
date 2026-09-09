@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
+import Constants, { AppOwnership } from "expo-constants";
 import { Directory, File, Paths } from "expo-file-system";
 import {
   createContext,
@@ -97,6 +98,8 @@ const PREFS_KEY = "vp-player-prefs";
 const DOWNLOADS_KEY = "vp-audio-downloads";
 const HISTORY_MAX = 20;
 const IDLE: PlayerStatus = { playing: false, currentTime: 0, duration: 0, isBuffering: false, isLoaded: false };
+/** Expo Go lacks the expo-audio media service (config plugin not applied); lock-screen controls need a dev/EAS build. */
+const LOCK_SCREEN_AVAILABLE = Constants.appOwnership !== AppOwnership.Expo;
 
 const PlayerContext = createContext<Player | null>(null);
 
@@ -380,14 +383,12 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         pendingSeekIssued.current = 0;
         if (startSec > 0) player.seekTo(startSec).catch(() => undefined);
         player.play();
-        try {
+        if (LOCK_SCREEN_AVAILABLE) {
           player.setActiveForLockScreen(true, {
             title: scriptureTitle(s, locale),
             artist: v === "chant" && a.chant ? a.chant.performer : dict.siteName,
             albumTitle: locale === "en" ? "Scriptures & prayers" : "Kinh & văn khấn",
           });
-        } catch {
-          // lock-screen controls need the native media service (dev build)
         }
         recordHistory(slug, startSec);
       } catch (e) {
@@ -438,11 +439,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     finishHandled.current = true;
     pendingSeek.current = null;
     player.pause();
-    try {
-      player.clearLockScreenControls();
-    } catch {
-      // see above
-    }
+    if (LOCK_SCREEN_AVAILABLE) player.clearLockScreenControls();
     // Android rejects replace(null); keep the source loaded but idle.
     player.seekTo(0).catch(() => undefined);
     setTrack(null);
