@@ -92,9 +92,9 @@ export function ScriptureRow({
           ) : null}
           {audio ? (
             <View style={[styles.badge, styles.audioBadge, { backgroundColor: theme.primarySoft }]}>
-              <Ionicons name="headset" size={10} color={theme.primaryText} />
+              <Ionicons name={audio.chant ? "mic" : "headset"} size={10} color={theme.primaryText} />
               <AppText variant="caption" tone="primary" weight={600} style={{ fontSize: 10 }}>
-                {formatTime(audio.durationSec)}
+                {formatTime((audio.chant ?? audio).durationSec)}
               </AppText>
             </View>
           ) : null}

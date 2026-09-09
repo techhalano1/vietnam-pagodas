@@ -19,6 +19,19 @@ export interface AudioLabels {
   seek: string;
   voiceNote: string;
   download: string;
+  voice: string;
+  voiceChant: string;
+  voiceAi: string;
+  /** Attribution line for the chant, already formatted. */
+  chantNote: string;
+  chantBy: string;
+}
+
+export interface ChantSource {
+  src: string;
+  durationSec: number;
+  performer: string;
+  sourceUrl: string;
 }
 
 interface Props {
@@ -27,25 +40,49 @@ interface Props {
   durationSec: number;
   cues: AudioCue[];
   labels: AudioLabels;
+  /** Real chanted recording; preferred when present (no verse sync). */
+  chant?: ChantSource;
 }
 
 /**
  * Audio player for a scripture page. Verses are server-rendered as <li id={cue.id}>;
  * this component highlights the verse being spoken and lets a click on a verse seek to it.
  */
-export default function ScriptureAudioPlayer({ src, title, durationSec, cues, labels }: Props) {
+export default function ScriptureAudioPlayer({ src: aiSrc, title, durationSec, cues, labels, chant }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [voice, setVoiceState] = useState<"chant" | "ai">(chant ? "chant" : "ai");
+  const isChant = voice === "chant" && !!chant;
+  const src = isChant ? chant.src : aiSrc;
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
-  const [duration, setDuration] = useState(durationSec);
+  const [duration, setDuration] = useState(isChant ? chant.durationSec : durationSec);
   const [speed, setSpeed] = useState(1);
   const [repeat, setRepeat] = useState(1);
   const [round, setRound] = useState(1);
   const [error, setError] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
-  const activeIdx = playing || time > 0 ? cueIndexAt(cues, time) : -1;
+  const activeIdx = !isChant && (playing || time > 0) ? cueIndexAt(cues, time) : -1;
   const startedRef = useRef(false);
   const userScrollAt = useRef(0);
+  const isChantRef = useRef(isChant);
+  // Set when the rendition is switched mid-playback so the new source resumes once it can play.
+  const resumeOnLoad = useRef(false);
+
+  useEffect(() => {
+    isChantRef.current = isChant;
+  }, [isChant]);
+
+  // Switching rendition swaps the <audio src>, which restarts the element from 0.
+  const setVoice = (v: "chant" | "ai") => {
+    if (v === voice || (v === "chant" && !chant)) return;
+    const a = audioRef.current;
+    resumeOnLoad.current = !!a && !a.paused;
+    setVoiceState(v);
+    setTime(0);
+    setRound(1);
+    setError(false);
+    setDuration(v === "chant" && chant ? chant.durationSec : durationSec);
+  };
 
   // Manual scrolling pauses auto-follow for a few seconds.
   useEffect(() => {
@@ -77,7 +114,7 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
   // Click a verse → seek to it (only once playback has been started).
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (!startedRef.current) return;
+      if (!startedRef.current || isChantRef.current) return;
       const target = e.target as HTMLElement | null;
       if (!target || target.closest("a,button")) return;
       const li = target.closest("li[data-cue-start]") as HTMLElement | null;
@@ -143,6 +180,11 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => {
           if (Number.isFinite(e.currentTarget.duration)) setDuration(e.currentTarget.duration);
+          e.currentTarget.playbackRate = speed;
+          if (resumeOnLoad.current) {
+            resumeOnLoad.current = false;
+            e.currentTarget.play().catch(() => setError(true));
+          }
         }}
         onEnded={onEnded}
         onError={() => setError(true)}
@@ -169,7 +211,11 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
           <div className="min-w-0 flex-1">
             <div className="flex items-baseline justify-between gap-2 text-xs text-stone-500 dark:text-stone-400">
               <span className="truncate font-medium text-stone-800 dark:text-stone-100">
-                {activeIdx >= 0 ? `${title} · ${activeIdx + 1}/${cues.length}` : title}
+                {activeIdx >= 0
+                  ? `${title} · ${activeIdx + 1}/${cues.length}`
+                  : isChant
+                    ? `${title} · ${labels.chantBy} ${chant.performer}`
+                    : title}
               </span>
               <span className="shrink-0 tabular-nums">
                 {formatTime(time)} / {formatTime(duration)}
@@ -201,6 +247,19 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
 
         {showOptions && (
           <div className="mt-3 grid gap-3 border-t border-stone-100 pt-3 text-xs dark:border-stone-800 sm:grid-cols-2">
+            {chant && (
+              <div className="sm:col-span-2">
+                <div className="mb-1 font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{labels.voice}</div>
+                <div className="flex flex-wrap gap-1.5">
+                  <Chip active={isChant} onClick={() => setVoice("chant")}>
+                    {labels.voiceChant} · {formatTime(chant.durationSec)}
+                  </Chip>
+                  <Chip active={!isChant} onClick={() => setVoice("ai")}>
+                    {labels.voiceAi} · {formatTime(durationSec)}
+                  </Chip>
+                </div>
+              </div>
+            )}
             <div>
               <div className="mb-1 font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{labels.speed}</div>
               <div className="flex flex-wrap gap-1.5">
@@ -229,7 +288,22 @@ export default function ScriptureAudioPlayer({ src, title, durationSec, cues, la
               </div>
             </div>
             <p className="text-stone-500 dark:text-stone-400 sm:col-span-2">
-              {labels.voiceNote}{" "}
+              {isChant ? (
+                <>
+                  {labels.chantNote}{" "}
+                  <a
+                    href={chant.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-700 hover:underline dark:text-amber-400"
+                  >
+                    ph.tinhtong.vn
+                  </a>
+                  {" · "}
+                </>
+              ) : (
+                <>{labels.voiceNote} </>
+              )}
               <a href={src} download className="text-amber-700 hover:underline dark:text-amber-400">
                 {labels.download}
               </a>

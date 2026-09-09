@@ -272,6 +272,13 @@ export interface Dict {
   clearDownloads: string;
   audioError: string;
   seekLabel: string;
+  voiceLabel: string;
+  voiceChant: string;
+  voiceAi: string;
+  chantBy: (performer: string) => string;
+  chantCredit: (performer: string, title: string, source: string) => string;
+  skipBack: string;
+  skipForward: string;
 }
 
 const dict: Record<Locale, Dict> = {
@@ -572,6 +579,14 @@ const dict: Record<Locale, Dict> = {
     clearDownloads: "Xoá tất cả",
     audioError: "Không phát được âm thanh. Hãy kiểm tra kết nối mạng.",
     seekLabel: "Thanh tiến trình",
+    voiceLabel: "Giọng đọc",
+    voiceChant: "Bản tụng",
+    voiceAi: "Đọc theo chữ (AI)",
+    chantBy: (p) => `Thầy ${p} tụng`,
+    chantCredit: (p, title, source) =>
+      `Bản tụng: Thầy ${p} — “${title}”. Nguồn: ${source} (ấn tống, phát miễn phí). Bản tụng không đồng bộ từng câu với chữ; chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
+    skipBack: "Lùi 30 giây",
+    skipForward: "Tiến 30 giây",
   },
   en: {
     siteName: "Vietnam Pagodas",
@@ -873,6 +888,14 @@ const dict: Record<Locale, Dict> = {
     clearDownloads: "Remove all",
     audioError: "Could not play audio. Please check your connection.",
     seekLabel: "Progress bar",
+    voiceLabel: "Voice",
+    voiceChant: "Chanted recording",
+    voiceAi: "Read-along (AI)",
+    chantBy: (p) => `Chanted by Ven. ${p}`,
+    chantCredit: (p, title, source) =>
+      `Chanted by Ven. ${p} — “${title}”. Source: ${source} (free Dharma distribution). The chant is not synced to the text; choose “Read-along” to highlight the current verse.`,
+    skipBack: "Back 30 seconds",
+    skipForward: "Forward 30 seconds",
   },
 };
 

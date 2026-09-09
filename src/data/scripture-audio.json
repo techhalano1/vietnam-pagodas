@@ -53,7 +53,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "7f4cf78177bb6505db4a85facb7e7ac17e1f402e"
+    "fingerprint": "7f4cf78177bb6505db4a85facb7e7ac17e1f402e",
+    "chant": {
+      "file": "kinh/chu-vang-sanh-tung.mp3",
+      "durationSec": 604.61,
+      "bytes": 2418971,
+      "performer": "Thích Huệ Duyên",
+      "title": "Chú Vãng Sanh (21 biến)",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Hue%20Duyen%20tung%20niem/Ch%C3%BA%20V%C3%A3ng%20Sanh%20(21%20bi%E1%BA%BFn)%20-%20T%20Hu%E1%BB%87%20Duy%C3%AAn.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "khan-tam-bao": {
     "file": "kinh/khan-tam-bao.mp3",
@@ -600,7 +611,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "af12f52c1f0427a2c8f2387f2c66590b4444dbb6"
+    "fingerprint": "af12f52c1f0427a2c8f2387f2c66590b4444dbb6",
+    "chant": {
+      "file": "kinh/chu-dai-bi-tung.mp3",
+      "durationSec": 1124.16,
+      "bytes": 4497185,
+      "performer": "Thích Trí Thoát",
+      "title": "Chú Đại Bi (5 biến)",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Ch%C3%BA%20%C4%90%E1%BA%A1i%20Bi%20(5%20bi%E1%BA%BFn).mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "bat-nha-tam-kinh": {
     "file": "kinh/bat-nha-tam-kinh.mp3",
@@ -691,7 +713,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "ed6342206966281e1ff1a12a2c9e9412b19e0b29"
+    "fingerprint": "ed6342206966281e1ff1a12a2c9e9412b19e0b29",
+    "chant": {
+      "file": "kinh/bat-nha-tam-kinh-tung.mp3",
+      "durationSec": 2706.7,
+      "bytes": 10827294,
+      "performer": "Thích Trí Thoát",
+      "title": "Bát Nhã Tâm Kinh (21 biến)",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/B%C3%A1t%20Nh%C3%A3%20T%C3%A2m%20Kinh%20(21%20bi%E1%BA%BFn).mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "kinh-a-di-da": {
     "file": "kinh/kinh-a-di-da.mp3",
@@ -842,7 +875,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "e678690472f0779f5f0abe0a27aa7777262bb952"
+    "fingerprint": "e678690472f0779f5f0abe0a27aa7777262bb952",
+    "chant": {
+      "file": "kinh/kinh-a-di-da-tung.mp3",
+      "durationSec": 3602.93,
+      "bytes": 14412136,
+      "performer": "Thích Trí Thoát",
+      "title": "Kinh A Di Đà - Âm",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Kinh%20A%20Di%20%C4%90%C3%A0%20-%20%C3%82m%20~DPA%201482.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "kinh-pho-mon": {
     "file": "kinh/kinh-pho-mon.mp3",
@@ -993,7 +1037,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "a5f5629f35545e24834923746192db4e5196d836"
+    "fingerprint": "a5f5629f35545e24834923746192db4e5196d836",
+    "chant": {
+      "file": "kinh/kinh-pho-mon-tung.mp3",
+      "durationSec": 4020.62,
+      "bytes": 16082846,
+      "performer": "Thích Trí Thoát",
+      "title": "Kinh Phổ Môn - Âm",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Kinh%20Ph%E1%BB%95%20M%C3%B4n%20-%20%C3%82m.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "kinh-duoc-su": {
     "file": "kinh/kinh-duoc-su.mp3",
@@ -1074,7 +1129,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "4c179b674ff62fa6b35a2cf79bd489e52776c74b"
+    "fingerprint": "4c179b674ff62fa6b35a2cf79bd489e52776c74b",
+    "chant": {
+      "file": "kinh/kinh-duoc-su-tung.mp3",
+      "durationSec": 4644.79,
+      "bytes": 18579463,
+      "performer": "Thích Trí Thoát",
+      "title": "Kinh Dược Sư",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Kinh%20D%C6%B0%E1%BB%A3c%20S%C6%B0.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "kinh-dia-tang": {
     "file": "kinh/kinh-dia-tang.mp3",
@@ -1226,7 +1292,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "8b2c8cd87b937bce9f8bc00c29118f7c976985ea"
+    "fingerprint": "8b2c8cd87b937bce9f8bc00c29118f7c976985ea",
+    "chant": {
+      "file": "kinh/kinh-vu-lan-bon-tung.mp3",
+      "durationSec": 4342.54,
+      "bytes": 17370428,
+      "performer": "Thích Trí Thoát",
+      "title": "Kinh Vu Lan",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Kinh%20Vu%20Lan.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "kinh-bao-an-cha-me": {
     "file": "kinh/kinh-bao-an-cha-me.mp3",
@@ -1610,7 +1687,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "cdd12a1894fb2ba8904d08b69bd2ea9cd2e5b068"
+    "fingerprint": "cdd12a1894fb2ba8904d08b69bd2ea9cd2e5b068",
+    "chant": {
+      "file": "kinh/sam-hoi-hong-danh-tung.mp3",
+      "durationSec": 3157.58,
+      "bytes": 12630573,
+      "performer": "Thích Trí Thoát",
+      "title": "Sám Hối Hồng Danh",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/S%C3%A1m%20H%E1%BB%91i%20H%E1%BB%93ng%20Danh.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "luc-tu-dai-minh": {
     "file": "kinh/luc-tu-dai-minh.mp3",
@@ -1717,7 +1805,18 @@
       }
     ],
     "generatedAt": "2026-09-09",
-    "fingerprint": "93da9af21fb2686c40de987b9d17d672d09b6af2"
+    "fingerprint": "93da9af21fb2686c40de987b9d17d672d09b6af2",
+    "chant": {
+      "file": "kinh/thap-chu-tung.mp3",
+      "durationSec": 269.83,
+      "bytes": 1079581,
+      "performer": "Thích Trí Thoát",
+      "title": "Thập Chú",
+      "source": "Pháp Hạnh (ph.tinhtong.vn)",
+      "sourceUrl": "https://ph.tinhtong.vn/Home/MP3",
+      "originalUrl": "https://ph.tinhtong.vn/ftp/MP3/-%20T%20Tri%20Thoat%20tung%20niem/Th%E1%BA%ADp%20Ch%C3%BA%20~update%2029-07-2023.mp3",
+      "license": "Ấn tống — phát hành miễn phí, phi thương mại; bản quyền thuộc Pháp Hạnh và người tụng. Free Dharma distribution, non-commercial; © Pháp Hạnh and the reciter."
+    }
   },
   "cong-phu-sang": {
     "file": "kinh/cong-phu-sang.mp3",

@@ -33,7 +33,7 @@ import {
   yearAnimalEn,
   yearCanChi,
 } from "@/lib/lunar";
-import { formatTime, getAudio } from "@/lib/audio";
+import { formatTime, getAudio, trackOf } from "@/lib/audio";
 import { usePlayer } from "@/lib/player";
 import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
@@ -83,7 +83,9 @@ export default function HomeScreen() {
   const player = usePlayer();
   const lastListen = player.history.find((e) => e.slug !== player.track?.slug && getScripture(e.slug));
   const lastListenS = lastListen ? getScripture(lastListen.slug) : undefined;
-  const lastListenAudio = lastListen ? getAudio(lastListen.slug) : undefined;
+  const lastListenA = lastListen ? getAudio(lastListen.slug) : undefined;
+  const lastListenAudio =
+    lastListen && lastListenA ? trackOf(lastListenA, lastListen.voice ?? "ai") : undefined;
   const canChi = locale === "en" ? yearAnimalEn(lunar.year) : yearCanChi(lunar.year);
   const todayHolidays = holidaysOn(lunar);
   const next = daysUntilNextObservance(now);

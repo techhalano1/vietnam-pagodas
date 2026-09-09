@@ -7,7 +7,24 @@ export interface AudioCue {
   end: number;
 }
 
+/** A real chanted recording (no per-verse cues). */
+export interface ChantTrack {
+  file: string;
+  durationSec: number;
+  bytes: number;
+  /** Monk / reciter credited for the recording. */
+  performer: string;
+  /** Original track title at the source. */
+  title: string;
+  source: string;
+  sourceUrl: string;
+  /** Direct link to the original file at the source. */
+  originalUrl?: string;
+  license: string;
+}
+
 export interface ScriptureAudio {
+  /** AI read-along track (matches the verses, has cues). */
   file: string;
   durationSec: number;
   bytes: number;
@@ -15,6 +32,16 @@ export interface ScriptureAudio {
   model: string;
   cues: AudioCue[];
   generatedAt: string;
+  chant?: ChantTrack;
+}
+
+/** Which rendition to play: a real chant when available, or the AI read-along voice. */
+export type Voice = "chant" | "ai";
+
+export interface Track {
+  file: string;
+  durationSec: number;
+  bytes: number;
 }
 
 const audio = audioJson as Record<string, ScriptureAudio>;
@@ -36,8 +63,22 @@ export function hasAudio(slug: string): boolean {
   return slug in audio;
 }
 
-export function audioUrl(a: ScriptureAudio): string {
-  return `${AUDIO_BASE_URL}/${a.file}`;
+export function audioUrl(t: Track): string {
+  return `${AUDIO_BASE_URL}/${t.file}`;
+}
+
+/** Resolve the preferred voice for a scripture (falls back to AI when no chant exists). */
+export function resolveVoice(a: ScriptureAudio, pref: Voice): Voice {
+  return pref === "chant" && a.chant ? "chant" : "ai";
+}
+
+export function trackOf(a: ScriptureAudio, voice: Voice): Track {
+  return voice === "chant" && a.chant ? a.chant : a;
+}
+
+/** Storage key for offline downloads; AI tracks keep the bare slug for backwards compatibility. */
+export function downloadKey(slug: string, voice: Voice): string {
+  return voice === "chant" ? `${slug}#chant` : slug;
 }
 
 /** Index of the verse being spoken at `time` (or the one just spoken during a gap). */

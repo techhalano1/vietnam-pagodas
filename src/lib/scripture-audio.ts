@@ -6,7 +6,22 @@ export interface AudioCue {
   end: number;
 }
 
+/** A real chanted recording (no per-verse cues). */
+export interface ChantTrack {
+  file: string;
+  durationSec: number;
+  bytes: number;
+  performer: string;
+  title: string;
+  source: string;
+  sourceUrl: string;
+  /** Direct link to the original file at the source. */
+  originalUrl?: string;
+  license: string;
+}
+
 export interface ScriptureAudio {
+  /** AI read-along track that matches the verses and carries cues. */
   file: string;
   durationSec: number;
   bytes: number;
@@ -14,6 +29,7 @@ export interface ScriptureAudio {
   model: string;
   cues: AudioCue[];
   generatedAt: string;
+  chant?: ChantTrack;
 }
 
 const audio = audioJson as Record<string, ScriptureAudio>;
@@ -22,8 +38,13 @@ export function getScriptureAudio(slug: string): ScriptureAudio | undefined {
   return audio[slug];
 }
 
-export function scriptureAudioUrl(a: ScriptureAudio): string {
-  return `/audio/${a.file}`;
+export function scriptureAudioUrl(t: { file: string }): string {
+  return `/audio/${t.file}`;
+}
+
+/** Duration shown in listings: the chant when one exists, else the AI track. */
+export function primaryDuration(a: ScriptureAudio): number {
+  return (a.chant ?? a).durationSec;
 }
 
 export function cueIndexAt(cues: AudioCue[], time: number): number {

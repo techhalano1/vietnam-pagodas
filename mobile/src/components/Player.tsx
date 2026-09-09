@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Linking,
   Pressable,
   StyleSheet,
   View,
@@ -12,6 +13,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import {
+  downloadKey,
   formatBytes,
   formatTime,
   REPEAT_OPTIONS,
@@ -126,7 +128,8 @@ export function PlayerBar({ bottomInset }: { bottomInset: number }) {
   const [sheet, setSheet] = useState(false);
   const sleep = useSleepCountdown();
   if (!p.track || !p.audio) return null;
-  const total = p.audio.cues.length;
+  const chant = p.voice === "chant" ? p.audio.chant : undefined;
+  const position = p.cues ? t.readingProgress(p.verseIndex + 1, p.cues.length) : chant ? t.chantBy(chant.performer) : "";
 
   return (
     <View
@@ -141,8 +144,8 @@ export function PlayerBar({ bottomInset }: { bottomInset: number }) {
         <AppText variant="caption" tone="text3">
           {formatTime(p.status.currentTime)}
         </AppText>
-        <AppText variant="caption" tone="text2" weight={600}>
-          {t.readingProgress(p.verseIndex + 1, total)}
+        <AppText variant="caption" tone="text2" weight={600} numberOfLines={1} style={{ flex: 1, textAlign: "center" }}>
+          {position}
           {p.repeat > 1 ? ` · ${t.repeatProgress(Math.min(p.repeatDone + 1, p.repeat), p.repeat)}` : ""}
           {sleep ? ` · ${t.sleepRemaining(sleep)}` : ""}
         </AppText>
@@ -152,9 +155,19 @@ export function PlayerBar({ bottomInset }: { bottomInset: number }) {
       </View>
       <View style={styles.controls}>
         <IconButton icon="options-outline" label={t.playbackOptions} onPress={() => setSheet(true)} size={40} />
-        <IconButton icon="play-skip-back" label={t.prevVerse} onPress={() => p.skipVerse(-1)} size={44} />
+        <IconButton
+          icon={p.cues ? "play-skip-back" : "play-back"}
+          label={p.cues ? t.prevVerse : t.skipBack}
+          onPress={() => p.skipVerse(-1)}
+          size={44}
+        />
         <PlayPauseButton />
-        <IconButton icon="play-skip-forward" label={t.nextVerse} onPress={() => p.skipVerse(1)} size={44} />
+        <IconButton
+          icon={p.cues ? "play-skip-forward" : "play-forward"}
+          label={p.cues ? t.nextVerse : t.skipForward}
+          onPress={() => p.skipVerse(1)}
+          size={44}
+        />
         <IconButton
           icon="close"
           label={t.playerClose}
@@ -176,11 +189,33 @@ export function PlaybackSheet({ open, onClose }: { open: boolean; onClose: () =>
   const { theme, t } = useSettings();
   const p = usePlayer();
   const slug = p.track?.slug;
-  const dl = slug ? p.downloads[slug] : undefined;
-  const busy = !!slug && p.downloading.includes(slug);
+  const key = slug ? downloadKey(slug, p.voice) : undefined;
+  const dl = key ? p.downloads[key] : undefined;
+  const busy = !!key && p.downloading.includes(key);
+  const chant = p.audio?.chant;
+  const aiDuration = p.audio?.durationSec ?? 0;
   return (
     <Sheet open={open} onClose={onClose} title={t.playbackOptions}>
       <View style={{ paddingHorizontal: space.screen, gap: 18, paddingBottom: 8 }}>
+        {chant ? (
+          <View style={{ gap: 8 }}>
+            <AppText variant="overline" tone="text2">
+              {t.voiceLabel}
+            </AppText>
+            <View style={styles.chips}>
+              <Chip
+                label={`${t.voiceChant} · ${formatTime(chant.durationSec)}`}
+                active={p.voice === "chant"}
+                onPress={() => p.setVoice("chant")}
+              />
+              <Chip
+                label={`${t.voiceAi} · ${formatTime(aiDuration)}`}
+                active={p.voice === "ai"}
+                onPress={() => p.setVoice("ai")}
+              />
+            </View>
+          </View>
+        ) : null}
         <View style={{ gap: 8 }}>
           <AppText variant="overline" tone="text2">
             {t.speedLabel}
@@ -231,8 +266,8 @@ export function PlaybackSheet({ open, onClose }: { open: boolean; onClose: () =>
             disabled={busy}
             onPress={() => {
               haptics.tap();
-              if (dl) p.removeDownload(slug);
-              else p.download(slug).catch(() => undefined);
+              if (dl) p.removeDownload(slug, p.voice);
+              else p.download(slug, p.voice).catch(() => undefined);
             }}
             style={({ pressed }) => [
               styles.download,
@@ -255,15 +290,26 @@ export function PlaybackSheet({ open, onClose }: { open: boolean; onClose: () =>
                 {busy ? t.downloadingLabel : dl ? t.downloadedLabel : t.downloadBtn}
               </AppText>
               <AppText variant="bodyS" tone="text2">
-                {formatBytes(dl?.bytes ?? p.audio.bytes)}
+                {formatBytes(dl?.bytes ?? (p.current ?? p.audio).bytes)}
                 {dl ? ` · ${t.removeDownload}` : ""}
               </AppText>
             </View>
           </Pressable>
         ) : null}
-        <AppText variant="caption" tone="text3">
-          {t.audioVoiceNote}
-        </AppText>
+        {p.voice === "chant" && chant ? (
+          <Pressable
+            accessibilityRole="link"
+            onPress={() => Linking.openURL(chant.sourceUrl).catch(() => undefined)}
+          >
+            <AppText variant="caption" tone="text3">
+              {t.chantCredit(chant.performer, chant.title, chant.source)}
+            </AppText>
+          </Pressable>
+        ) : (
+          <AppText variant="caption" tone="text3">
+            {t.audioVoiceNote}
+          </AppText>
+        )}
       </View>
     </Sheet>
   );
@@ -291,7 +337,12 @@ export function MiniPlayer() {
   const p = usePlayer();
   const router = useRouter();
   if (!p.track || !p.audio) return null;
-  const total = p.audio.cues.length;
+  const chant = p.voice === "chant" ? p.audio.chant : undefined;
+  const position = p.cues
+    ? t.readingProgress(p.verseIndex + 1, p.cues.length)
+    : chant
+      ? t.chantBy(chant.performer)
+      : t.nowPlaying;
   return (
     <Pressable
       accessibilityRole="button"
@@ -315,8 +366,7 @@ export function MiniPlayer() {
             {scriptureTitle(p.track, locale)}
           </AppText>
           <AppText variant="caption" tone="text2" numberOfLines={1}>
-            {t.readingProgress(p.verseIndex + 1, total)} · {formatTime(p.status.currentTime)} /{" "}
-            {formatTime(p.status.duration)}
+            {position} · {formatTime(p.status.currentTime)} / {formatTime(p.status.duration)}
           </AppText>
         </View>
         <PlayPauseButton size={40} />

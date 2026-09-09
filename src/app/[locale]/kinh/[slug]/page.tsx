@@ -164,7 +164,36 @@ export default function ScripturePage({
           title={title}
           durationSec={audio.durationSec}
           cues={audio.cues}
-          labels={t.audio}
+          chant={
+            audio.chant
+              ? {
+                  src: scriptureAudioUrl(audio.chant),
+                  durationSec: audio.chant.durationSec,
+                  performer: audio.chant.performer,
+                  sourceUrl: audio.chant.sourceUrl,
+                }
+              : undefined
+          }
+          labels={{
+            listen: t.audio.listen,
+            play: t.audio.play,
+            pause: t.audio.pause,
+            speed: t.audio.speed,
+            repeat: t.audio.repeat,
+            repeatOnce: t.audio.repeatOnce,
+            repeatUnit: t.audio.repeatUnit,
+            round: t.audio.round,
+            seek: t.audio.seek,
+            voiceNote: t.audio.voiceNote,
+            download: t.audio.download,
+            voice: t.audio.voice,
+            voiceChant: t.audio.voiceChant,
+            voiceAi: t.audio.voiceAi,
+            chantBy: t.audio.chantBy,
+            chantNote: audio.chant
+              ? t.audio.chantNote(audio.chant.performer, audio.chant.title, audio.chant.source)
+              : "",
+          }}
         />
       )}
 
@@ -183,6 +212,20 @@ export default function ScripturePage({
           <span className="font-medium">{t.licenseLabel}:</span> {s.source.license}
         </p>
         {s.source.note && <p className="mt-1 text-stone-500 dark:text-stone-400">{s.source.note}</p>}
+        {audio?.chant && (
+          <p className="mt-2 text-stone-500 dark:text-stone-400">
+            {t.audio.chantCredit(audio.chant.performer, audio.chant.source)}{" "}
+            <a
+              href={audio.chant.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-700 hover:underline dark:text-amber-400"
+            >
+              ph.tinhtong.vn
+            </a>
+            . {audio.chant.license}
+          </p>
+        )}
         <p className="mt-3 text-stone-500 dark:text-stone-400">{t.appPromo}</p>
       </section>
 

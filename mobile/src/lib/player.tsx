@@ -11,7 +11,20 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { audioUrl, cueIndexAt, getAudio, SPEEDS, type ScriptureAudio, type Speed } from "./audio";
+import {
+  audioUrl,
+  cueIndexAt,
+  downloadKey,
+  getAudio,
+  resolveVoice,
+  SPEEDS,
+  trackOf,
+  type AudioCue,
+  type ScriptureAudio,
+  type Speed,
+  type Track,
+  type Voice,
+} from "./audio";
 import { getScripture, scriptureTitle } from "./scriptures";
 import { useSettings } from "./settings";
 import type { Scripture } from "./types";
@@ -23,6 +36,8 @@ export interface ListenEntry {
   at: number;
   /** How many full passes were completed. */
   completed: number;
+  /** Rendition the position refers to (missing in entries saved before chants existed). */
+  voice?: Voice;
 }
 
 export interface DownloadEntry {
@@ -42,11 +57,20 @@ interface PlayerStatus {
 interface Player {
   track: Scripture | null;
   audio: ScriptureAudio | null;
+  /** Rendition of the loaded track. */
+  voice: Voice;
+  /** Preferred rendition for new tracks (persisted). */
+  voicePref: Voice;
+  setVoice: (v: Voice) => void;
+  /** The file actually playing (chant or AI). */
+  current: Track | null;
+  /** Verse cues for the loaded track; null while a chant plays (no verse alignment). */
+  cues: AudioCue[] | null;
   status: PlayerStatus;
-  /** Index of the verse currently being spoken (0 when idle). */
+  /** Index of the verse currently being spoken (-1 when idle or without cues). */
   verseIndex: number;
   error: string | null;
-  play: (slug: string, opts?: { verse?: number; resume?: boolean }) => void;
+  play: (slug: string, opts?: { verse?: number; resume?: boolean; voice?: Voice }) => void;
   toggle: () => void;
   stop: () => void;
   seekTo: (sec: number) => void;
@@ -60,10 +84,11 @@ interface Player {
   sleepUntil: number | null;
   setSleepMinutes: (min: number) => void;
   history: ListenEntry[];
+  /** Keyed by `downloadKey(slug, voice)`. */
   downloads: Record<string, DownloadEntry>;
   downloading: string[];
-  download: (slug: string) => Promise<void>;
-  removeDownload: (slug: string) => void;
+  download: (slug: string, voice?: Voice) => Promise<void>;
+  removeDownload: (slug: string, voice?: Voice) => void;
   clearDownloads: () => void;
 }
 
@@ -101,7 +126,9 @@ function parseHistory(raw: string | null): ListenEntry[] {
       typeof e.completed === "number" &&
       getScripture(e.slug)
     ) {
-      out.push({ slug: e.slug, positionSec: e.positionSec, at: e.at, completed: e.completed });
+      const entry: ListenEntry = { slug: e.slug, positionSec: e.positionSec, at: e.at, completed: e.completed };
+      if (e.voice === "chant" || e.voice === "ai") entry.voice = e.voice;
+      out.push(entry);
     }
   }
   return out;
@@ -123,11 +150,12 @@ function parseDownloads(raw: string | null): Record<string, DownloadEntry> {
   return out;
 }
 
-function parsePrefs(raw: string | null): { speed: Speed; repeat: number } {
+function parsePrefs(raw: string | null): { speed: Speed; repeat: number; voice: Voice } {
   const v = parseJson(raw);
   const speed = isRecord(v) && SPEEDS.includes(v.speed as Speed) ? (v.speed as Speed) : 1;
   const repeat = isRecord(v) && typeof v.repeat === "number" && v.repeat >= 1 ? v.repeat : 1;
-  return { speed, repeat };
+  const voice: Voice = isRecord(v) && v.voice === "ai" ? "ai" : "chant";
+  return { speed, repeat, voice };
 }
 
 const audioDir = () => new Directory(Paths.document, "audio");
@@ -138,6 +166,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const raw = useAudioPlayerStatus(player);
 
   const [track, setTrack] = useState<Scripture | null>(null);
+  const [voice, setVoiceState] = useState<Voice>("chant");
+  const [voicePref, setVoicePref] = useState<Voice>("chant");
   const [error, setError] = useState<string | null>(null);
   const [speed, setSpeedState] = useState<Speed>(1);
   const [repeat, setRepeatState] = useState(1);
@@ -157,6 +187,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }, [track]);
 
   const audio = useMemo(() => (track ? getAudio(track.slug) ?? null : null), [track]);
+  const current = useMemo(() => (audio ? trackOf(audio, voice) : null), [audio, voice]);
+  const cues = useMemo(() => (audio && voice === "ai" ? audio.cues : null), [audio, voice]);
 
   const status: PlayerStatus = useMemo(
     () =>
@@ -164,17 +196,17 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         ? {
             playing: raw.playing,
             currentTime: Number.isFinite(raw.currentTime) ? raw.currentTime : 0,
-            duration: Number.isFinite(raw.duration) && raw.duration > 0 ? raw.duration : audio?.durationSec ?? 0,
+            duration: Number.isFinite(raw.duration) && raw.duration > 0 ? raw.duration : current?.durationSec ?? 0,
             isBuffering: raw.isBuffering,
             isLoaded: raw.isLoaded,
           }
         : IDLE,
-    [track, raw, audio],
+    [track, raw, current],
   );
 
   const verseIndex = useMemo(
-    () => (audio ? cueIndexAt(audio.cues, status.currentTime) : 0),
-    [audio, status.currentTime],
+    () => (cues ? cueIndexAt(cues, status.currentTime) : -1),
+    [cues, status.currentTime],
   );
 
   // Load persisted prefs / history / downloads.
@@ -188,6 +220,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         const prefs = parsePrefs(p[1]);
         setSpeedState(prefs.speed);
         setRepeatState(prefs.repeat);
+        setVoicePref(prefs.voice);
         setDownloads(parseDownloads(d[1]));
       } finally {
         if (!cancelled) setReady(true);
@@ -205,8 +238,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!ready) return;
-    AsyncStorage.setItem(PREFS_KEY, JSON.stringify({ speed, repeat })).catch(() => undefined);
-  }, [ready, speed, repeat]);
+    AsyncStorage.setItem(PREFS_KEY, JSON.stringify({ speed, repeat, voice: voicePref })).catch(() => undefined);
+  }, [ready, speed, repeat, voicePref]);
 
   useEffect(() => {
     if (!ready) return;
@@ -218,6 +251,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     AsyncStorage.setItem(DOWNLOADS_KEY, JSON.stringify(downloads)).catch(() => undefined);
   }, [ready, downloads]);
 
+  const voiceRef = useRef<Voice>("chant");
+  useEffect(() => {
+    voiceRef.current = voice;
+  }, [voice]);
+
   const recordHistory = useCallback((slug: string, positionSec: number, completedDelta = 0) => {
     setHistory((h) => {
       const prev = h.find((e) => e.slug === slug);
@@ -226,6 +264,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         positionSec: Math.max(0, positionSec),
         at: Date.now(),
         completed: (prev?.completed ?? 0) + completedDelta,
+        voice: voiceRef.current,
       };
       return [entry, ...h.filter((e) => e.slug !== slug)].slice(0, HISTORY_MAX);
     });
@@ -282,7 +321,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }, [sleepUntil, player]);
 
   const sourceFor = useCallback(
-    (slug: string, a: ScriptureAudio) => downloads[slug]?.uri ?? audioUrl(a),
+    (slug: string, t: Track, v: Voice) => downloads[downloadKey(slug, v)]?.uri ?? audioUrl(t),
     [downloads],
   );
 
@@ -292,13 +331,19 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       const a = getAudio(slug);
       if (!s || !a) return;
       setError(null);
-      const sameTrack = trackRef.current?.slug === slug;
+      // Seeking to a verse needs cues, so it always targets the AI rendition.
+      const v: Voice =
+        typeof opts?.verse === "number" ? "ai" : resolveVoice(a, opts?.voice ?? voicePref);
+      const t = trackOf(a, v);
+      const sameTrack = trackRef.current?.slug === slug && voiceRef.current === v;
       let startSec = 0;
       if (typeof opts?.verse === "number") {
         startSec = a.cues[Math.min(opts.verse, a.cues.length - 1)]?.start ?? 0;
       } else if (opts?.resume) {
         const h = history.find((e) => e.slug === slug);
-        if (h && h.positionSec > 2 && h.positionSec < a.durationSec - 2) startSec = h.positionSec;
+        if (h && (h.voice ?? "ai") === v && h.positionSec > 2 && h.positionSec < t.durationSec - 2) {
+          startSec = h.positionSec;
+        }
       }
       if (sameTrack && raw.isLoaded) {
         const atEnd = raw.duration > 0 && raw.currentTime >= raw.duration - 0.5;
@@ -314,14 +359,16 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         finishHandled.current = false;
         setRepeatDone(0);
         setTrack(s);
-        player.replace({ uri: sourceFor(slug, a) });
+        setVoiceState(v);
+        voiceRef.current = v;
+        player.replace({ uri: sourceFor(slug, t, v) });
         player.setPlaybackRate(speed, "high");
         pendingSeek.current = startSec > 0 ? startSec : null;
         player.play();
         try {
           player.setActiveForLockScreen(true, {
             title: scriptureTitle(s, locale),
-            artist: "Vietnam Pagodas",
+            artist: v === "chant" && a.chant ? a.chant.performer : "Vietnam Pagodas",
             albumTitle: locale === "en" ? "Scriptures & prayers" : "Kinh & văn khấn",
           });
         } catch {
@@ -332,7 +379,21 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, recordHistory],
+    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, recordHistory, voicePref],
+  );
+
+  const setVoice = useCallback(
+    (v: Voice) => {
+      setVoicePref(v);
+      const t = trackRef.current;
+      if (!t || voiceRef.current === v) return;
+      const a = getAudio(t.slug);
+      if (!a || (v === "chant" && !a.chant)) return;
+      const wasPlaying = raw.playing;
+      play(t.slug, { voice: v });
+      if (!wasPlaying) player.pause();
+    },
+    [play, player, raw.playing],
   );
 
   const toggle = useCallback(() => {
@@ -380,14 +441,21 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
 
   const seekToVerse = useCallback(
     (index: number) => {
-      if (!audio) return;
-      const cue = audio.cues[Math.max(0, Math.min(index, audio.cues.length - 1))];
+      if (!cues) return;
+      const cue = cues[Math.max(0, Math.min(index, cues.length - 1))];
       if (cue) seekTo(cue.start);
     },
-    [audio, seekTo],
+    [cues, seekTo],
   );
 
-  const skipVerse = useCallback((delta: number) => seekToVerse(verseIndex + delta), [seekToVerse, verseIndex]);
+  // Without cues (chant), skipping moves by 30 s instead of by verse.
+  const skipVerse = useCallback(
+    (delta: number) => {
+      if (cues) seekToVerse(verseIndex + delta);
+      else seekTo(status.currentTime + delta * 30);
+    },
+    [cues, seekToVerse, verseIndex, seekTo, status.currentTime],
+  );
 
   const setSpeed = useCallback(
     (s: Speed) => {
@@ -407,29 +475,33 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const download = useCallback(
-    async (slug: string) => {
+    async (slug: string, v?: Voice) => {
       const a = getAudio(slug);
-      if (!a || downloads[slug] || downloading.includes(slug)) return;
-      setDownloading((d) => [...d, slug]);
+      if (!a) return;
+      const vv = resolveVoice(a, v ?? (trackRef.current?.slug === slug ? voiceRef.current : voicePref));
+      const key = downloadKey(slug, vv);
+      if (downloads[key] || downloading.includes(key)) return;
+      setDownloading((d) => [...d, key]);
       try {
         const dir = audioDir();
         dir.create({ intermediates: true, idempotent: true });
-        const target = new File(dir, `${slug}.mp3`);
+        const target = new File(dir, vv === "chant" ? `${slug}-tung.mp3` : `${slug}.mp3`);
         if (target.exists) target.delete();
-        const file = await File.downloadFileAsync(audioUrl(a), target);
-        setDownloads((d) => ({ ...d, [slug]: { uri: file.uri, bytes: file.size, at: Date.now() } }));
+        const file = await File.downloadFileAsync(audioUrl(trackOf(a, vv)), target);
+        setDownloads((d) => ({ ...d, [key]: { uri: file.uri, bytes: file.size, at: Date.now() } }));
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e));
       } finally {
-        setDownloading((d) => d.filter((x) => x !== slug));
+        setDownloading((d) => d.filter((x) => x !== key));
       }
     },
-    [downloads, downloading],
+    [downloads, downloading, voicePref],
   );
 
-  const removeDownload = useCallback((slug: string) => {
+  const removeDownload = useCallback((slug: string, v?: Voice) => {
+    const key = downloadKey(slug, v ?? (trackRef.current?.slug === slug ? voiceRef.current : "ai"));
     setDownloads((d) => {
-      const e = d[slug];
+      const e = d[key];
       if (!e) return d;
       try {
         const f = new File(e.uri);
@@ -437,7 +509,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       } catch {
         // already gone
       }
-      const { [slug]: _removed, ...rest } = d;
+      const { [key]: _removed, ...rest } = d;
       return rest;
     });
   }, []);
@@ -460,6 +532,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     () => ({
       track,
       audio,
+      voice,
+      voicePref,
+      setVoice,
+      current,
+      cues,
       status,
       verseIndex,
       error,
@@ -484,7 +561,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       clearDownloads,
     }),
     [
-      track, audio, status, verseIndex, error, play, toggle, stop, seekTo, seekToVerse, skipVerse,
+      track, audio, voice, voicePref, setVoice, current, cues, status, verseIndex, error, play, toggle, stop, seekTo, seekToVerse, skipVerse,
       speed, setSpeed, repeat, repeatDone, setRepeat, sleepUntil, setSleepMinutes, history,
       downloads, downloading, download, removeDownload, clearDownloads,
     ],

@@ -34,6 +34,15 @@ description: How to run and E2E-test the Expo/React Native app in mobile/ on the
 ## Recording
 - Enlarge the emulator window for the recording: `wmctrl -i -r <emulator window id> -e 0,20,0,533,1185` and minimize Chrome (`xdotool windowminimize <id>`). Use computer-use `zoom` on region [13,0,354,760] to inspect the phone screen.
 
+## Audio (P3, expo-audio) testing
+- The app streams MP3s from `${SITE_URL}/audio/kinh/<slug>.mp3`; until the PR is deployed serve them locally: repo root `npm run build && npx next start -p 3100`, check `curl -I http://localhost:3100/audio/kinh/chu-dai-bi.mp3` → 200 `audio/mpeg`, then start Metro with `EXPO_PUBLIC_AUDIO_BASE_URL=http://10.0.2.2:3100/audio npx expo start --clear` (10.0.2.2 = host loopback inside the emulator; env vars are baked in at bundle time, so restart Metro with `--clear` after changing them).
+- You cannot hear the emulator; prove playback with the PlayerBar time/`Câu n/N` advancing, the highlighted verse moving, `adb shell dumpsys media_session` / `dumpsys audio` ("players: ... state:started") and by comparing to cue timings in `src/data/scripture-audio.json` (`node -e` to print `cues[i].start`).
+- Short tracks for repeat tests: `chu-vang-sanh` (35 s, 9 cues), `luc-tu-dai-minh` (50 s, 7 cues). At 1.5× a 35 s track finishes in ~23 s.
+- Expo Go (SDK 57) logs `Failed to start expo-audio playback service` / `Failed to activate lock screen controls - service binding failed` — expected there (config plugin not applied); audio still plays. Playback keeps running after `input keyevent KEYCODE_HOME`, but round-boundary auto-repeat may not fire while backgrounded.
+- Offline test: `adb shell svc wifi disable && adb shell svc data disable` (re-enable afterwards). Downloads live in the app's `Paths.document/audio/`; Cá nhân shows `n bài · size`.
+- `am force-stop host.exp.exponent` + relaunch is the way to verify `vp-listen-history` persistence (Home "Tiếp tục nghe" card).
+- Web player (`/[locale]/kinh/[slug]`): Chrome may be launched with `--mute-audio`; rely on the sticky player's `m:ss / M:SS`, `· n/N` title and the amber-ringed `li[data-cue-start]`. Auto-scroll re-centres the active verse on every cue change while playing, so scroll-then-click can hit a different verse than intended — pause first or click quickly.
+
 ## Data facts useful for assertions (as of PR #18)
 - 3,395 sites (3,324 with coordinates → near-me/map counts show 3.324), 34 provinces (Hà Nội 630, Hải Phòng 117, TP. HCM 1018), 100-item pagination ("Xem thêm (3.295)").
 - `chua-cao-linh` has null lat/lng → no Directions button and no mini-map on its detail page; use `dinh-tram-bac` (Hải Phòng, 20.85403/106.57380) or `chua-con-son` to test Directions/mini-map.

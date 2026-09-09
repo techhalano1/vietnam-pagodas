@@ -28,7 +28,7 @@ import {
   SegmentedControl,
   Tag,
 } from "@/components/ui";
-import { formatTime, getAudio } from "@/lib/audio";
+import { formatTime, getAudio, resolveVoice, trackOf } from "@/lib/audio";
 import { SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import { lunarToday, yearCanChi } from "@/lib/lunar";
@@ -70,6 +70,10 @@ export default function ScriptureReader() {
   const s = getScripture(slug ?? "");
   const audio = slug ? getAudio(slug) : undefined;
   const playingThis = !!s && player.track?.slug === s.slug;
+  // The rendition that is (or would be) played for this scripture.
+  const voice = audio ? (playingThis ? player.voice : resolveVoice(audio, player.voicePref)) : "ai";
+  const track = audio ? trackOf(audio, voice) : undefined;
+  const chant = audio && voice === "chant" ? audio.chant : undefined;
 
   const [tab, setTab] = useState<ReaderTab>("read");
   const [current, setCurrent] = useState(0);
@@ -115,7 +119,7 @@ export default function ScriptureReader() {
   // Follow the spoken verse while playing, but back off for a few seconds after
   // the reader scrolls by hand so manual reading is not hijacked.
   const userScrollAt = useRef(0);
-  const followIndex = playingThis && player.status.playing && tab === "read" ? player.verseIndex : -1;
+  const followIndex = playingThis && player.cues && player.status.playing && tab === "read" ? player.verseIndex : -1;
   useEffect(() => {
     if (followIndex < 0) return;
     if (Date.now() - userScrollAt.current < 4000) return;
@@ -156,7 +160,11 @@ export default function ScriptureReader() {
     ? player.status.playing
       ? t.playerPause
       : t.playerPlay
-    : listened && audio && listened.positionSec > 2 && listened.positionSec < audio.durationSec - 2
+    : listened &&
+        track &&
+        (listened.voice ?? "ai") === voice &&
+        listened.positionSec > 2 &&
+        listened.positionSec < track.durationSec - 2
       ? t.listenResume(formatTime(listened.positionSec))
       : t.listenBtn;
 
@@ -233,9 +241,14 @@ export default function ScriptureReader() {
           ) : null}
           <AppText variant="caption" color="rgba(255,255,255,0.85)" style={{ marginTop: 8 }}>
             {t.versesCount(s.verses.length)}
-            {audio ? ` · ${formatTime(audio.durationSec)}` : ""}
+            {track ? ` · ${formatTime(track.durationSec)}` : ""}
             {repeats ? ` · ${t.repeatsHint(repeats)}` : ""}
           </AppText>
+          {chant ? (
+            <AppText variant="caption" color="rgba(255,255,255,0.85)" style={{ marginTop: 2 }}>
+              {t.chantBy(chant.performer)} · {chant.source}
+            </AppText>
+          ) : null}
           {audio ? (
             <Pressable
               accessibilityRole="button"
@@ -369,12 +382,12 @@ export default function ScriptureReader() {
   );
 
   const renderVerse = ({ item, index }: { item: ScriptureVerse; index: number }) => {
-    const spoken = playingThis && index === player.verseIndex;
-    const active = spoken || (!playingThis && index === current);
+    const spoken = playingThis && !!player.cues && index === player.verseIndex;
+    const active = spoken || ((!playingThis || !player.cues) && index === current);
     return (
       <Pressable
         onPress={() => {
-          if (playingThis) {
+          if (playingThis && player.cues) {
             haptics.select();
             player.seekToVerse(index);
           } else {

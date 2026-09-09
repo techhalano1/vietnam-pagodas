@@ -111,6 +111,12 @@ export interface Dict {
     seek: string;
     voiceNote: string;
     download: string;
+    voice: string;
+    voiceChant: string;
+    voiceAi: string;
+    chantBy: string;
+    chantNote: (performer: string, title: string, source: string) => string;
+    chantCredit: (performer: string, source: string) => string;
   };
   sponsor: string;
   licenseWiki: string;
@@ -249,6 +255,13 @@ const dict: Record<Locale, Dict> = {
       seek: "Tua",
       voiceNote: "Giọng đọc được tạo bằng AI (OpenAI TTS); cách đọc Hán-Việt có thể chưa hoàn toàn chuẩn. Nhấn vào một câu để nghe từ câu đó.",
       download: "Tải MP3",
+      voice: "Giọng đọc",
+      voiceChant: "Bản tụng",
+      voiceAi: "Đọc theo chữ (AI)",
+      chantBy: "Thầy",
+      chantNote: (p, title, source) =>
+        `Bản tụng: Thầy ${p} — “${title}”, nguồn ${source} (ấn tống, phát miễn phí). Bản tụng không đồng bộ từng câu với chữ; chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
+      chantCredit: (p, source) => `Âm thanh: bản tụng của Thầy ${p}, nguồn ${source}`,
     },
     sponsor: "Tài trợ bởi",
     licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
@@ -388,6 +401,13 @@ const dict: Record<Locale, Dict> = {
       seek: "Seek",
       voiceNote: "AI-generated voice (OpenAI TTS); Sino-Vietnamese pronunciation may not be perfect. Click a verse to listen from there.",
       download: "Download MP3",
+      voice: "Voice",
+      voiceChant: "Chanted recording",
+      voiceAi: "Read-along (AI)",
+      chantBy: "Ven.",
+      chantNote: (p, title, source) =>
+        `Chanted by Ven. ${p} — “${title}”, from ${source} (free Dharma distribution). The chant is not synced to the text; choose “Read-along” to highlight the current verse.`,
+      chantCredit: (p, source) => `Audio: chanted by Ven. ${p}, from ${source}`,
     },
     sponsor: "Sponsored by",
     licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",

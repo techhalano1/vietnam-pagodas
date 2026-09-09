@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { formatTime, getScriptureAudio } from "@/lib/scripture-audio";
+import { formatTime, getScriptureAudio, primaryDuration } from "@/lib/scripture-audio";
 import {
   hasEnglish,
   hasHanViet,
@@ -88,7 +88,7 @@ export default function ScripturesPage({
                         </span>
                         {audio && (
                           <span className="rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-medium text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">
-                            🎧 {formatTime(audio.durationSec)}
+                            {audio.chant ? "🎙️" : "🎧"} {formatTime(primaryDuration(audio))}
                           </span>
                         )}
                         {hasHanViet(s) && (
