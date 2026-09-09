@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Linking, ScrollView, StyleSheet, View } from "react-native";
 import { AppText } from "@/components/Text";
 import { Card, GoldCard, ListRow, SectionHeader } from "@/components/ui";
+import { chantSources } from "@/lib/audio";
 import { pagodas, provinces, SITE_URL } from "@/lib/data";
 import { useSettings } from "@/lib/settings";
 import { space } from "@/lib/theme";
@@ -10,6 +11,7 @@ export default function AboutScreen() {
   const { theme, t, locale } = useSettings();
   const en = locale === "en";
   const open = (url: string) => Linking.openURL(url).catch(() => undefined);
+  const chants = chantSources();
 
   return (
     <ScrollView
@@ -85,6 +87,31 @@ export default function AboutScreen() {
           last
           onPress={() => open("https://www.openstreetmap.org/copyright")}
         />
+      </Card>
+
+      <SectionHeader title={t.scriptureSourcesHeading} />
+      <Card style={styles.group}>
+        <View style={{ paddingTop: 12, paddingBottom: 4, gap: 8 }}>
+          <AppText variant="caption" tone="text2">
+            {t.scriptureSourcesText}
+          </AppText>
+          {chants.map((c) => (
+            <AppText key={c.sourceUrl} variant="caption" tone="text2">
+              {t.chantSourcesText(c.performers, c.source)}
+            </AppText>
+          ))}
+        </View>
+        {chants.map((c, i) => (
+          <ListRow
+            key={c.sourceUrl}
+            icon="musical-notes-outline"
+            iconTone="neutral"
+            title={c.source}
+            subtitle={c.sourceUrl.replace(/^https?:\/\//, "")}
+            last={i === chants.length - 1}
+            onPress={() => open(c.sourceUrl)}
+          />
+        ))}
       </Card>
 
       <View style={styles.footer}>

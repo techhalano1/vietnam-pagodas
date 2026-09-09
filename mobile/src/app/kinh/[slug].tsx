@@ -378,7 +378,6 @@ export default function ScriptureReader() {
           <Button label={t.markFinished} icon="checkmark-circle" onPress={finish} variant="secondary" />
         </Card>
       ) : null}
-      <SourceCard s={s} />
     </View>
   );
 
@@ -648,44 +647,6 @@ function FontSizeControl({ value, onChange }: { value: FontScale; onChange: (f: 
         );
       })}
     </View>
-  );
-}
-
-function SourceCard({ s }: { s: NonNullable<ReturnType<typeof getScripture>> }) {
-  const { theme, t, locale } = useSettings();
-  const date = new Date(s.updatedAt);
-  const dateText = Number.isNaN(date.getTime())
-    ? s.updatedAt
-    : date.toLocaleDateString(locale === "en" ? "en-GB" : "vi-VN");
-  return (
-    <Card tone="card" style={{ marginTop: 16, gap: 8 }}>
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-        <Ionicons name="shield-checkmark-outline" size={18} color={theme.jade} />
-        <AppText variant="h3">{t.sourceHeading}</AppText>
-      </View>
-      <AppText variant="bodyS">{s.source.name}</AppText>
-      <View style={{ flexDirection: "row", gap: 6 }}>
-        <AppText variant="caption" tone="text3" weight={700}>
-          {t.licenseLabel}:
-        </AppText>
-        <AppText variant="caption" tone="text2" style={{ flex: 1 }}>
-          {s.source.license}
-        </AppText>
-      </View>
-      {s.source.note ? (
-        <View style={{ flexDirection: "row", gap: 6 }}>
-          <AppText variant="caption" tone="text3" weight={700}>
-            {t.sourceNoteLabel}:
-          </AppText>
-          <AppText variant="caption" tone="text2" style={{ flex: 1 }}>
-            {s.source.note}
-          </AppText>
-        </View>
-      ) : null}
-      <AppText variant="caption" tone="text3">
-        {t.updatedLabel(dateText)}
-      </AppText>
-    </Card>
   );
 }
 

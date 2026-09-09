@@ -218,10 +218,10 @@ export interface Dict {
   fontSizeLarge: string;
   repeatsHint: (n: number[]) => string;
   preparationHeading: string;
-  sourceHeading: string;
-  licenseLabel: string;
-  sourceNoteLabel: string;
-  updatedLabel: (d: string) => string;
+  /** About screen: consolidated sources for scriptures, prayers and audio. */
+  scriptureSourcesHeading: string;
+  scriptureSourcesText: string;
+  chantSourcesText: (performers: string[], source: string) => string;
   personalizeHeading: string;
   personalizeText: string;
   profileName: string;
@@ -283,7 +283,7 @@ export interface Dict {
   voiceChant: string;
   voiceAi: string;
   chantBy: (performer: string) => string;
-  chantCredit: (performer: string, title: string, source: string) => string;
+  chantCredit: (performer: string, source: string) => string;
   skipBack: string;
   skipForward: string;
 }
@@ -519,10 +519,11 @@ const dict: Record<Locale, Dict> = {
     fontSizeLarge: "Rất lớn",
     repeatsHint: (n) => `Thường tụng ${n.join(" · ")} biến`,
     preparationHeading: "Chuẩn bị & lễ vật",
-    sourceHeading: "Nguồn & bản quyền",
-    licenseLabel: "Giấy phép",
-    sourceNoteLabel: "Ghi chú",
-    updatedLabel: (d) => `Cập nhật ${d}`,
+    scriptureSourcesHeading: "Kinh, văn khấn & âm thanh",
+    scriptureSourcesText:
+      "Âm Hán-Việt và nguyên bản Pāli theo Đại Chính Tân Tu Đại Tạng Kinh (Taishō) và tam tạng Pāli (công hữu); nghi thức và văn khấn theo truyền thống Bắc tông và dân gian Việt Nam. Phần dịch nghĩa, rút gọn và biên tập do Vietnam Pagodas soạn, phát hành theo CC BY-SA 4.0.",
+    chantSourcesText: (p, source) =>
+      `Bản tụng: Thầy ${p.join(", Thầy ")} — nguồn ${source} (ấn tống, phát miễn phí). Giọng “Đọc theo chữ” được tạo bằng AI.`,
     personalizeHeading: "Thông tin tín chủ",
     personalizeText:
       "Điền một lần, app sẽ tự chèn vào các bài văn khấn. Dữ liệu chỉ lưu trên máy bạn.",
@@ -590,8 +591,8 @@ const dict: Record<Locale, Dict> = {
     voiceChant: "Bản tụng",
     voiceAi: "Đọc theo chữ (AI)",
     chantBy: (p) => `Thầy ${p} tụng`,
-    chantCredit: (p, title, source) =>
-      `Bản tụng: Thầy ${p} — “${title}”. Nguồn: ${source} (ấn tống, phát miễn phí). Bản tụng không đồng bộ từng câu với chữ; chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
+    chantCredit: (p, source) =>
+      `Thầy ${p} tụng (${source}). Bản tụng không đồng bộ từng câu với chữ — chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
     skipBack: "Lùi 30 giây",
     skipForward: "Tiến 30 giây",
   },
@@ -828,10 +829,11 @@ const dict: Record<Locale, Dict> = {
     fontSizeLarge: "Extra large",
     repeatsHint: (n) => `Usually recited ${n.join(" · ")} times`,
     preparationHeading: "Preparation & offerings",
-    sourceHeading: "Source & license",
-    licenseLabel: "License",
-    sourceNoteLabel: "Note",
-    updatedLabel: (d) => `Updated ${d}`,
+    scriptureSourcesHeading: "Scriptures, prayers & audio",
+    scriptureSourcesText:
+      "Sino-Vietnamese readings and Pāli originals follow the Taishō Tripiṭaka and the Pāli Canon (public domain); liturgies and prayers follow Vietnamese Mahayana and folk tradition. Translations, abridgements and editing by Vietnam Pagodas, released under CC BY-SA 4.0.",
+    chantSourcesText: (p, source) =>
+      `Chanted recordings: Ven. ${p.join(", Ven. ")} — from ${source} (free Dharma distribution). The “Read-along” voice is AI-generated.`,
     personalizeHeading: "Your details for prayers",
     personalizeText:
       "Fill in once and the app inserts them into every prayer. Stored only on this device.",
@@ -899,8 +901,8 @@ const dict: Record<Locale, Dict> = {
     voiceChant: "Chanted recording",
     voiceAi: "Read-along (AI)",
     chantBy: (p) => `Chanted by Ven. ${p}`,
-    chantCredit: (p, title, source) =>
-      `Chanted by Ven. ${p} — “${title}”. Source: ${source} (free Dharma distribution). The chant is not synced to the text; choose “Read-along” to highlight the current verse.`,
+    chantCredit: (p, source) =>
+      `Chanted by Ven. ${p} (${source}). The chant is not synced to the text — choose “Read-along” to highlight the current verse.`,
     skipBack: "Back 30 seconds",
     skipForward: "Forward 30 seconds",
   },

@@ -63,6 +63,28 @@ export function hasAudio(slug: string): boolean {
   return slug in audio;
 }
 
+export interface ChantSource {
+  source: string;
+  sourceUrl: string;
+  performers: string[];
+}
+
+/** Distinct chant archives with the reciters credited there (for the About screen). */
+export function chantSources(): ChantSource[] {
+  const out = new Map<string, ChantSource>();
+  for (const a of Object.values(audio)) {
+    if (!a.chant) continue;
+    const cur = out.get(a.chant.sourceUrl) ?? {
+      source: a.chant.source,
+      sourceUrl: a.chant.sourceUrl,
+      performers: [],
+    };
+    if (!cur.performers.includes(a.chant.performer)) cur.performers.push(a.chant.performer);
+    out.set(a.chant.sourceUrl, cur);
+  }
+  return [...out.values()];
+}
+
 export function audioUrl(t: Track): string {
   return `${AUDIO_BASE_URL}/${t.file}`;
 }

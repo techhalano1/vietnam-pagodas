@@ -302,7 +302,7 @@ export function PlaybackSheet({ open, onClose }: { open: boolean; onClose: () =>
             onPress={() => Linking.openURL(chant.sourceUrl).catch(() => undefined)}
           >
             <AppText variant="caption" tone="text3">
-              {t.chantCredit(chant.performer, chant.title, chant.source)}
+              {t.chantCredit(chant.performer, chant.source)}
             </AppText>
           </Pressable>
         ) : (
