@@ -179,6 +179,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   const pendingSeek = useRef<number | null>(null);
+  const pendingSeekIssued = useRef(0);
   const finishHandled = useRef(false);
   const lastPersist = useRef(0);
   const trackRef = useRef<Scripture | null>(null);
@@ -270,19 +271,31 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  // Apply a deferred seek once the new source is loaded.
+  // Apply a deferred seek once the new source is loaded. Runs on every status
+  // event (not only on isLoaded transitions): local files load so fast that
+  // isLoaded may never be observed as false in between. The seek is re-issued
+  // until the reported position reflects it, in case an early seek was ignored.
   useEffect(() => {
-    if (raw.isLoaded && pendingSeek.current !== null) {
-      const sec = pendingSeek.current;
+    const sec = pendingSeek.current;
+    if (sec === null || !raw.isLoaded) return;
+    if (pendingSeekIssued.current > 0 && raw.currentTime >= sec - 1.5) {
       pendingSeek.current = null;
-      player.seekTo(sec).catch(() => undefined);
+      return;
     }
-  }, [raw.isLoaded, player]);
+    const now = Date.now();
+    if (now - pendingSeekIssued.current < 600) return;
+    pendingSeekIssued.current = now;
+    player.seekTo(sec).catch(() => undefined);
+  }, [raw, player]);
 
-  // Surface native load/playback errors (e.g. offline stream) and stalled loads.
+  // Surface native load/playback errors (e.g. offline stream) and stalled loads;
+  // clear them once the source actually loads.
   useEffect(() => {
-    if (!track || raw.isLoaded) return;
-    const id = setTimeout(() => setError(raw.error ?? "load-timeout"), raw.error ? 0 : 15000);
+    if (!track) return;
+    const id = setTimeout(
+      () => setError(raw.isLoaded ? null : raw.error ?? "load-timeout"),
+      raw.isLoaded || raw.error ? 0 : 15000,
+    );
     return () => clearTimeout(id);
   }, [track, raw.error, raw.isLoaded]);
 
@@ -364,6 +377,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         player.replace({ uri: sourceFor(slug, t, v) });
         player.setPlaybackRate(speed, "high");
         pendingSeek.current = startSec > 0 ? startSec : null;
+        pendingSeekIssued.current = 0;
         player.play();
         try {
           player.setActiveForLockScreen(true, {
@@ -434,7 +448,10 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       const max = status.duration || Infinity;
       const target = Math.max(0, Math.min(sec, max));
       if (raw.isLoaded) player.seekTo(target).catch(() => undefined);
-      else pendingSeek.current = target;
+      else {
+        pendingSeek.current = target;
+        pendingSeekIssued.current = 0;
+      }
     },
     [player, raw.isLoaded, status.duration],
   );
