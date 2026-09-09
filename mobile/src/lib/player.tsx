@@ -358,7 +358,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           startSec = h.positionSec;
         }
       }
-      if (sameTrack && raw.isLoaded) {
+      if (sameTrack && raw.isLoaded && !raw.error) {
         const atEnd = raw.duration > 0 && raw.currentTime >= raw.duration - 0.5;
         if (typeof opts?.verse === "number" || atEnd) {
           finishHandled.current = false;
@@ -378,6 +378,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         player.setPlaybackRate(speed, "high");
         pendingSeek.current = startSec > 0 ? startSec : null;
         pendingSeekIssued.current = 0;
+        if (startSec > 0) player.seekTo(startSec).catch(() => undefined);
         player.play();
         try {
           player.setActiveForLockScreen(true, {
@@ -393,7 +394,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [history, raw.isLoaded, raw.duration, raw.currentTime, player, sourceFor, speed, locale, dict, recordHistory, voicePref],
+    [history, raw.isLoaded, raw.error, raw.duration, raw.currentTime, player, sourceFor, speed, locale, dict, recordHistory, voicePref],
   );
 
   const setVoice = useCallback(
@@ -411,10 +412,14 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   );
 
   const toggle = useCallback(() => {
-    if (!trackRef.current) return;
+    const cur = trackRef.current;
+    if (!cur) return;
     if (raw.playing) {
       player.pause();
-      recordHistory(trackRef.current.slug, raw.currentTime);
+      recordHistory(cur.slug, raw.currentTime);
+    } else if (error || raw.error) {
+      // A failed/stalled load (e.g. offline) needs a fresh source, not play().
+      play(cur.slug, { resume: true, voice: voiceRef.current });
     } else {
       const atEnd = raw.duration > 0 && raw.currentTime >= raw.duration - 0.5;
       if (atEnd) {
@@ -424,11 +429,14 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       }
       player.play();
     }
-  }, [raw.playing, raw.currentTime, raw.duration, player, recordHistory]);
+  }, [raw.playing, raw.currentTime, raw.duration, raw.error, error, player, play, recordHistory]);
 
   const stop = useCallback(() => {
     const t = trackRef.current;
     if (t) recordHistory(t.slug, raw.currentTime);
+    trackRef.current = null;
+    finishHandled.current = true;
+    pendingSeek.current = null;
     player.pause();
     try {
       player.clearLockScreenControls();
