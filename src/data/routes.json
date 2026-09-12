@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ha-noi-co-tu",
+    "titleVi": "Cổ tự Hà Nội trong một ngày",
+    "titleEn": "Hanoi's ancient pagodas in a day",
+    "descVi": "Vòng quanh nội thành Hà Nội qua những ngôi chùa, đền tiêu biểu nhất của Thăng Long nghìn năm — di chuyển thuận tiện bằng taxi/xe máy, tổng quãng đường chỉ khoảng 10 km.",
+    "descEn": "A loop through central Hanoi's most iconic pagodas and temples of thousand-year-old Thang Long — easy by taxi or motorbike, roughly 10 km in total.",
+    "stops": ["chua-tran-quoc", "den-quan-thanh", "chua-mot-cot", "chua-quan-su", "chua-lang"]
+  },
+  {
+    "id": "bac-ninh-phat-giao",
+    "titleVi": "Cái nôi Phật giáo Bắc Ninh",
+    "titleEn": "Bac Ninh, cradle of Vietnamese Buddhism",
+    "descVi": "Hành trình về vùng Dâu — Luy Lâu, nơi Phật giáo du nhập vào Việt Nam từ thế kỷ 2: chùa Dâu cổ nhất nước, chùa Bút Tháp với tượng Quan Âm nghìn mắt nghìn tay, và chùa Phật Tích trên núi Lạn Kha.",
+    "descEn": "A journey to the Dau — Luy Lau region where Buddhism first reached Vietnam in the 2nd century: Dau Pagoda (the country's oldest), But Thap with its thousand-armed Guanyin, and Phat Tich on Lan Kha mountain.",
+    "stops": ["chua-dau", "chua-but-thap", "chua-phat-tich"]
+  },
+  {
+    "id": "con-son-kiep-bac",
+    "titleVi": "Côn Sơn — Kiếp Bạc",
+    "titleEn": "Con Son — Kiep Bac",
+    "descVi": "Khu di tích quốc gia đặc biệt gắn với Trần Hưng Đạo và Nguyễn Trãi: chùa Côn Sơn giữa rừng thông và đền Kiếp Bạc bên sông Lục Đầu, cách nhau khoảng 8 km.",
+    "descEn": "A special national heritage complex tied to Tran Hung Dao and Nguyen Trai: Con Son Pagoda amid pine forests and Kiep Bac Temple by the Luc Dau river, about 8 km apart.",
+    "stops": ["chua-con-son", "den-kiep-bac"]
+  },
+  {
+    "id": "ninh-binh-tam-linh",
+    "titleVi": "Ninh Bình tâm linh",
+    "titleEn": "Spiritual Ninh Binh",
+    "descVi": "Từ quần thể Bái Đính lớn nhất Việt Nam đến chùa Bích Động cổ kính trong lòng núi Tam Cốc — kết hợp lễ Phật và ngắm cảnh non nước Tràng An.",
+    "descEn": "From Bai Dinh, Vietnam's largest pagoda complex, to the ancient cliff-side Bich Dong in Tam Coc — combining worship with the karst scenery of Trang An.",
+    "stops": ["chua-bai-dinh", "chua-bich-dong", "chua-non-nuoc-ninh-binh"]
+  },
+  {
+    "id": "hue-thien-mon",
+    "titleVi": "Thiền môn xứ Huế",
+    "titleEn": "Zen gates of Hue",
+    "descVi": "Những ngôi quốc tự và tổ đình danh tiếng của đất thần kinh: Thiên Mụ bên sông Hương, Từ Đàm — trung tâm Phật giáo miền Trung, và Từ Hiếu giữa rừng thông.",
+    "descEn": "Hue's famous royal pagodas and patriarchal temples: Thien Mu on the Perfume River, Tu Dam — central Vietnam's Buddhist heart, and pine-shaded Tu Hieu.",
+    "stops": ["chua-thien-mu", "chua-tu-dam", "chua-tu-hieu", "chua-dieu-de"]
+  },
+  {
+    "id": "da-nang-ngu-hanh",
+    "titleVi": "Đà Nẵng — Ngũ Hành Sơn",
+    "titleEn": "Da Nang — Marble Mountains",
+    "descVi": "Chùa Linh Ứng Sơn Trà với tượng Quan Âm 67 m nhìn ra biển, rồi vào Ngũ Hành Sơn thăm chùa Tam Thai và các hang động linh thiêng.",
+    "descEn": "Linh Ung Pagoda on Son Tra with its 67 m sea-facing Guanyin, then the Marble Mountains for Tam Thai Pagoda and sacred grottoes.",
+    "stops": ["chua-linh-ung-da-nang", "chua-tam-thai", "chua-phap-lam"]
+  },
+  {
+    "id": "sai-gon-cho-lon",
+    "titleVi": "Sài Gòn — Chợ Lớn",
+    "titleEn": "Saigon — Cho Lon",
+    "descVi": "Một ngày qua các ngôi chùa tiêu biểu của TP.HCM: tổ đình Giác Lâm gần 300 năm tuổi, chùa Ngọc Hoàng, chùa Vĩnh Nghiêm và hội quán Bà Thiên Hậu ở Chợ Lớn.",
+    "descEn": "A day across Ho Chi Minh City's landmark temples: the nearly 300-year-old Giac Lam, the Jade Emperor Pagoda, Vinh Nghiem, and the Thien Hau assembly hall in Cho Lon.",
+    "stops": ["chua-giac-lam", "chua-ngoc-hoang", "chua-vinh-nghiem", "chua-ba-thien-hau"]
+  },
+  {
+    "id": "an-giang-nui-sam",
+    "titleVi": "Châu Đốc — Núi Sam",
+    "titleEn": "Chau Doc — Sam Mountain",
+    "descVi": "Cụm hành hương nổi tiếng nhất miền Tây quanh núi Sam: miếu Bà Chúa Xứ, chùa Tây An kiến trúc Ấn — Hoa — Việt độc đáo và chùa Hang trên sườn núi.",
+    "descEn": "The Mekong Delta's most famous pilgrimage cluster around Sam Mountain: the Lady of the Realm shrine, Tay An Pagoda's unique Indian-Chinese-Vietnamese architecture, and the hillside Cave Pagoda.",
+    "stops": ["mieu-ba-chua-xu", "chua-tay-an", "chua-phuoc-dien"]
+  }
+]

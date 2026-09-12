@@ -7,6 +7,11 @@
   --foreground: #1c1917;
 }
 
+.dark {
+  --background: #1c1917;
+  --foreground: #fafaf9;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -21,4 +26,177 @@ body {
 
 .leaflet-popup-content {
   margin: 10px 12px;
+}
+
+.dark .leaflet-tile {
+  filter: brightness(0.7) contrast(1.1);
+}
+
+.dark .leaflet-popup-content-wrapper,
+.dark .leaflet-popup-tip {
+  background: #292524;
+  color: #fafaf9;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marker-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marker-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes count-glow {
+  from {
+    text-shadow: 0 0 0 rgba(251, 191, 36, 0);
+  }
+  to {
+    text-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
+  }
+}
+
+@keyframes smoke-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scale(1.4);
+  }
+}
+
+@keyframes lantern-sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.45s ease-out both;
+}
+
+.marker-drop {
+  animation: marker-drop 0.5s ease-out both;
+}
+
+.marker-bounce {
+  animation: marker-bounce 0.7s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(120, 113, 108, 0.12) 25%,
+    rgba(120, 113, 108, 0.24) 50%,
+    rgba(120, 113, 108, 0.12) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.smoke {
+  animation: smoke-rise 3s ease-out infinite;
+}
+
+.smoke:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.smoke:nth-child(3) {
+  animation-delay: 2s;
+}
+
+.lantern-sway {
+  display: inline-block;
+  transform-origin: top center;
+  animation: lantern-sway 4s ease-in-out infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .marker-drop,
+  .marker-bounce,
+  .skeleton-shimmer,
+  .smoke,
+  .lantern-sway {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Marker cluster icons */
+.pagoda-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(180, 83, 9, 0.9);
+  color: #fffbeb;
+  font-weight: 600;
+  font-size: 13px;
+  border: 2px solid rgba(255, 251, 235, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
