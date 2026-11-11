@@ -137,6 +137,8 @@ export default function BaoDienScreen() {
 
   const now = useNow(true);
   const current = burning(now, slug);
+  // Remember an offering seen burning on re-entry so it stays shown as burnt-out after expiry.
+  if (current && current.id !== lastLit?.id) setLastLit(current);
   const shown = current ?? lastLit;
   const remaining = current
     ? 1 - (now - current.at) / BURN_MS
