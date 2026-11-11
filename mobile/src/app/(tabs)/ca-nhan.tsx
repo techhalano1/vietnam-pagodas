@@ -3,6 +3,7 @@ import Constants from "expo-constants";
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { Linking, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { ReminderToggle } from "@/components/ReminderToggle";
 import { AppText } from "@/components/Text";
 import {
   Card,
@@ -17,6 +18,7 @@ import { formatBytes } from "@/lib/audio";
 import { getPagodaBySlug, SITE_URL } from "@/lib/data";
 import * as haptics from "@/lib/haptics";
 import { ENGLISH_ENABLED, type Locale } from "@/lib/i18n";
+import { useOfferings } from "@/lib/offerings";
 import { usePlayer } from "@/lib/player";
 import { useReading } from "@/lib/reading";
 import { useSaved } from "@/lib/saved";
@@ -49,6 +51,7 @@ function Stat({ value, label, onPress }: { value: number; label: string; onPress
 export default function ProfileScreen() {
   const { theme, t, locale, setLocale, themePreference, setThemePreference } = useSettings();
   const { favorites, visited } = useSaved();
+  const offerings = useOfferings();
   const reading = useReading();
   const router = useRouter();
   const bottom = useTabBarPadding();
@@ -129,8 +132,14 @@ export default function ProfileScreen() {
             iconTone="jade"
             title={t.visitedHeading}
             subtitle={`${visited.length}`}
-            last
             onPress={() => router.push({ pathname: "/da-luu", params: { tab: "visited" } })}
+          />
+          <ListRow
+            icon="flame"
+            title={t.offer.journalTitle}
+            subtitle={t.offer.journalCount(offerings.journal.length)}
+            last
+            onPress={() => router.push("/nhat-ky")}
           />
         </Card>
 
@@ -156,6 +165,8 @@ export default function ProfileScreen() {
         </Card>
 
         <SectionHeader title={t.sectionSettings} />
+        <ReminderToggle />
+        <View style={{ height: 12 }} />
         <Card style={[styles.group, { gap: 14 }]}>
           {ENGLISH_ENABLED ? (
             <View style={{ gap: 8 }}>
@@ -208,6 +219,12 @@ export default function ProfileScreen() {
             icon="information-circle"
             title={t.aboutApp}
             onPress={() => router.push("/gioi-thieu")}
+          />
+          <ListRow
+            icon="shield-checkmark"
+            iconTone="neutral"
+            title={t.privacyPolicy}
+            onPress={() => open(`${SITE_URL}/${locale}/chinh-sach-bao-mat`)}
           />
           <ListRow
             icon="globe"

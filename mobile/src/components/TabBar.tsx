@@ -109,6 +109,9 @@ function TabItem({
         weight={focused ? 700 : 500}
         color={color}
         numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.8}
+        maxFontSizeMultiplier={1.15}
         style={{ fontSize: 10.5, lineHeight: 13 }}
       >
         {meta.label}

@@ -12,6 +12,66 @@ export function isEnabledLocale(x: string): x is Locale {
   return isLocale(x) && (ENGLISH_ENABLED || x === "vi");
 }
 
+export type OfferItem = "hoa" | "den" | "nuoc" | "qua";
+export type OfferFor = "self" | "family" | "departed";
+
+export interface OfferDict {
+  enterHall: string;
+  homeTitle: string;
+  homeText: string;
+  homeTextObservance: string;
+  homeBurning: (name: string) => string;
+  hallOverline: string;
+  yourCount: (n: number) => string;
+  offerBtn: string;
+  offerAgain: string;
+  sheetTitle: string;
+  sticksLabel: string;
+  sticks: (n: number) => string;
+  itemsLabel: string;
+  items: Record<OfferItem, string>;
+  forLabel: string;
+  forWhom: Record<OfferFor, string>;
+  wishLabel: string;
+  wishPlaceholder: string;
+  wishPrivate: string;
+  wishSuggestions: string[];
+  holdToLight: string;
+  holdHint: string;
+  burning: string;
+  burningLeft: (time: string) => string;
+  burntOut: string;
+  burntOutText: string;
+  yourWish: string;
+  dedicationTitle: string;
+  dedication: string;
+  listenWhileBurning: string;
+  backToPagoda: string;
+  share: string;
+  shareText: (name: string, url: string) => string;
+  freeNote: string;
+  pickTitle: string;
+  pickSearch: string;
+  pickRecent: string;
+  pickFavorites: string;
+  pickResults: string;
+  pickSuggested: string;
+  journalTitle: string;
+  journalCount: (n: number) => string;
+  journalEmpty: string;
+  journalEmptyText: string;
+  journalClear: string;
+  journalClearConfirm: string;
+  cancel: string;
+  lunarShort: (d: number, m: number) => string;
+  remindersTitle: string;
+  remindersText: string;
+  remindersDenied: string;
+  reminderBody: (label: string) => string;
+  reminderMung1: (month: number) => string;
+  reminderRam: (month: number) => string;
+}
+
 export interface Dict {
   siteName: string;
   tagline: string;
@@ -186,6 +246,7 @@ export interface Dict {
   sectionSettings: string;
   sectionAbout: string;
   aboutApp: string;
+  privacyPolicy: string;
   sourceCode: string;
   rateApp: string;
   websiteSubtitle: string;
@@ -287,6 +348,8 @@ export interface Dict {
   chantCredit: (performer: string, source: string) => string;
   skipBack: string;
   skipForward: string;
+  /** Online offering at a pagoda's main hall (bảo điện). */
+  offer: OfferDict;
 }
 
 const dict: Record<Locale, Dict> = {
@@ -342,7 +405,8 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Chia sẻ",
     shareCopied: "Đã sao chép liên kết!",
     contributePhotos: "Đóng góp ảnh",
-    contributePhotosText: "Chưa có ảnh cho địa điểm này. Bạn có ảnh? Hãy đóng góp để mọi người cùng chiêm ngưỡng.",
+    contributePhotosText:
+      "Chưa có ảnh cho địa điểm này. Bạn có ảnh? Hãy đóng góp để mọi người cùng chiêm ngưỡng.",
     back: "Quay lại",
     readMoreHeading: "Đọc thêm & tham khảo",
     readMoreIntro: "Các liên kết hữu ích để tìm hiểu thêm trước khi ghé thăm:",
@@ -372,7 +436,8 @@ const dict: Record<Locale, Dict> = {
     favoritesTitle: "Yêu thích & đã đi",
     favoritesHeading: "Danh sách yêu thích",
     visitedHeading: "Đã đi",
-    favoritesEmpty: "Chưa có địa điểm nào — bấm ♡ hoặc ✓ trên trang chi tiết để lưu.",
+    favoritesEmpty:
+      "Chưa có địa điểm nào — bấm ♡ hoặc ✓ trên trang chi tiết để lưu.",
     favBtn: "Yêu thích",
     favBtnActive: "Đã yêu thích",
     visitedBtn: "Đánh dấu đã đi",
@@ -380,14 +445,16 @@ const dict: Record<Locale, Dict> = {
     referencesHeading: "Nguồn tham khảo",
     wikipediaVi: "Wikipedia tiếng Việt",
     wikipediaEn: "Wikipedia tiếng Anh",
-    viOnlyNote:
-      "Bài viết này hiện chỉ có nội dung tiếng Việt.",
+    viOnlyNote: "Bài viết này hiện chỉ có nội dung tiếng Việt.",
     directoryTitle: "Danh mục chùa theo tỉnh thành",
-    directorySubtitle: (n: number, p: number) => `${n} chùa, đền, tự viện tại ${p} tỉnh thành.`,
+    directorySubtitle: (n: number, p: number) =>
+      `${n} chùa, đền, tự viện tại ${p} tỉnh thành.`,
     all: "Tất cả",
-    footer: "Chùa Việt Nam — dữ liệu tổng hợp từ Wikipedia (tiếng Việt & tiếng Anh), Wikidata, Wikimedia Commons, OpenStreetMap và các nguồn công khai.",
+    footer:
+      "Chùa Việt Nam — dữ liệu tổng hợp từ Wikipedia (tiếng Việt & tiếng Anh), Wikidata, Wikimedia Commons, OpenStreetMap và các nguồn công khai.",
     sponsor: "Tài trợ bởi",
-    licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
+    licenseWiki:
+      "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
     licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
     notFoundTitle: "Không tìm thấy trang",
     notFoundText: "Trang bạn tìm kiếm không tồn tại hoặc đã được di chuyển.",
@@ -422,10 +489,16 @@ const dict: Record<Locale, Dict> = {
     lunarToday: "Âm lịch hôm nay",
     lunarDate: (d, m, canChi) => `Ngày ${d} tháng ${m} · năm ${canChi}`,
     solarDate: (date) =>
-      date.toLocaleDateString("vi-VN", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+      date.toLocaleDateString("vi-VN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
     daysUntil: (n, kind) =>
       `Còn ${n} ngày đến ${kind === "mung1" ? "mùng 1" : "ngày rằm"}`,
-    todayObservance: (kind) => (kind === "mung1" ? "Hôm nay là mùng 1" : "Hôm nay là ngày rằm"),
+    todayObservance: (kind) =>
+      kind === "mung1" ? "Hôm nay là mùng 1" : "Hôm nay là ngày rằm",
     quickActions: "Truy cập nhanh",
     qaNearby: "Gần tôi",
     qaMap: "Bản đồ",
@@ -441,7 +514,8 @@ const dict: Record<Locale, Dict> = {
     nearbyLoading: "Đang xác định vị trí…",
     featuredHeading: "Danh thắng nổi bật",
     upcomingHeading: "Sắp tới",
-    inDays: (n) => (n === 0 ? "Hôm nay" : n === 1 ? "Ngày mai" : `Còn ${n} ngày`),
+    inDays: (n) =>
+      n === 0 ? "Hôm nay" : n === 1 ? "Ngày mai" : `Còn ${n} ngày`,
     today: "Hôm nay",
     tomorrow: "Ngày mai",
     seeAll: "Xem tất cả",
@@ -458,7 +532,8 @@ const dict: Record<Locale, Dict> = {
     resultsCount: (n) => `${n.toLocaleString("vi-VN")} địa điểm`,
     sortedByDistance: "Sắp theo khoảng cách",
     scripturesTitle: "Kinh & văn khấn",
-    scripturesIntro: "Kinh, chú, nghi thức và văn khấn thông dụng — chữ lớn, dễ đọc.",
+    scripturesIntro:
+      "Kinh, chú, nghi thức và văn khấn thông dụng — chữ lớn, dễ đọc.",
     scriptureCatSutra: "Kinh & chú",
     scriptureCatPrayer: "Văn khấn",
     scriptureCatRitual: "Nghi thức",
@@ -481,6 +556,7 @@ const dict: Record<Locale, Dict> = {
     sectionSettings: "Cài đặt",
     sectionAbout: "Thông tin",
     aboutApp: "Giới thiệu & nguồn dữ liệu",
+    privacyPolicy: "Chính sách bảo mật",
     sourceCode: "Mã nguồn trên GitHub",
     rateApp: "Đánh giá ứng dụng",
     websiteSubtitle: "vietnam-pagodas.com",
@@ -491,7 +567,12 @@ const dict: Record<Locale, Dict> = {
     scriptureGroupAll: "Tất cả",
     scriptureGroupKinh: "Kinh & chú",
     scriptureGroupKhan: "Văn khấn",
-    scriptureKind: { sutra: "Kinh", mantra: "Chú", prayer: "Văn khấn", ritual: "Nghi thức" },
+    scriptureKind: {
+      sutra: "Kinh",
+      mantra: "Chú",
+      prayer: "Văn khấn",
+      ritual: "Nghi thức",
+    },
     occasionLabels: {
       "mung-1": "Mùng 1",
       ram: "Ngày rằm",
@@ -597,6 +678,83 @@ const dict: Record<Locale, Dict> = {
       `Thầy ${p} tụng — ${source}. Bản tụng không đồng bộ từng câu với chữ — chọn “Đọc theo chữ” để nổi bật câu đang đọc.`,
     skipBack: "Lùi 30 giây",
     skipForward: "Tiến 30 giây",
+    offer: {
+      enterHall: "Vào bảo điện dâng hương",
+      homeTitle: "Dâng hương online",
+      homeText:
+        "Vào bảo điện của 3.395 chùa, đền — thắp nén tâm hương, gửi lời nguyện.",
+      homeTextObservance:
+        "Hôm nay là ngày lễ — vào bảo điện thắp nén tâm hương.",
+      homeBurning: (name) => `Hương đang cháy tại ${name}`,
+      hallOverline: "Bảo điện",
+      yourCount: (n) =>
+        n > 0
+          ? `Bạn đã dâng hương ${n} lần tại đây`
+          : "Lần đầu bạn dâng hương tại đây",
+      offerBtn: "Dâng hương",
+      offerAgain: "Dâng hương lần nữa",
+      sheetTitle: "Sửa soạn lễ dâng",
+      sticksLabel: "Nén hương",
+      sticks: (n) => `${n} nén`,
+      itemsLabel: "Lễ vật (tùy tâm)",
+      items: { hoa: "Hoa", den: "Đèn", nuoc: "Nước", qua: "Quả" },
+      forLabel: "Cầu nguyện cho",
+      forWhom: {
+        self: "Bản thân",
+        family: "Gia đình",
+        departed: "Người đã khuất",
+      },
+      wishLabel: "Lời nguyện",
+      wishPlaceholder: "Viết lời nguyện của bạn (không bắt buộc)…",
+      wishPrivate: "Lời nguyện chỉ lưu trên máy của bạn.",
+      wishSuggestions: [
+        "Cầu bình an cho gia đình",
+        "Cầu sức khỏe cho cha mẹ",
+        "Cầu siêu cho người đã khuất",
+        "Cầu thi cử đỗ đạt",
+        "Cầu công việc hanh thông",
+      ],
+      holdToLight: "Giữ để thắp hương",
+      holdHint: "Nhấn giữ đến khi hương bén lửa",
+      burning: "Hương đang cháy",
+      burningLeft: (t) => `Còn ${t}`,
+      burntOut: "Hương đã tàn",
+      burntOutText: "Nén tâm hương đã dâng. Nguyện cho tâm bạn luôn an lạc.",
+      yourWish: "Lời nguyện của bạn",
+      dedicationTitle: "Hồi hướng",
+      dedication:
+        "Nguyện đem công đức này\nHướng về khắp tất cả\nĐệ tử và chúng sinh\nĐều trọn thành Phật đạo.",
+      listenWhileBurning: "Nghe Chú Đại Bi trong lúc hương cháy",
+      backToPagoda: "Về trang chùa",
+      share: "Chia sẻ",
+      shareText: (name, url) =>
+        `Tôi vừa dâng nén tâm hương tại ${name}. Nam Mô A Di Đà Phật 🙏 ${url}`,
+      freeNote:
+        "Dâng hương online hoàn toàn miễn phí. Thành tâm quan trọng hơn lễ vật.",
+      pickTitle: "Chọn chùa để dâng hương",
+      pickSearch: "Tìm chùa, đền, tỉnh thành…",
+      pickRecent: "Đã dâng gần đây",
+      pickFavorites: "Chùa yêu thích",
+      pickResults: "Kết quả",
+      pickSuggested: "Gợi ý",
+      journalTitle: "Nhật ký dâng hương",
+      journalCount: (n) => `${n} lần dâng hương`,
+      journalEmpty: "Chưa có lần dâng hương nào",
+      journalEmptyText:
+        "Vào bảo điện một ngôi chùa để thắp nén tâm hương đầu tiên.",
+      journalClear: "Xóa nhật ký",
+      journalClearConfirm: "Xóa toàn bộ nhật ký dâng hương trên máy này?",
+      cancel: "Hủy",
+      lunarShort: (d, m) => `${d}/${m} âm lịch`,
+      remindersTitle: "Nhắc mùng 1 – rằm",
+      remindersText:
+        "Thông báo sáng mùng 1, rằm và các ngày vía để vào chùa dâng hương.",
+      remindersDenied:
+        "Bạn đã tắt thông báo cho ứng dụng. Hãy bật lại trong Cài đặt của máy.",
+      reminderBody: (label) => `${label} — vào bảo điện thắp nén tâm hương 🙏`,
+      reminderMung1: (m) => `Hôm nay mùng 1 tháng ${m} âm lịch`,
+      reminderRam: (m) => `Hôm nay rằm tháng ${m} âm lịch`,
+    },
   },
   en: {
     siteName: "Vietnam Pagodas",
@@ -650,7 +808,8 @@ const dict: Record<Locale, Dict> = {
     shareBtn: "Share",
     shareCopied: "Link copied!",
     contributePhotos: "Contribute photos",
-    contributePhotosText: "No photos yet for this site. Have some? Contribute them so everyone can enjoy.",
+    contributePhotosText:
+      "No photos yet for this site. Have some? Contribute them so everyone can enjoy.",
     back: "Back",
     readMoreHeading: "Read more & references",
     readMoreIntro: "Useful links to learn more before your visit:",
@@ -697,10 +856,12 @@ const dict: Record<Locale, Dict> = {
     footer:
       "Vietnam Pagodas — data aggregated from Wikipedia (Vietnamese & English), Wikidata, Wikimedia Commons, OpenStreetMap and other public sources.",
     sponsor: "Sponsored by",
-    licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
+    licenseWiki:
+      "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
     licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",
     notFoundTitle: "Page not found",
-    notFoundText: "The page you are looking for does not exist or has been moved.",
+    notFoundText:
+      "The page you are looking for does not exist or has been moved.",
     backHome: "Back to home",
     metaTitle: "Vietnam Pagodas — Dictionary of Vietnamese pagodas & temples",
     metaDescription:
@@ -732,11 +893,18 @@ const dict: Record<Locale, Dict> = {
     lunarToday: "Lunar date today",
     lunarDate: (d, m, canChi) => `Day ${d}, month ${m} · year of ${canChi}`,
     solarDate: (date) =>
-      date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+      date.toLocaleDateString("en-GB", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
     daysUntil: (n, kind) =>
       `${n} day${n === 1 ? "" : "s"} until the ${kind === "mung1" ? "new moon (1st)" : "full moon (15th)"}`,
     todayObservance: (kind) =>
-      kind === "mung1" ? "Today is the 1st lunar day" : "Today is the full-moon day",
+      kind === "mung1"
+        ? "Today is the 1st lunar day"
+        : "Today is the full-moon day",
     quickActions: "Quick actions",
     qaNearby: "Near me",
     qaMap: "Map",
@@ -748,7 +916,8 @@ const dict: Record<Locale, Dict> = {
     qaSearch: "Search",
     nearbyHeading: "Near you",
     nearbyEnable: "Enable location",
-    nearbyEnableText: "Allow location access to see the pagodas and temples closest to you.",
+    nearbyEnableText:
+      "Allow location access to see the pagodas and temples closest to you.",
     nearbyLoading: "Finding your location…",
     featuredHeading: "Featured sites",
     upcomingHeading: "Coming up",
@@ -769,7 +938,8 @@ const dict: Record<Locale, Dict> = {
     resultsCount: (n) => `${n.toLocaleString("en-US")} sites`,
     sortedByDistance: "Sorted by distance",
     scripturesTitle: "Scriptures & prayers",
-    scripturesIntro: "Common sutras, mantras, rituals and prayers — large, easy-to-read text.",
+    scripturesIntro:
+      "Common sutras, mantras, rituals and prayers — large, easy-to-read text.",
     scriptureCatSutra: "Sutras & mantras",
     scriptureCatPrayer: "Prayers",
     scriptureCatRitual: "Rituals",
@@ -792,6 +962,7 @@ const dict: Record<Locale, Dict> = {
     sectionSettings: "Settings",
     sectionAbout: "About",
     aboutApp: "About & data sources",
+    privacyPolicy: "Privacy policy",
     sourceCode: "Source code on GitHub",
     rateApp: "Rate the app",
     websiteSubtitle: "vietnam-pagodas.com",
@@ -802,7 +973,12 @@ const dict: Record<Locale, Dict> = {
     scriptureGroupAll: "All",
     scriptureGroupKinh: "Sutras & mantras",
     scriptureGroupKhan: "Prayers",
-    scriptureKind: { sutra: "Sutra", mantra: "Mantra", prayer: "Prayer", ritual: "Ritual" },
+    scriptureKind: {
+      sutra: "Sutra",
+      mantra: "Mantra",
+      prayer: "Prayer",
+      ritual: "Ritual",
+    },
     occasionLabels: {
       "mung-1": "New moon (1st)",
       ram: "Full moon (15th)",
@@ -851,7 +1027,8 @@ const dict: Record<Locale, Dict> = {
     profileClear: "Clear",
     lunarDateAuto: (d) => `Lunar date filled automatically: ${d}`,
     prayersHereHeading: "Prayers for this site",
-    prayersHereText: "Suggested from the site type and the deities worshipped here.",
+    prayersHereText:
+      "Suggested from the site type and the deities worshipped here.",
     todayScripture: "Today's reading",
     todayScriptureText: (k) =>
       k === "mung1"
@@ -864,7 +1041,8 @@ const dict: Record<Locale, Dict> = {
     startOver: "Start from the beginning",
     finishedReading: "Finished",
     markFinished: "Mark as finished",
-    favoritesEmptyScripture: "No favorite texts yet. Tap ♥ in a text to save it.",
+    favoritesEmptyScripture:
+      "No favorite texts yet. Tap ♥ in a text to save it.",
     noVerseTranslation: "No translation for this verse yet.",
     meaningIntro: "About this text",
     readerSettings: "Reading options",
@@ -908,6 +1086,78 @@ const dict: Record<Locale, Dict> = {
       `Chanted by Ven. ${p} — ${source}. The chant is not synced to the text — choose “Read-along” to highlight the current verse.`,
     skipBack: "Back 30 seconds",
     skipForward: "Forward 30 seconds",
+    offer: {
+      enterHall: "Enter the main hall to offer incense",
+      homeTitle: "Offer incense online",
+      homeText:
+        "Enter the main hall of 3,395 pagodas and temples — light incense, make a wish.",
+      homeTextObservance:
+        "Today is an observance day — offer a stick of incense.",
+      homeBurning: (name) => `Incense burning at ${name}`,
+      hallOverline: "Main hall",
+      yourCount: (n) =>
+        n > 0
+          ? `You have offered incense here ${n} times`
+          : "Your first offering here",
+      offerBtn: "Offer incense",
+      offerAgain: "Offer again",
+      sheetTitle: "Prepare your offering",
+      sticksLabel: "Incense sticks",
+      sticks: (n) => `${n} ${n === 1 ? "stick" : "sticks"}`,
+      itemsLabel: "Offerings (optional)",
+      items: { hoa: "Flowers", den: "Lamp", nuoc: "Water", qua: "Fruit" },
+      forLabel: "Praying for",
+      forWhom: { self: "Myself", family: "Family", departed: "The departed" },
+      wishLabel: "Your wish",
+      wishPlaceholder: "Write your wish (optional)…",
+      wishPrivate: "Your wish is stored only on this device.",
+      wishSuggestions: [
+        "Peace for my family",
+        "Good health for my parents",
+        "Rebirth in peace for the departed",
+        "Success in exams",
+        "Smooth work",
+      ],
+      holdToLight: "Hold to light the incense",
+      holdHint: "Press and hold until the incense catches fire",
+      burning: "Incense burning",
+      burningLeft: (t) => `${t} left`,
+      burntOut: "The incense has burnt out",
+      burntOutText: "Your offering is complete. May your mind be at peace.",
+      yourWish: "Your wish",
+      dedicationTitle: "Dedication of merit",
+      dedication:
+        "May the merit of this practice\nReach every being everywhere\nMay we and all sentient beings\nTogether realise the Buddha way.",
+      listenWhileBurning: "Listen to the Great Compassion Mantra",
+      backToPagoda: "Back to the pagoda",
+      share: "Share",
+      shareText: (name, url) => `I just offered incense at ${name} 🙏 ${url}`,
+      freeNote:
+        "Online offerings are free. A sincere heart matters more than offerings.",
+      pickTitle: "Choose a pagoda",
+      pickSearch: "Search pagodas, temples, provinces…",
+      pickRecent: "Recent offerings",
+      pickFavorites: "Favourite pagodas",
+      pickResults: "Results",
+      pickSuggested: "Suggested",
+      journalTitle: "Offering journal",
+      journalCount: (n) => `${n} ${n === 1 ? "offering" : "offerings"}`,
+      journalEmpty: "No offerings yet",
+      journalEmptyText:
+        "Enter a pagoda's main hall to light your first stick of incense.",
+      journalClear: "Clear journal",
+      journalClearConfirm: "Delete the whole offering journal on this device?",
+      cancel: "Cancel",
+      lunarShort: (d, m) => `${d}/${m} lunar`,
+      remindersTitle: "New- & full-moon reminders",
+      remindersText:
+        "A morning notification on the 1st, 15th and Buddhist holidays.",
+      remindersDenied:
+        "Notifications are turned off for this app. Enable them in your device settings.",
+      reminderBody: (label) => `${label} — light a stick of incense 🙏`,
+      reminderMung1: (m) => `Today is the 1st of lunar month ${m}`,
+      reminderRam: (m) => `Today is the full moon of lunar month ${m}`,
+    },
   },
 };
 

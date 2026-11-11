@@ -5,7 +5,7 @@ import { scriptures } from "@/lib/scriptures";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/danh-muc", "/gioi-thieu", "/le-hoi", "/hanh-trinh", "/kinh"];
+  const staticPaths = ["", "/danh-muc", "/gioi-thieu", "/le-hoi", "/hanh-trinh", "/kinh", "/chinh-sach-bao-mat"];
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPaths) {

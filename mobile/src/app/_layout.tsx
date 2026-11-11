@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { OfferingsProvider } from "@/lib/offerings";
 import { PlayerProvider } from "@/lib/player";
 import { ReadingProvider } from "@/lib/reading";
 import { SavedProvider } from "@/lib/saved";
@@ -40,6 +41,9 @@ function RootNavigator() {
         <Stack.Screen name="chua/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="kinh/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="da-luu" options={{ headerShown: false }} />
+        <Stack.Screen name="bao-dien/[slug]" options={{ headerShown: false }} />
+        <Stack.Screen name="thap-huong" options={{ headerShown: false }} />
+        <Stack.Screen name="nhat-ky" options={{ headerShown: false }} />
         <Stack.Screen name="le-hoi" options={{ title: t.festivalsTitle }} />
         <Stack.Screen name="hanh-trinh" options={{ title: t.routesTitle }} />
         <Stack.Screen name="gioi-thieu" options={{ title: t.navAbout }} />
@@ -55,7 +59,9 @@ export default function RootLayout() {
         <SavedProvider>
           <ReadingProvider>
             <PlayerProvider>
-              <RootNavigator />
+              <OfferingsProvider>
+                <RootNavigator />
+              </OfferingsProvider>
             </PlayerProvider>
           </ReadingProvider>
         </SavedProvider>

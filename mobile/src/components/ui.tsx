@@ -43,7 +43,7 @@ export function Screen({
         style,
       ]}
     >
-      {children}
+      <View style={styles.screenBody}>{children}</View>
     </View>
   );
 }
@@ -523,7 +523,15 @@ export function QuickAction({
           </View>
         ) : null}
       </View>
-      <AppText variant="caption" center numberOfLines={2} style={{ fontSize: 11.5 }}>
+      <AppText
+        variant="caption"
+        center
+        numberOfLines={2}
+        adjustsFontSizeToFit
+        minimumFontScale={0.8}
+        maxFontSizeMultiplier={1.15}
+        style={{ fontSize: 11.5 }}
+      >
         {label}
       </AppText>
     </Pressable>
@@ -774,6 +782,8 @@ export function PagodaTile({ p, width = 168 }: { p: Pagoda; width?: number }) {
 // ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
+  // Keeps lines readable on iPad; no effect on phones.
+  screenBody: { flex: 1, width: "100%", maxWidth: 760, alignSelf: "center" },
   header: {
     flexDirection: "row",
     alignItems: "center",

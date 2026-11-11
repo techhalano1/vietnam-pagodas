@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { OfferHomeCard } from "@/components/OfferHomeCard";
 import { AppText } from "@/components/Text";
 import {
   Button,
@@ -223,6 +224,8 @@ export default function HomeScreen() {
             <QuickAction icon="search" label={t.qaSearch} onPress={() => goChua()} />
           </View>
         </Card>
+
+        <OfferHomeCard isObservance={isObservance} />
 
         <SectionHeader
           title={t.nearbyHeading}

@@ -62,7 +62,7 @@ const HEADER_GRADIENT = {
 
 export default function ScriptureReader() {
   useKeepAwake();
-  const { slug } = useLocalSearchParams<{ slug: string }>();
+  const { slug, play } = useLocalSearchParams<{ slug: string; play?: string }>();
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme, t, locale, isDark, setThemePreference } = useSettings();
@@ -127,6 +127,14 @@ export default function ScriptureReader() {
     resumePending.current = false;
     listRef.current?.scrollToIndex({ index: followIndex, animated: true, viewPosition: 0.15 });
   }, [followIndex]);
+
+  // `?play=1` (e.g. from the Bảo điện) starts the recording once on open.
+  const autoPlayed = useRef(false);
+  useEffect(() => {
+    if (play !== "1" || !s || !audio || autoPlayed.current) return;
+    autoPlayed.current = true;
+    if (!playingThis || !player.status.playing) player.play(s.slug, { resume: true });
+  }, [play, s, audio, playingThis, player]);
 
   if (!s) {
     return (

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -96,6 +97,11 @@ export default function LocaleLayout({
             >
               {t.licenseOsm}
             </a>
+          </p>
+          <p className="mt-2 text-xs">
+            <Link href={`/${locale}/chinh-sach-bao-mat`} className="hover:text-stone-600">
+              {t.navPrivacy}
+            </Link>
           </p>
         </footer>
         <BackToTop />
