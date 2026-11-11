@@ -18,17 +18,18 @@ Notifications.setNotificationHandler({
 });
 
 export async function requestReminderPermission(): Promise<boolean> {
-  if (Platform.OS === "android") {
+  const current = await Notifications.getPermissionsAsync();
+  // Android reports canAskAgain=false before the first prompt; the OS no-ops if truly blocked.
+  const granted =
+    current.granted || (await Notifications.requestPermissionsAsync()).granted;
+  if (granted && Platform.OS === "android") {
+    // Channel creation is rejected until POST_NOTIFICATIONS is granted.
     await Notifications.setNotificationChannelAsync(CHANNEL, {
       name: "Mùng 1 – rằm",
       importance: Notifications.AndroidImportance.DEFAULT,
-    });
+    }).catch(() => undefined);
   }
-  const current = await Notifications.getPermissionsAsync();
-  if (current.granted) return true;
-  // Android reports canAskAgain=false before the first prompt; the OS no-ops if truly blocked.
-  const next = await Notifications.requestPermissionsAsync();
-  return next.granted;
+  return granted;
 }
 
 /** Reminders for the coming 1st/15th lunar days and Buddhist holidays (one-off DATE triggers). */
