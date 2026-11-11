@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { ReminderToggle } from "@/components/ReminderToggle";
 import { AppText } from "@/components/Text";
 import {
   Button,
@@ -187,13 +188,9 @@ export default function CalendarScreen() {
           </Card>
         )}
 
-        <Card style={[styles.soon, { borderColor: theme.line }]} tone="soft">
-          <Ionicons name="notifications-outline" size={20} color={theme.primaryText} />
-          <AppText variant="bodyS" tone="text2" style={{ flex: 1 }}>
-            {t.calendarRemindersSoon}
-          </AppText>
-          <Tag label={t.comingSoon} tone="neutral" />
-        </Card>
+        <View style={{ marginTop: 20 }}>
+          <ReminderToggle />
+        </View>
       </ScrollView>
     </Screen>
   );

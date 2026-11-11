@@ -289,6 +289,13 @@ export default function DetailScreen() {
               onPress={() => toggle("vp-visited", p.slug)}
             />
           </View>
+          <Button
+            label={t.offer.enterHall}
+            icon="flame"
+            variant="secondary"
+            style={{ marginHorizontal: space.screen, marginTop: 12 }}
+            onPress={() => router.push(`/bao-dien/${p.slug}`)}
+          />
 
           <View style={styles.body}>
             {enSummary ? <AppText variant="body">{enSummary}</AppText> : null}

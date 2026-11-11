@@ -70,6 +70,12 @@
             "backgroundColor": "#14110B"
           }
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#D4A017"
+        }
       ]
     ],
     "experiments": {
