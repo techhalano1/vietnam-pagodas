@@ -221,6 +221,12 @@ export default function ProfileScreen() {
             onPress={() => router.push("/gioi-thieu")}
           />
           <ListRow
+            icon="shield-checkmark"
+            iconTone="neutral"
+            title={t.privacyPolicy}
+            onPress={() => open(`${SITE_URL}/${locale}/chinh-sach-bao-mat`)}
+          />
+          <ListRow
             icon="globe"
             iconTone="jade"
             title={t.openWebsite}

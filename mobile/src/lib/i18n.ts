@@ -246,6 +246,7 @@ export interface Dict {
   sectionSettings: string;
   sectionAbout: string;
   aboutApp: string;
+  privacyPolicy: string;
   sourceCode: string;
   rateApp: string;
   websiteSubtitle: string;
@@ -555,6 +556,7 @@ const dict: Record<Locale, Dict> = {
     sectionSettings: "Cài đặt",
     sectionAbout: "Thông tin",
     aboutApp: "Giới thiệu & nguồn dữ liệu",
+    privacyPolicy: "Chính sách bảo mật",
     sourceCode: "Mã nguồn trên GitHub",
     rateApp: "Đánh giá ứng dụng",
     websiteSubtitle: "vietnam-pagodas.com",
@@ -960,6 +962,7 @@ const dict: Record<Locale, Dict> = {
     sectionSettings: "Settings",
     sectionAbout: "About",
     aboutApp: "About & data sources",
+    privacyPolicy: "Privacy policy",
     sourceCode: "Source code on GitHub",
     rateApp: "Rate the app",
     websiteSubtitle: "vietnam-pagodas.com",

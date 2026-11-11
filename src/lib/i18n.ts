@@ -121,6 +121,7 @@ export interface Dict {
   sponsor: string;
   licenseWiki: string;
   licenseOsm: string;
+  navPrivacy: string;
   notFoundTitle: string;
   notFoundText: string;
   backHome: string;
@@ -266,6 +267,7 @@ const dict: Record<Locale, Dict> = {
     sponsor: "Tài trợ bởi",
     licenseWiki: "Nội dung trích từ Wikipedia được phát hành theo giấy phép CC BY-SA 4.0.",
     licenseOsm: "Dữ liệu bản đồ © OpenStreetMap contributors (ODbL).",
+    navPrivacy: "Chính sách bảo mật",
     notFoundTitle: "Không tìm thấy trang",
     notFoundText: "Trang bạn tìm kiếm không tồn tại hoặc đã được di chuyển.",
     backHome: "Về trang chủ",
@@ -412,6 +414,7 @@ const dict: Record<Locale, Dict> = {
     sponsor: "Sponsored by",
     licenseWiki: "Content adapted from Wikipedia is available under the CC BY-SA 4.0 license.",
     licenseOsm: "Map data © OpenStreetMap contributors (ODbL).",
+    navPrivacy: "Privacy policy",
     notFoundTitle: "Page not found",
     notFoundText: "The page you are looking for does not exist or has been moved.",
     backHome: "Back to home",
