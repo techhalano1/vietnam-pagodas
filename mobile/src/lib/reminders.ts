@@ -26,7 +26,7 @@ export async function requestReminderPermission(): Promise<boolean> {
   }
   const current = await Notifications.getPermissionsAsync();
   if (current.granted) return true;
-  if (!current.canAskAgain) return false;
+  // Android reports canAskAgain=false before the first prompt; the OS no-ops if truly blocked.
   const next = await Notifications.requestPermissionsAsync();
   return next.granted;
 }
