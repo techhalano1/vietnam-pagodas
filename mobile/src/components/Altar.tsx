@@ -1,41 +1,50 @@
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useState } from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import Animated, {
+  cancelAnimation,
+  Easing,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withTiming,
+} from "react-native-reanimated";
 import type { OfferItem } from "@/lib/i18n";
 
 const STICK_H = 64;
+const TABLE_H = 74;
+const BOWL_H = 34;
 
 function useLoop(duration: number, delay = 0) {
-  const [v] = useState(() => new Animated.Value(0));
+  const v = useSharedValue(0);
   useEffect(() => {
-    const anim = Animated.loop(
-      Animated.sequence([
-        Animated.delay(delay),
-        Animated.timing(v, {
-          toValue: 1,
-          duration,
-          easing: Easing.linear,
-          useNativeDriver: true,
-        }),
-      ]),
+    v.set(
+      withDelay(
+        delay,
+        withRepeat(
+          withTiming(1, { duration, easing: Easing.linear }),
+          -1,
+          false,
+        ),
+      ),
     );
-    anim.start();
-    return () => anim.stop();
+    return () => cancelAnimation(v);
   }, [v, duration, delay]);
   return v;
 }
 
 function Flame({ size = 1 }: { size?: number }) {
   const v = useLoop(900);
-  const scale = v.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [0.92, 1.1, 0.92],
-  });
+  const style = useAnimatedStyle(() => ({
+    transform: [
+      { scaleY: interpolate(v.get(), [0, 0.5, 1], [0.92, 1.1, 0.92]) },
+    ],
+  }));
   return (
-    <Animated.View
-      style={{ transform: [{ scaleY: scale }], alignItems: "center" }}
-    >
+    <Animated.View style={[{ alignItems: "center" }, style]}>
       <View
         style={[styles.flameOuter, { width: 12 * size, height: 20 * size }]}
       >
@@ -49,40 +58,23 @@ function Flame({ size = 1 }: { size?: number }) {
 
 function Wisp({ delay, drift }: { delay: number; drift: number }) {
   const v = useLoop(3600, delay);
-  return (
-    <Animated.View
-      pointerEvents="none"
-      style={[
-        styles.wisp,
-        {
-          opacity: v.interpolate({
-            inputRange: [0, 0.15, 0.7, 1],
-            outputRange: [0, 0.55, 0.25, 0],
-          }),
-          transform: [
-            {
-              translateY: v.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, -150],
-              }),
-            },
-            {
-              translateX: v.interpolate({
-                inputRange: [0, 0.5, 1],
-                outputRange: [0, drift, -drift / 2],
-              }),
-            },
-            {
-              scale: v.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.5, 2.2],
-              }),
-            },
-          ],
-        },
-      ]}
-    />
-  );
+  const style = useAnimatedStyle(() => {
+    const t = v.get();
+    return {
+      opacity: interpolate(t, [0, 0.12, 0.6, 1], [0, 0.4, 0.2, 0]),
+      transform: [
+        { translateY: interpolate(t, [0, 1], [0, -170]) },
+        { translateX: interpolate(t, [0, 0.5, 1], [0, drift, -drift / 2]) },
+        { scaleX: interpolate(t, [0, 1], [0.6, 3]) },
+        { scaleY: interpolate(t, [0, 1], [1, 1.8]) },
+      ],
+    };
+  });
+  return <Animated.View pointerEvents="none" style={[styles.wisp, style]} />;
+}
+
+function stickHeight(remaining: number) {
+  return 18 + (STICK_H - 18) * Math.max(0, Math.min(1, remaining));
 }
 
 function Stick({
@@ -94,18 +86,9 @@ function Stick({
   remaining: number;
   lit: boolean;
 }) {
-  const h = 18 + (STICK_H - 18) * Math.max(0, Math.min(1, remaining));
+  const h = stickHeight(remaining);
   return (
     <View style={[styles.stick, { transform: [{ rotate: `${angle}deg` }] }]}>
-      {lit ? (
-        <View
-          style={{ position: "absolute", bottom: h + 14, alignItems: "center" }}
-        >
-          <Wisp delay={0} drift={10} />
-          <Wisp delay={1200} drift={-12} />
-          <Wisp delay={2400} drift={6} />
-        </View>
-      ) : null}
       <View style={[styles.ember, { opacity: lit ? 1 : 0 }]} />
       <View style={{ width: 3, height: h - 14, backgroundColor: "#7A4A2A" }} />
       <View style={{ width: 3, height: 14, backgroundColor: "#C0262D" }} />
@@ -238,6 +221,21 @@ export function Altar({
         <View style={{ width: 20 }} />
         <Candle lit={has("den")} />
       </View>
+      {lit ? (
+        <View
+          pointerEvents="none"
+          style={[
+            styles.smoke,
+            { bottom: TABLE_H + BOWL_H - 12 + stickHeight(remaining) },
+          ]}
+        >
+          <Wisp delay={0} drift={10} />
+          <Wisp delay={700} drift={-12} />
+          <Wisp delay={1400} drift={6} />
+          <Wisp delay={2100} drift={-8} />
+          <Wisp delay={2800} drift={12} />
+        </View>
+      ) : null}
       <LinearGradient colors={["#A31F1F", "#6E1010"]} style={styles.table}>
         <View style={styles.tableTrim} />
         <View style={styles.tablePanel} />
@@ -272,7 +270,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     zIndex: 2,
   },
-  table: { width: "100%", height: 74, alignItems: "center" },
+  table: { width: "100%", height: TABLE_H, alignItems: "center" },
   tableTrim: { width: "100%", height: 5, backgroundColor: "#D4A017" },
   tablePanel: {
     marginTop: 14,
@@ -303,12 +301,22 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4,
   },
+  smoke: {
+    position: "absolute",
+    left: "50%",
+    marginLeft: -45,
+    width: 90,
+    height: 170,
+    zIndex: 3,
+  },
   wisp: {
     position: "absolute",
-    width: 10,
-    height: 22,
-    borderRadius: 10,
-    backgroundColor: "rgba(170,160,150,0.55)",
+    bottom: 0,
+    left: 42,
+    width: 6,
+    height: 34,
+    borderRadius: 3,
+    backgroundColor: "rgb(150,140,132)",
   },
   bowl: {
     width: 74,

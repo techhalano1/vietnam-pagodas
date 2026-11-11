@@ -328,7 +328,14 @@ export default function BaoDienScreen() {
           />
         }
       >
-        <View style={{ gap: 16, paddingBottom: 8 }}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{
+            gap: 16,
+            paddingBottom: 8,
+            paddingHorizontal: space.screen,
+          }}
+        >
           <View style={{ gap: 8 }}>
             <AppText variant="h3">{t.offer.sticksLabel}</AppText>
             <SegmentedControl<"1" | "3">
@@ -407,7 +414,7 @@ export default function BaoDienScreen() {
               </AppText>
             </View>
           </View>
-        </View>
+        </ScrollView>
       </Sheet>
     </Screen>
   );
