@@ -1,4 +1,10 @@
-import { Text, type TextProps, type TextStyle } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  type TextProps,
+  type TextStyle,
+  useWindowDimensions,
+} from "react-native";
 import { useSettings } from "@/lib/settings";
 
 export type Weight = 400 | 500 | 600 | 700 | 800;
@@ -60,6 +66,8 @@ interface Props extends TextProps {
   center?: boolean;
 }
 
+const MAX_FONT_SCALE = 1.3;
+
 export function AppText({
   variant = "body",
   weight,
@@ -67,9 +75,11 @@ export function AppText({
   color,
   center,
   style,
+  maxFontSizeMultiplier = MAX_FONT_SCALE,
   ...rest
 }: Props) {
   const { theme } = useSettings();
+  const { fontScale } = useWindowDimensions();
   const toneColor: Record<Tone, string> = {
     text: theme.text,
     text2: theme.text2,
@@ -80,17 +90,17 @@ export function AppText({
     jade: theme.jade,
     danger: theme.danger,
   };
-  return (
-    <Text
-      maxFontSizeMultiplier={1.3}
-      {...rest}
-      style={[
-        variants[variant],
-        weight ? font(weight) : null,
-        { color: color ?? toneColor[tone] },
-        center ? { textAlign: "center" } : null,
-        style,
-      ]}
-    />
-  );
+  const flat: TextStyle = {
+    ...StyleSheet.flatten<TextStyle>([
+      variants[variant],
+      weight ? font(weight) : null,
+      { color: color ?? toneColor[tone] },
+      center ? { textAlign: "center" } : null,
+      style,
+    ]),
+  };
+  // A fixed lineHeight doesn't grow with Dynamic Type, which clips Vietnamese diacritics and descenders.
+  const scale = Math.max(1, Math.min(fontScale, maxFontSizeMultiplier ?? MAX_FONT_SCALE));
+  if (flat.lineHeight && scale > 1) flat.lineHeight = Math.ceil(flat.lineHeight * scale);
+  return <Text maxFontSizeMultiplier={maxFontSizeMultiplier} {...rest} style={flat} />;
 }

@@ -16,6 +16,7 @@ import { Altar } from "@/components/Altar";
 import { Sheet } from "@/components/Sheet";
 import { AppText } from "@/components/Text";
 import {
+  AppHeader,
   Button,
   Card,
   Chip,
@@ -149,7 +150,8 @@ export default function BaoDienScreen() {
   if (!p) {
     return (
       <Screen>
-        <Empty icon="alert-circle-outline" title={t.notFoundTitle} />
+        <AppHeader title={t.notFoundTitle} onBack={() => router.back()} />
+        <Empty icon="alert-circle-outline" title={t.notFoundTitle} text={t.notFoundText} />
       </Screen>
     );
   }
@@ -273,7 +275,7 @@ export default function BaoDienScreen() {
                   label={t.offer.listenWhileBurning}
                   icon="musical-notes"
                   variant="secondary"
-                  onPress={() => router.push("/kinh/chu-dai-bi")}
+                  onPress={() => router.push({ pathname: "/kinh/[slug]", params: { slug: "chu-dai-bi", play: "1" } })}
                 />
               ) : (
                 <Button

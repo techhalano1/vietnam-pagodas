@@ -296,11 +296,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!track) return;
     const id = setTimeout(
-      () => setError(raw.isLoaded ? null : raw.error ?? "load-timeout"),
-      raw.isLoaded || raw.error ? 0 : 15000,
+      () => setError(raw.isLoaded || raw.playing ? null : raw.error ?? "load-timeout"),
+      raw.isLoaded || raw.playing || raw.error ? 0 : 15000,
     );
     return () => clearTimeout(id);
-  }, [track, raw.error, raw.isLoaded]);
+  }, [track, raw.error, raw.isLoaded, raw.playing]);
 
   // Repeat handling + periodic history persistence.
   useEffect(() => {

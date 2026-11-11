@@ -9,6 +9,7 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
+      "requireFullScreen": true,
       "bundleIdentifier": "com.vietnampagodas.app",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Vị trí chỉ được dùng trên máy để sắp xếp các chùa gần bạn. Ứng dụng không gửi vị trí đi đâu.",
